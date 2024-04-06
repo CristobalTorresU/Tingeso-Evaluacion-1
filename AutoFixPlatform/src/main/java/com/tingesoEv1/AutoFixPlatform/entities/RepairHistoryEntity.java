@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "repairHistory")
-// TODO: Buscar que significan estos hashs
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +19,6 @@ public class RepairHistoryEntity {
 
     private String checkinDate;
     private String checkinHour;
-    // Podria ser int
     private String reparationType;
     private int totalAmount;
     private String exitDate;

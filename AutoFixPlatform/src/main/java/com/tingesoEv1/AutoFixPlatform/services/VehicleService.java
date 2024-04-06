@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class VehicleService {
@@ -28,6 +29,25 @@ public class VehicleService {
         return vehicleRepository.findByPlate(plate);
     }
 
+    public List<VehicleEntity> getVehicleByBrand(String brand) {
+        return vehicleRepository.findByBrand(brand);
+    }
+
+    public List<VehicleEntity> getVehicleByModel(String model) {
+        return vehicleRepository.findByModel(model);
+    }
+
+    public List<VehicleEntity> getVehicleByType(String type) {
+        return vehicleRepository.findByType(type);
+    }
+
+    public List<VehicleEntity> getVehicleByMotor(String motor) {
+        return vehicleRepository.findByMotor(motor);
+    }
+
+    public List<VehicleEntity> getVehicleBySeats(int seats) {
+        return vehicleRepository.findBySeats(seats);
+    }
     public VehicleEntity updateVehicle(VehicleEntity vehicle) {
         return vehicleRepository.save(vehicle);
     }
