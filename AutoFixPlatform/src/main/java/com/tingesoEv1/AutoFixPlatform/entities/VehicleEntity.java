@@ -21,7 +21,6 @@ public class VehicleEntity {
     private String brand;
     private int mileage;
     private String model;
-    // Podria ser int
     private String type;
     private String fabricationDate;
     private String motor;
