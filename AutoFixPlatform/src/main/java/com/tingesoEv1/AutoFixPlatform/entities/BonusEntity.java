@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "bonus")
 @Data
@@ -17,8 +19,9 @@ public class BonusEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String bonusDate;
-    private String bonusBrand;
-    private int bonusAmount;
-    private int bonusQuantity;
+    private int year;
+    private int month;
+    private String brand;
+    private int amount;
+    private boolean used;
 }

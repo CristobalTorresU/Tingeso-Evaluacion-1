@@ -49,6 +49,10 @@ public class VehicleService {
         return vehicleRepository.findBySeats(seats);
     }
 
+    public List<VehicleEntity> getVehicleByYear(int year) {
+        return vehicleRepository.findByYear(year);
+    }
+
     public VehicleEntity updateVehicle(VehicleEntity vehicle) {
         return vehicleRepository.save(vehicle);
     }

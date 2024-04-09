@@ -63,6 +63,12 @@ public class VehicleController {
         return ResponseEntity.ok(vehicles);
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<VehicleEntity>> listVehicleByYear(@PathVariable int year) {
+        List<VehicleEntity> vehicles = vehicleService.getVehicleByYear(year);
+        return ResponseEntity.ok(vehicles);
+    }
+
     @PostMapping("/")
     public ResponseEntity<VehicleEntity> saveVehicle(@RequestBody VehicleEntity vehicle) {
         VehicleEntity vehicleNew = vehicleService.saveVehicle(vehicle);

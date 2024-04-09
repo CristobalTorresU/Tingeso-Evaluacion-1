@@ -22,7 +22,7 @@ public class VehicleEntity {
     private int mileage;
     private String model;
     private String type;
-    private String fabricationDate;
+    private int year;
     private String motor;
     private int seats;
 }
