@@ -48,6 +48,7 @@ public class VehicleService {
     public List<VehicleEntity> getVehicleBySeats(int seats) {
         return vehicleRepository.findBySeats(seats);
     }
+
     public VehicleEntity updateVehicle(VehicleEntity vehicle) {
         return vehicleRepository.save(vehicle);
     }
