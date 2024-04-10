@@ -1,5 +1,6 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
+import com.tingesoEv1.AutoFixPlatform.entities.BonusEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.RepairRepository;
@@ -74,14 +75,18 @@ public class RepairService {
     // TODO: Por ahora sólo funciona cuando van de salida,
     //  hacer que funcione antes de sacar el vehículo.
     public Boolean calculatePrice(VehicleEntity vehicle,
-                                 LocalDate checkinDate,
-                                 LocalTime checkinHour,
-                                 int reparationType,
-                                 LocalDate exitDate,
-                                 LocalTime exitHour,
-                                 LocalDate collectDate,
-                                 LocalTime collectHour) {
+                                  LocalDate checkinDate,
+                                  LocalTime checkinHour,
+                                  int reparationType,
+                                  LocalDate exitDate,
+                                  LocalTime exitHour,
+                                  LocalDate collectDate,
+                                  LocalTime collectHour,
+                                  // TODO: Verificar si esto en realidad funciona.
+                                  List<BonusEntity> bonuses) {
         RepairEntity repair = new RepairEntity();
+
+        // TODO: Desde aquí se tiene que llamar a vehicle y bonuses.
 
         double totalPrice = 0.0;
         double iva = 1.19;
@@ -94,7 +99,7 @@ public class RepairService {
         double reparationDiscounts = 1.0 - calculateService.getReparationsDiscount(vehicle,
                 getRepairsByPlate(vehicle.getPlate()));
         double dayDiscount = 1.0 - calculateService.getDayDiscount(checkinDate, checkinHour);
-        double bonusDiscount = calculateService.getBonusDiscount(vehicle);
+        double bonusDiscount = calculateService.getBonusDiscount(bonuses);
 
         // TODO: Verificar si la fórmula está correcta.
         totalPrice = ((reparations - bonusDiscount) *
@@ -113,6 +118,8 @@ public class RepairService {
         repair.setCollectDate(collectDate);
         repair.setCollectHour(collectHour);
         repair.setTotalAmount(totalPrice);
+
+        repairRepository.save(repair);
 
         return true;
     }

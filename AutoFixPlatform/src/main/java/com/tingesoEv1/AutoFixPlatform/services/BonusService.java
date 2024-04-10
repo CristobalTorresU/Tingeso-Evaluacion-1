@@ -25,10 +25,11 @@ public class BonusService {
         return bonusRepository.findById(id).get();
     }
 
-    public List<BonusEntity> getBonusByBrand(String brand) {
-        return bonusRepository.findByBrand(brand);
+    public List<BonusEntity> getBonusByBrand(String brand, boolean used) {
+        return bonusRepository.findByBrandAndUsed(brand, used);
     }
 
+    /*
     public List<BonusEntity> getBonusByYear(int year) {
         return bonusRepository.findByYear(year);
     }
@@ -36,7 +37,7 @@ public class BonusService {
     public List<BonusEntity> getBonusByYearAndMonth(Integer year, Integer month) {
         return bonusRepository.findByYearAndMonth(year, month);
     }
-
+     */
     public List<BonusEntity> getBonusByAmount(double amount) {
         return bonusRepository.findByAmountLessThan(amount);
     }

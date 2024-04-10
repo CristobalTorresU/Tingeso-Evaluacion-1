@@ -1,5 +1,6 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
+import com.tingesoEv1.AutoFixPlatform.entities.BonusEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import org.springframework.stereotype.Service;
@@ -50,8 +51,17 @@ public class CalculateService {
     }
 
     // TODO: Organizar ideas para los bonus.
-    public double getBonusDiscount(VehicleEntity vehicle) {
-        return 0.0;
+    // TODO: Optimizar como se buscan los bonos.
+    // TODO: Podría ser con las querys.
+    public double getBonusDiscount(List<BonusEntity> bonuses) {
+        double bonusDiscount = 0.0;
+        if (!bonuses.isEmpty()) {
+            // TODO: Verificar si en realidad se puede cambiar el bono desde aquí.
+            bonusDiscount = bonuses.get(0).getAmount();
+            bonuses.get(0).setUsed(false);
+        }
+
+        return bonusDiscount;
     }
 
     public double getReparationsDiscount(VehicleEntity vehicle, List<RepairEntity> repairs) {

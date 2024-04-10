@@ -27,12 +27,14 @@ public class RepairController {
         return ResponseEntity.ok(repair);
     }
 
+    /*
     @PostMapping("/")
     public ResponseEntity<RepairEntity> saveRepair(@RequestBody RepairEntity repair) {
         RepairEntity repairNew = repairService.saveRepair(repair);
         return ResponseEntity.ok(repairNew);
     }
-
+     */
+    /*
     @PutMapping("/")
     public ResponseEntity<RepairEntity> updateRepair(@RequestBody RepairEntity repair) {
         RepairEntity repairUpdated = repairService.updateRepair(repair);
@@ -44,7 +46,9 @@ public class RepairController {
         var isDeleted = repairService.deleteRepair(id);
         return ResponseEntity.noContent().build();
     }
+    */
 
+    // TODO: Entender como hacer el cálculo.
     /*
     @GetMapping("/calculate")
     public RepairEntity<Void> calculatePrice(@RequestParam(""))
