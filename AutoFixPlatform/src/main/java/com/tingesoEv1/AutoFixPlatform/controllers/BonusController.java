@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bonus")
+@RequestMapping("/bonuses")
 @CrossOrigin("*")
 public class BonusController {
     @Autowired
@@ -27,23 +27,29 @@ public class BonusController {
         return ResponseEntity.ok(bonus);
     }
 
+    /*
     @GetMapping("/")
     public ResponseEntity<List<BonusEntity>> getBonusByBrand(@PathVariable String brand) {
         List<BonusEntity> bonuses = bonusService.getBonusByBrand(brand);
         return ResponseEntity.ok(bonuses);
     }
+     */
 
+    /*
     @GetMapping("/")
     public ResponseEntity<List<BonusEntity>> getBonusByYear(@PathVariable int year) {
         List<BonusEntity> bonuses = bonusService.getBonusByYear(year);
         return ResponseEntity.ok(bonuses);
     }
+     */
 
+    /*
     @GetMapping("/")
     public ResponseEntity<List<BonusEntity>> getBonusByAmount(@PathVariable int amount) {
         List<BonusEntity> bonuses = bonusService.getBonusByAmount(amount);
         return ResponseEntity.ok(bonuses);
     }
+     */
 
     @PostMapping("/")
     public ResponseEntity<BonusEntity> saveBonus(@RequestBody BonusEntity bonus) {

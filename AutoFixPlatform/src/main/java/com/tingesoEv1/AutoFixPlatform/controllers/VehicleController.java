@@ -27,19 +27,20 @@ public class VehicleController {
         return ResponseEntity.ok(vehicle);
     }
 
-    @GetMapping("/{id}")
+    /*
+    @GetMapping("/{plate}")
     public ResponseEntity<VehicleEntity> getVehicleByPlate(@PathVariable String plate) {
         VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
         return ResponseEntity.ok(vehicle);
     }
 
-    @GetMapping("/")
+    @GetMapping("/{brand}")
     public ResponseEntity<List<VehicleEntity>> listVehiclesByBrand(@PathVariable String brand) {
         List<VehicleEntity> vehicles = vehicleService.getVehicleByBrand(brand);
         return ResponseEntity.ok(vehicles);
     }
 
-    @GetMapping("/")
+    @GetMapping("/{type}")
     public ResponseEntity<List<VehicleEntity>> listVehiclesByType(@PathVariable String type){
         List<VehicleEntity> vehicles = vehicleService.getVehicleByType(type);
         return ResponseEntity.ok(vehicles);
@@ -68,6 +69,8 @@ public class VehicleController {
         List<VehicleEntity> vehicles = vehicleService.getVehicleByYear(year);
         return ResponseEntity.ok(vehicles);
     }
+
+     */
 
     @PostMapping("/")
     public ResponseEntity<VehicleEntity> saveVehicle(@RequestBody VehicleEntity vehicle) {
