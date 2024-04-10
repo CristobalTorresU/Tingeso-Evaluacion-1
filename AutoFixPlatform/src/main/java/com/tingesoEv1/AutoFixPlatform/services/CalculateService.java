@@ -1,5 +1,6 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
+import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +8,7 @@ import java.time.LocalTime;
 import java.time.Year;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class CalculateService {
@@ -52,9 +54,67 @@ public class CalculateService {
         return 0.0;
     }
 
-    // TODO: Contar la cantidad de reparaciones en los últimos 12 meses.
-    public double getReparationsDiscount(VehicleEntity vehicle) {
-        return 0.0;
+    public double getReparationsDiscount(VehicleEntity vehicle, List<RepairEntity> repairs) {
+        int totalReparations = 0;
+        double reparationsDiscount = 0.0;
+
+        // Conseguir la cantidad de reparaciones en el último año.
+        for (int i = 0 ; i < repairs.size() ; i++) {
+            LocalDate reparationDate = repairs.get(i).getCheckinDate();
+            LocalDate interval = LocalDate.now().minusYears(1);
+            if (!reparationDate.isBefore(interval)) {
+                totalReparations += 1;
+            }
+        }
+
+        // Realizar los descuentos
+        switch (vehicle.getMotor()) {
+            case "Gasolina":
+                if (totalReparations > 0 && totalReparations <= 2) {
+                    reparationsDiscount = 0.05;
+                } else if (totalReparations <= 5) {
+                    reparationsDiscount = 0.10;
+                } else if (totalReparations <= 9) {
+                    reparationsDiscount = 0.15;
+                } else {
+                    reparationsDiscount = 0.20;
+                }
+                break;
+            case "Diésel":
+                if (totalReparations > 0 && totalReparations <= 2) {
+                    reparationsDiscount = 0.07;
+                } else if (totalReparations <= 5) {
+                    reparationsDiscount = 0.12;
+                } else if (totalReparations <= 9) {
+                    reparationsDiscount = 0.17;
+                } else {
+                    reparationsDiscount = 0.22;
+                }
+                break;
+            case "Híbrido":
+                if (totalReparations > 0 && totalReparations <= 2) {
+                    reparationsDiscount = 0.10;
+                } else if (totalReparations <= 5) {
+                    reparationsDiscount = 0.15;
+                } else if (totalReparations <= 9) {
+                    reparationsDiscount = 0.20;
+                } else {
+                    reparationsDiscount = 0.25;
+                }
+                break;
+            case "Eléctrico":
+                if (totalReparations > 0 && totalReparations <= 2) {
+                    reparationsDiscount = 0.08;
+                } else if (totalReparations <= 5) {
+                    reparationsDiscount = 0.13;
+                } else if (totalReparations <= 9) {
+                    reparationsDiscount = 0.18;
+                } else {
+                    reparationsDiscount = 0.23;
+                }
+                break;
+        }
+        return reparationsDiscount;
     }
 
     public double getMileageRecharge(VehicleEntity vehicle) {
@@ -93,20 +153,6 @@ public class CalculateService {
                 }
                 break;
         }
-
-        /*
-        if (brand.equals("Sedán")) {
-            mileageRecharge = ;
-        } else if (brand.equals("Hatchback")) {
-            mileageRecharge = ;
-        } else if (brand.equals("SUV")) {
-            mileageRecharge = ;
-        } else if (brand.equals("Pickup")) {
-            mileageRecharge = ;
-        } else if (brand.equals("Furgoneta")) {
-            mileageRecharge = ;
-        }
-         */
 
         return mileageRecharge;
     }

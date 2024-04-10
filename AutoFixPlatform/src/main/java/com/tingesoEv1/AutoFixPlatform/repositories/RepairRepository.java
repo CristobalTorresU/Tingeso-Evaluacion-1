@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Repository
 public interface RepairRepository extends JpaRepository<RepairEntity, Long> {
-     List<RepairEntity> findByPlate(String plate);
+    List<RepairEntity> findByPlate(String plate);
     List<RepairEntity> findByReparationType(int reparationType);
     List<RepairEntity> findByCheckinDateBefore(LocalDate checkinDate);
     List<RepairEntity> findByExitDateBefore(LocalDate exitDate);

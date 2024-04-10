@@ -2,7 +2,6 @@ package com.tingesoEv1.AutoFixPlatform.services;
 
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
-import com.tingesoEv1.AutoFixPlatform.repositories.BonusRepository;
 import com.tingesoEv1.AutoFixPlatform.repositories.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class RepairService {
         return repairRepository.findById(id).get();
     }
 
-    public List<RepairEntity> getRepairByPlate(String plate) {
+    public List<RepairEntity> getRepairsByPlate(String plate) {
         return repairRepository.findByPlate(plate);
     }
 
@@ -72,8 +71,8 @@ public class RepairService {
         }
     }
 
-    // TODO: Por ahora solo funciona cuando van de salida,
-    //  hacer que funcione antes de sacar el vehíclo.
+    // TODO: Por ahora sólo funciona cuando van de salida,
+    //  hacer que funcione antes de sacar el vehículo.
     public Boolean calculatePrice(VehicleEntity vehicle,
                                  LocalDate checkinDate,
                                  LocalTime checkinHour,
@@ -92,7 +91,8 @@ public class RepairService {
         double yearRecharge = 1.0 + calculateService.getYearRecharge(vehicle);
         // TODO: Preguntar si se multiplica o se suman los porcentajes.
         double lateRecharge = 1.0 + calculateService.getLateRecharge(exitDate, collectDate);
-        double reparationDiscounts = 1.0 - calculateService.getReparationsDiscount(vehicle);
+        double reparationDiscounts = 1.0 - calculateService.getReparationsDiscount(vehicle,
+                getRepairsByPlate(vehicle.getPlate()));
         double dayDiscount = 1.0 - calculateService.getDayDiscount(checkinDate, checkinHour);
         double bonusDiscount = calculateService.getBonusDiscount(vehicle);
 

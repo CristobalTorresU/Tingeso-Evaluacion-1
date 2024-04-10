@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,7 +22,9 @@ public class BonusEntity {
 
     private int year;
     private int month;
+    // TODO: Cambiar el formato en que entra la fecha.
+    private LocalDate sentDate;
     private String brand;
-    private int amount;
+    private double amount;
     private boolean used;
 }
