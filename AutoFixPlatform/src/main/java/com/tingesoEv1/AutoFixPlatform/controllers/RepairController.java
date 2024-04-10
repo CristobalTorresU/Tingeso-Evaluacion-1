@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -48,9 +50,29 @@ public class RepairController {
     }
     */
 
-    // TODO: Entender como hacer el cálculo.
+    // TODO: Que esta cosa funcione.
     /*
     @GetMapping("/calculate")
-    public RepairEntity<Void> calculatePrice(@RequestParam(""))
-     */
+    public ResponseEntity<Void> calculatePrice(@RequestParam("plate") String plate,
+                                                 @RequestParam("checkinDate") LocalDate checkinDate,
+                                                 @RequestParam("checkinHour") LocalTime checkinHour,
+                                                 @RequestParam("reparationType") int reparationType,
+                                                 @RequestParam("exitDate") LocalDate exitDate,
+                                                 @RequestParam("exitHour") LocalTime exitHour,
+                                                 @RequestParam("collectDate") LocalDate collectDate,
+                                                 @RequestParam("collectHour") LocalTime collectHour) {
+        repairService.calculatePrice(plate, checkinDate, checkinHour, reparationType, exitDate,
+                exitHour, collectDate, collectHour);
+        return ResponseEntity.noContent().build();
+    }
+    */
+
+
+    @GetMapping("/calculate")
+    public ResponseEntity<Void> calculatePrice(@RequestBody RepairEntity repair) {
+        repairService.calculatePrice(repair.getPlate(), repair.getCheckinDate(), repair.getCheckinHour(),
+                repair.getReparationType(), repair.getExitDate(),
+                repair.getExitHour(), repair.getCollectDate(), repair.getCollectHour());
+        return ResponseEntity.noContent().build();
+    }
 }

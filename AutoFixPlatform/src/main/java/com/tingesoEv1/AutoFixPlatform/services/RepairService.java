@@ -74,21 +74,21 @@ public class RepairService {
 
     // TODO: Por ahora sólo funciona cuando van de salida,
     //  hacer que funcione antes de sacar el vehículo.
-    public Boolean calculatePrice(VehicleEntity vehicle,
+    public Boolean calculatePrice(String plate,
                                   LocalDate checkinDate,
                                   LocalTime checkinHour,
                                   int reparationType,
                                   LocalDate exitDate,
                                   LocalTime exitHour,
                                   LocalDate collectDate,
-                                  LocalTime collectHour,
-                                  // TODO: Verificar si esto en realidad funciona.
-                                  List<BonusEntity> bonuses) {
+                                  LocalTime collectHour)
+    {
         RepairEntity repair = new RepairEntity();
 
-        // TODO: Desde aquí se tiene que llamar a vehicle y bonuses.
+       VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
+       List<BonusEntity> bonuses = bonusService.getBonusByBrand(vehicle.getBrand(), false);
 
-        double totalPrice = 0.0;
+        double totalPrice;
         double iva = 1.19;
         // TODO: Hacer que funcione para más de una reparación a la vez.
         double reparations = calculateService.getReparationTypePrice(vehicle, reparationType);
