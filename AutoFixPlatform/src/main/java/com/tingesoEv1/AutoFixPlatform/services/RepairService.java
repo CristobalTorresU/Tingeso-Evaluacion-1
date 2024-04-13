@@ -51,7 +51,7 @@ public class RepairService {
         return repairRepository.findByExitDateBefore(exitDate);
     }
 
-    public List<RepairEntity> getRepairByTotalAmount(Double startTotalAmount, Double endTotalAmount) {
+    public List<RepairEntity> getRepairByTotalAmount(Integer startTotalAmount, Integer endTotalAmount) {
         return repairRepository.findByTotalAmountBetween(startTotalAmount, endTotalAmount);
     }
 
@@ -74,6 +74,7 @@ public class RepairService {
 
     // TODO: Por ahora sólo funciona cuando van de salida,
     //  hacer que funcione antes de sacar el vehículo.
+    // TODO: Cambiar como se calcula la fórmula.
     public Boolean calculatePrice(String plate,
                                   LocalDate checkinDate,
                                   LocalTime checkinHour,
@@ -88,26 +89,42 @@ public class RepairService {
        VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
        List<BonusEntity> bonuses = bonusService.getBonusByBrand(vehicle.getBrand(), false);
 
-        double totalPrice;
-        double iva = 1.19;
+        int totalPrice;
         // TODO: Hacer que funcione para más de una reparación a la vez.
         double reparations = calculateService.getReparationTypePrice(vehicle, reparationType);
-        double mileageRecharges = 1.0 + calculateService.getMileageRecharge(vehicle);
-        double yearRecharge = 1.0 + calculateService.getYearRecharge(vehicle);
+        double mileageRecharges = reparations * calculateService.getMileageRecharge(vehicle);
+        double yearRecharge = reparations * calculateService.getYearRecharge(vehicle, checkinDate);
         // TODO: Preguntar si se multiplica o se suman los porcentajes.
-        double lateRecharge = 1.0 + calculateService.getLateRecharge(exitDate, collectDate);
-        double reparationDiscounts = 1.0 - calculateService.getReparationsDiscount(vehicle,
+        double lateRecharge = reparations * calculateService.getLateRecharge(exitDate, collectDate);
+        double reparationDiscounts = reparations * calculateService.getReparationsDiscount(vehicle,
                 getRepairsByPlate(vehicle.getPlate()));
-        double dayDiscount = 1.0 - calculateService.getDayDiscount(checkinDate, checkinHour);
+        double dayDiscount = reparations * calculateService.getDayDiscount(checkinDate, checkinHour);
         double bonusDiscount = calculateService.getBonusDiscount(bonuses);
 
-        // TODO: Verificar si la fórmula está correcta.
-        totalPrice = ((reparations - bonusDiscount) *
-                mileageRecharges *
-                yearRecharge *
-                lateRecharge *
-                reparationDiscounts *
-                dayDiscount) * iva;
+        int discounts = (int)reparationDiscounts + (int)dayDiscount + (int)bonusDiscount;
+        int recharges = (int)mileageRecharges + (int)yearRecharge + (int)lateRecharge;
+        int iva = (int)(reparations * 0.19);
+
+        // DEBUG
+        /*
+        System.out.print("\nReparations Discounts: ");
+        System.out.print(reparationDiscounts);
+        System.out.print("\nDay Discount: ");
+        System.out.print(dayDiscount);
+        System.out.print("\nBonus Discount: ");
+        System.out.print(bonusDiscount);
+        System.out.print("\nMileage Recharge: ");
+        System.out.print(mileageRecharges);
+        System.out.print("\nYear Recharge: ");
+        System.out.print(yearRecharge);
+        System.out.print("\nLate Recharge: ");
+        System.out.print(lateRecharge);
+        System.out.print("\nIVA: ");
+        System.out.print(iva);
+         */
+
+        // TODO: Arreglar el cálculo del monto total.
+        totalPrice = ((int)reparations + recharges - discounts) + iva;
 
         repair.setCheckinDate(checkinDate);
         repair.setCheckinHour(checkinHour);
@@ -118,6 +135,14 @@ public class RepairService {
         repair.setCollectDate(collectDate);
         repair.setCollectHour(collectHour);
         repair.setTotalAmount(totalPrice);
+        repair.setRepairAmount((int)reparations);
+        repair.setRepairsDiscount((int)reparationDiscounts);
+        repair.setDayDiscount((int)dayDiscount);
+        repair.setBonusDiscount((int)bonusDiscount);
+        repair.setMileageRecharge((int)mileageRecharges);
+        repair.setYearRecharge((int)yearRecharge);
+        repair.setLateRecharge((int)lateRecharge);
+        repair.setIVA(iva);
 
         repairRepository.save(repair);
 

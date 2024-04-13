@@ -35,16 +35,16 @@ public class CalculateService {
 
         switch (vehicleMotor) {
             case "Gasolina":
-                price = pricesGasolina[reparation];
+                price = pricesGasolina[reparation - 1];
                 break;
             case "Diésel":
-                price = pricesDiesel[reparation];
+                price = pricesDiesel[reparation - 1];
                 break;
             case "Híbrido":
-                price = pricesHibrido[reparation];
+                price = pricesHibrido[reparation - 1];
                 break;
             case "Eléctrico":
-                price = pricesElectrico[reparation];
+                price = pricesElectrico[reparation - 1];
                 break;
         }
         return price;
@@ -77,10 +77,14 @@ public class CalculateService {
             }
         }
 
+        if (totalReparations == 0) {
+            return reparationsDiscount;
+        }
+
         // Realizar los descuentos
         switch (vehicle.getMotor()) {
             case "Gasolina":
-                if (totalReparations > 0 && totalReparations <= 2) {
+                if (totalReparations <= 2) {
                     reparationsDiscount = 0.05;
                 } else if (totalReparations <= 5) {
                     reparationsDiscount = 0.10;
@@ -91,7 +95,7 @@ public class CalculateService {
                 }
                 break;
             case "Diésel":
-                if (totalReparations > 0 && totalReparations <= 2) {
+                if (totalReparations <= 2) {
                     reparationsDiscount = 0.07;
                 } else if (totalReparations <= 5) {
                     reparationsDiscount = 0.12;
@@ -102,7 +106,7 @@ public class CalculateService {
                 }
                 break;
             case "Híbrido":
-                if (totalReparations > 0 && totalReparations <= 2) {
+                if (totalReparations <= 2) {
                     reparationsDiscount = 0.10;
                 } else if (totalReparations <= 5) {
                     reparationsDiscount = 0.15;
@@ -113,7 +117,7 @@ public class CalculateService {
                 }
                 break;
             case "Eléctrico":
-                if (totalReparations > 0 && totalReparations <= 2) {
+                if (totalReparations <= 2) {
                     reparationsDiscount = 0.08;
                 } else if (totalReparations <= 5) {
                     reparationsDiscount = 0.13;
@@ -128,7 +132,7 @@ public class CalculateService {
     }
 
     public double getMileageRecharge(VehicleEntity vehicle) {
-        double mileageRecharge = 1.0;
+        double mileageRecharge = 0.0;
         int vehicleMileage = vehicle.getMileage();
         String vehicleType = vehicle.getType();
 
@@ -167,13 +171,13 @@ public class CalculateService {
         return mileageRecharge;
     }
 
-    public double getYearRecharge(VehicleEntity vehicle) {
-        double yearRecharge = 1.0;
-        int actualYear = Year.now().getValue();
+    public double getYearRecharge(VehicleEntity vehicle, LocalDate checkinDate) {
+        double yearRecharge = 0.0;
+        int checkinlYear = checkinDate.getYear();
         int vehicleYear = vehicle.getYear();
         String vehicleType = vehicle.getType();
 
-        int vehicleAge = actualYear - vehicleYear;
+        int vehicleAge = checkinlYear - vehicleYear;
 
         switch (vehicleType) {
             case "Sedán":
@@ -222,7 +226,7 @@ public class CalculateService {
     }
 
     public double getLateRecharge(LocalDate exitDate, LocalDate collectDate) {
-        double lateRecharge = 0;
+        double lateRecharge = 0.0;
         int daysLate = exitDate.until(collectDate).getDays();
         if (daysLate != 0) {
             lateRecharge = 0.05 * daysLate;

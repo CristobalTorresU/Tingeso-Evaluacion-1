@@ -51,6 +51,7 @@ public class BonusController {
     }
      */
 
+    // TODO: Ingresar los datos de los bonos, además de la cantidad que se harán.
     @PostMapping("/")
     public ResponseEntity<BonusEntity> saveBonus(@RequestBody BonusEntity bonus) {
         BonusEntity bonusNew = bonusService.saveBonus(bonus);

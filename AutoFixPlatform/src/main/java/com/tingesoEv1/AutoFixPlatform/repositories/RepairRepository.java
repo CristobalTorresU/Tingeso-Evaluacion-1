@@ -14,6 +14,6 @@ public interface RepairRepository extends JpaRepository<RepairEntity, Long> {
     List<RepairEntity> findByReparationType(int reparationType);
     List<RepairEntity> findByCheckinDateBefore(LocalDate checkinDate);
     List<RepairEntity> findByExitDateBefore(LocalDate exitDate);
-    List<RepairEntity> findByTotalAmountBetween(Double startTotalAmount, Double endTotalAmount);
+    List<RepairEntity> findByTotalAmountBetween(Integer startTotalAmount, Integer endTotalAmount);
     List<RepairEntity> findByCollectDateBefore(LocalDate collectDate);
 }
