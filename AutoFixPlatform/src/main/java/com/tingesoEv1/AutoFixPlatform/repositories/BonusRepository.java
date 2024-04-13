@@ -11,7 +11,7 @@ public interface BonusRepository extends JpaRepository<BonusEntity, Long> {
     List<BonusEntity> findByBrandAndUsed(String brand, boolean used);
     //List<BonusEntity> findByYear(int year);
     //List<BonusEntity> findByYearAndMonth(Integer year, Integer month);
-    List<BonusEntity> findByAmountLessThan(double amount);
+    List<BonusEntity> findByAmountLessThan(int amount);
     /*
     @Query(value = "SELECT * FROM bonus WHERE bonus.brand = :brand, nativeQuery = true")
     List<BonusEntity> getBonusesByBrandNonUsed(@Param("brand") String brand);

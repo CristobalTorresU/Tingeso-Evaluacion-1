@@ -58,7 +58,7 @@ public class CalculateService {
         if (!bonuses.isEmpty()) {
             // TODO: Verificar si en realidad se puede cambiar el bono desde aquí.
             bonusDiscount = bonuses.get(0).getAmount();
-            bonuses.get(0).setUsed(false);
+            bonuses.get(0).setUsed(true);
         }
 
         return bonusDiscount;

@@ -53,9 +53,17 @@ public class BonusController {
 
     // TODO: Ingresar los datos de los bonos, además de la cantidad que se harán.
     @PostMapping("/")
-    public ResponseEntity<BonusEntity> saveBonus(@RequestBody BonusEntity bonus) {
-        BonusEntity bonusNew = bonusService.saveBonus(bonus);
-        return ResponseEntity.ok(bonusNew);
+    public ResponseEntity<Void> saveMultipleBonuses(@RequestBody BonusEntity bonus, @RequestParam int quantity) {
+        for (int i = 0 ; i < quantity ; i++) {
+            BonusEntity bonusNew = new BonusEntity();
+
+            bonusNew.setUsed(false);
+            bonusNew.setBrand(bonus.getBrand());
+            bonusNew.setAmount(bonus.getAmount());
+
+            bonusService.saveBonus(bonusNew);
+        }
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/")

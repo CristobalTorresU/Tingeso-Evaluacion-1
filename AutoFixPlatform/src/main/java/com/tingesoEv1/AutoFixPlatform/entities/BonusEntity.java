@@ -20,8 +20,7 @@ public class BonusEntity {
     private Long id;
 
     // TODO: Cambiar el formato en que entra la fecha.
-    private LocalDate sentDate;
     private String brand;
-    private double amount;
+    private int amount;
     private boolean used;
 }

@@ -74,7 +74,6 @@ public class RepairService {
 
     // TODO: Por ahora sólo funciona cuando van de salida,
     //  hacer que funcione antes de sacar el vehículo.
-    // TODO: Cambiar como se calcula la fórmula.
     public Boolean calculatePrice(String plate,
                                   LocalDate checkinDate,
                                   LocalTime checkinHour,
@@ -123,7 +122,6 @@ public class RepairService {
         System.out.print(iva);
          */
 
-        // TODO: Arreglar el cálculo del monto total.
         totalPrice = ((int)reparations + recharges - discounts) + iva;
 
         repair.setCheckinDate(checkinDate);

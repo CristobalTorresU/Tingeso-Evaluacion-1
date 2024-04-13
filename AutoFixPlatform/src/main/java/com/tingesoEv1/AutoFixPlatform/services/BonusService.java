@@ -38,7 +38,7 @@ public class BonusService {
         return bonusRepository.findByYearAndMonth(year, month);
     }
      */
-    public List<BonusEntity> getBonusByAmount(double amount) {
+    public List<BonusEntity> getBonusByAmount(int amount) {
         return bonusRepository.findByAmountLessThan(amount);
     }
 
