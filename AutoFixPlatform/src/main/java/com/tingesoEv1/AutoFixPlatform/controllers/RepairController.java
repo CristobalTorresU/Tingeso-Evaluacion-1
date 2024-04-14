@@ -29,21 +29,6 @@ public class RepairController {
         return ResponseEntity.ok(repair);
     }
 
-    /*
-    @PostMapping("/")
-    public ResponseEntity<RepairEntity> saveRepair(@RequestBody RepairEntity repair) {
-        RepairEntity repairNew = repairService.saveRepair(repair);
-        return ResponseEntity.ok(repairNew);
-    }
-     */
-    /*
-    @PutMapping("/")
-    public ResponseEntity<RepairEntity> updateRepair(@RequestBody RepairEntity repair) {
-        RepairEntity repairUpdated = repairService.updateRepair(repair);
-        return ResponseEntity.ok(repairUpdated);
-    }
-
-    */
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteRepairById(@PathVariable Long id) throws Exception {
         var isDeleted = repairService.deleteRepair(id);

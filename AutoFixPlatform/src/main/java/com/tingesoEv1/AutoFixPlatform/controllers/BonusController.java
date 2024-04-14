@@ -27,30 +27,6 @@ public class BonusController {
         return ResponseEntity.ok(bonus);
     }
 
-    /*
-    @GetMapping("/")
-    public ResponseEntity<List<BonusEntity>> getBonusByBrand(@PathVariable String brand) {
-        List<BonusEntity> bonuses = bonusService.getBonusByBrand(brand);
-        return ResponseEntity.ok(bonuses);
-    }
-     */
-
-    /*
-    @GetMapping("/")
-    public ResponseEntity<List<BonusEntity>> getBonusByYear(@PathVariable int year) {
-        List<BonusEntity> bonuses = bonusService.getBonusByYear(year);
-        return ResponseEntity.ok(bonuses);
-    }
-     */
-
-    /*
-    @GetMapping("/")
-    public ResponseEntity<List<BonusEntity>> getBonusByAmount(@PathVariable int amount) {
-        List<BonusEntity> bonuses = bonusService.getBonusByAmount(amount);
-        return ResponseEntity.ok(bonuses);
-    }
-     */
-
     // TODO: Ingresar los datos de los bonos, además de la cantidad que se harán.
     @PostMapping("/")
     public ResponseEntity<Void> saveMultipleBonuses(@RequestBody BonusEntity bonus, @RequestParam int quantity) {
