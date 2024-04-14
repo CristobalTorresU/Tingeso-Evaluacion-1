@@ -6,7 +6,6 @@ import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
-import java.time.Year;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;

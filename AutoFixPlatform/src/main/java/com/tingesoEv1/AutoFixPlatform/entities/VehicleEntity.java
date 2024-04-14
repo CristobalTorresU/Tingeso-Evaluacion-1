@@ -15,7 +15,7 @@ public class VehicleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long vehicle_id;
 
     private String plate;
     private String brand;

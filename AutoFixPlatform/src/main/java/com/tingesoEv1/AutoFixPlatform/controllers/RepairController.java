@@ -57,4 +57,24 @@ public class RepairController {
                 repair.getExitHour(), repair.getCollectDate(), repair.getCollectHour());
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}/report")
+    public ResponseEntity<Void> generateRepairReport(@PathVariable Long id) {
+        repairService.generateRepairReport(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/typereport")
+    public ResponseEntity<Void> generateTypeReport() {
+        repairService.generateTypeReport();
+        return ResponseEntity.noContent().build();
+    }
+
+    // TODO: Realizar reporte R3.
+
+    @GetMapping("/motorreport")
+    public ResponseEntity<Void> generateMotorReport() {
+        repairService.generateMotorReport();
+        return ResponseEntity.noContent().build();
+    }
 }

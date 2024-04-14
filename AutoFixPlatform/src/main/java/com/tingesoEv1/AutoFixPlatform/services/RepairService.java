@@ -146,4 +146,21 @@ public class RepairService {
 
         return true;
     }
+
+    // TODO: ¿Genera el reporte con los datos que ya tiene la entidad?
+    public boolean generateRepairReport(Long id) {
+        return true;
+    }
+
+    // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
+    public boolean generateTypeReport() {
+        List<Object[]> report = repairRepository.getTypeReport();
+        return true;
+    }
+
+    // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
+    public boolean generateMotorReport() {
+        List<Object[]> report = repairRepository.getMotorReport();
+        return true;
+    }
 }

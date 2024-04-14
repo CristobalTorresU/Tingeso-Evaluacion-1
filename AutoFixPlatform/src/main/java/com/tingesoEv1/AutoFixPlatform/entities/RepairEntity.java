@@ -18,7 +18,11 @@ public class RepairEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long repair_id;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id")
+    private VehicleEntity vehicle;
 
     private String plate;
     private LocalDate checkinDate;
