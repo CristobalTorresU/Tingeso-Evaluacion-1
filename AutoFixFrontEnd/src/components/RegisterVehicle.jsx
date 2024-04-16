@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import MenuItem from "@mui/material/MenuItem";
 import SaveIcon from "@mui/icons-material/Save";
 
 const RegisterVehicle = () => {
@@ -65,7 +64,7 @@ const RegisterVehicle = () => {
                 })
                 .catch((error) => {
                     console.log("Se produjo un error.", error);
-                })
+                });
         } else {
             setTitleVehicleForm("Nuevo Vehículo");
         }
@@ -78,7 +77,7 @@ const RegisterVehicle = () => {
             justifyContent="center"
             component="form"
         >
-            <h3> {titleEmployeeForm} </h3>
+            <h3> {titleVehicleForm} </h3>
             <hr />
             <form>
                 <FormControl fullWidth>
@@ -157,6 +156,7 @@ const RegisterVehicle = () => {
                     <TextField
                         id="seats"
                         label="Asientos"
+                        type="number"
                         value={seats}
                         variant="standard"
                         onChange={(v) => setSeats(v.target.value)}
@@ -169,7 +169,7 @@ const RegisterVehicle = () => {
                         variant="contained"
                         color="info"
                         onClick={(v) => saveVehicle(v)}
-                        style={{ marginLeft: "0.5rem"}}
+                        style={{ marginLeft: "0.5rem" }}
                         startIcon={<SaveIcon />}
                     >
                         Registrar
@@ -177,7 +177,7 @@ const RegisterVehicle = () => {
                 </FormControl>
             </form>
             <hr />
-            <Link to ="vehicles/list">Mostrar Lista de Vehículos</Link>
+            <Link to ="/vehicle/list">Mostrar Lista de Vehículos</Link>
         </Box>
     );
 };
