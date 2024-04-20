@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import RegisterVehicle from './components/RegisterVehicle';
 import VehicleList from './components/VehicleList';
 import RepairList from './components/RepairList';
+import AddRepair from './components/AddRepair';
 import AvailableBonus from './components/AvailableBonus';
 import NotFound from './components/NotFound';
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/vehicle/register" element={<RegisterVehicle/>} />
           <Route path="/repair/list" element={<RepairList/>} />
           <Route path="/bonus/list" element={<AvailableBonus/>} />
+          <Route path="/repair/add" element={<AddRepair/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>
