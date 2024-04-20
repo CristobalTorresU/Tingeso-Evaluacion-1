@@ -10,7 +10,7 @@ const get = id => {
 
 // TODO: Arreglar "calculate".
 const calculate = () => {
-    return httpClient.get("/repairs/calculate",);
+    return httpClient.get("/repairs/calculate",{params:{plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
 }
 
 export default { getAll, get, calculate };

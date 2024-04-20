@@ -3,20 +3,22 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import RegisterVehicle from './components/RegisterVehicle';
-import VehicleLista from './components/VehicleLista';
+import VehicleList from './components/VehicleList';
+import RepairList from './components/RepairList';
+import AvailableBonus from './components/AvailableBonus';
 import NotFound from './components/NotFound';
-import Testing from './components/Testing';
 
 function App() {
   return (
     <Router>
+      <Navbar></Navbar>
       <div className="container">
-        <Navbar></Navbar>
         <Routes>
           <Route path="/home" element={<Home/>} />
-          <Route path="/testing" element={<Testing/>} />
-          <Route path="/vehicle/list" element={<VehicleLista/>} />
-          <Route path="/vehicle/add" element={<RegisterVehicle/>} />
+          <Route path="/vehicle/list" element={<VehicleList/>} />
+          <Route path="/vehicle/register" element={<RegisterVehicle/>} />
+          <Route path="/repair/list" element={<RepairList/>} />
+          <Route path="/bonus/list" element={<AvailableBonus/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>

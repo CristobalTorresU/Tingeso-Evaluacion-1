@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import SaveIcon from "@mui/icons-material/Save";
+import { MenuItem } from "@mui/material";
 
 const RegisterVehicle = () => {
     const [plate, setPlate] = useState("");
@@ -66,7 +67,7 @@ const RegisterVehicle = () => {
                     console.log("Se produjo un error.", error);
                 });
         } else {
-            setTitleVehicleForm("Nuevo Vehículo");
+            setTitleVehicleForm("Registrar Nuevo Vehículo");
         }
     }, []);
     return (
@@ -77,6 +78,7 @@ const RegisterVehicle = () => {
             justifyContent="center"
             component="form"
         >
+            <hr />
             <h3> {titleVehicleForm} </h3>
             <hr />
             <form>
@@ -126,9 +128,18 @@ const RegisterVehicle = () => {
                         id="type"
                         label="Tipo"
                         value={type}
+                        select
                         variant="standard"
+                        defaultValue="Sedán"
                         onChange={(v) => setType(v.target.value)}
-                    />
+                        style={{ width: "25%"}}
+                    >
+                        <MenuItem value={"Sedán"}>Sedán</MenuItem>
+                        <MenuItem value={"Hatchback"}>Hatchback</MenuItem>
+                        <MenuItem value={"SUV"}>SUV</MenuItem>
+                        <MenuItem value={"Pickup"}>Pickup</MenuItem>
+                        <MenuItem value={"Furgoneta"}>Furgoneta</MenuItem>
+                    </TextField>
                 </FormControl>
                 
                 <FormControl fullWidth>
@@ -147,9 +158,17 @@ const RegisterVehicle = () => {
                         id="motor"
                         label="Motor"
                         value={motor}
+                        select
                         variant="standard"
+                        defaultValue="Gasolina"
                         onChange={(v) => setMotor(v.target.value)}
-                    />
+                        style={{ width: "25%"}}
+                    >
+                        <MenuItem value={"Gasolina"}>Gasolina</MenuItem>
+                        <MenuItem value={"Diésel"}>Diésel</MenuItem>
+                        <MenuItem value={"Híbrido"}>Híbrido</MenuItem>
+                        <MenuItem value={"Eléctrico"}>Eléctrico</MenuItem>
+                    </TextField>
                 </FormControl>
 
                 <FormControl fullWidth>
@@ -172,7 +191,7 @@ const RegisterVehicle = () => {
                         style={{ marginLeft: "0.5rem" }}
                         startIcon={<SaveIcon />}
                     >
-                        Registrar
+                        Guardar Vehículo
                     </Button>
                 </FormControl>
             </form>

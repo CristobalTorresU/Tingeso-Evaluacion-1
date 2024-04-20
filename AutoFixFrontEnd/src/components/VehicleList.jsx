@@ -67,7 +67,7 @@ const VehicleList = () => {
     <TableContainer component={Paper}>
       <br />
       <Link
-        to="/vehicle/add"
+        to="/vehicle/register"
         style={{ textDecoration: "none", marginBottom: "1rem" }}
       >
         <Button
@@ -153,4 +153,4 @@ const VehicleList = () => {
   );
 };
 
-export default EmployeeList;
+export default VehicleList;
