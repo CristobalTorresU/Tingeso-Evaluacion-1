@@ -10,6 +10,6 @@ SELECT
 	COUNT(rep.reparationtype),
 	veh.motor
 	FROM repair AS rep
-JOIN vehicle AS veh ON rep.vehicle_id = veh.vehicle_id
+LEFT JOIN vehicle AS veh ON rep.vehicle_id = veh.vehicle_id
 GROUP BY reparationtype, veh.motor
 ORDER BY sumita DESC;

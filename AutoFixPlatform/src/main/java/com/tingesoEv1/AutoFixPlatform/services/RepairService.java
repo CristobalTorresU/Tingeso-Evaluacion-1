@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RepairService {
@@ -154,13 +155,13 @@ public class RepairService {
 
     // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
     public boolean generateTypeReport() {
-        List<Object[]> report = repairRepository.getTypeReport();
+        List<Map<String, Object>> report = repairRepository.getTypeReport();
         return true;
     }
 
     // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
     public boolean generateMotorReport() {
-        List<Object[]> report = repairRepository.getMotorReport();
+        List<Map<String, Object>> report = repairRepository.getMotorReport();
         return true;
     }
 }
