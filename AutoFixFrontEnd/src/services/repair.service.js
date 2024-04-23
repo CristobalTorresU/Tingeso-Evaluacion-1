@@ -9,7 +9,7 @@ const get = id => {
 }
 
 // TODO: Arreglar "calculate".
-const calculate = () => {
+const calculate = (plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour) => {
     return httpClient.get("/repairs/calculate",{params:{plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
 }
 

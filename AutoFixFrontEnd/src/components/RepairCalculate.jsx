@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
+import DatePicker from "react-datepicker";
 
 const RepairCalculate = () => {
   const [plate, setPlate] = useState("");
@@ -20,22 +21,22 @@ const RepairCalculate = () => {
 
   const navigate = useNavigate();
 
-  const calculate = (r) => {
+  const calculateRepair = (r) => {
     r.preventDefault();
-    console.log("Solicitar calcular planilla.", year, "-", month);
-    paycheckService
-      .calculate(year, month)
+    console.log("Solicitar calcular reparacion.");
+    repairService
+      .calculate(plate, checkinDate, checkinHour, reparationType, exitDate, exitHour, collectDate, collectHour)
       .then((response) => {
-        console.log("Planilla ha sido actualizada.", response.data);
+        console.log("Reparacion ha sido actualizada.", response.data);
         navigate("/repair/list");
       })
       .catch((error) => {
         console.log(
-          "Ha ocurrido un error al intentar calcular liquidaciones de sueldos.",
+          "Ha ocurrido un error al intentar calcular la reparacion.",
           error
         );
       });
-    console.log("Fin calculo planilla.");
+    console.log("Fin calculo reparacion.");
   };
 
   return (
@@ -85,9 +86,24 @@ const RepairCalculate = () => {
             id="reparationType"
             label="Tipo de Reparación"
             value={reparationType}
+            select
             variant="standard"
+            defaultValue="1"
             onChange={(r) => setReparationType(r.target.value)}
-          />
+            style={{ width: "25%" }}
+          >
+            <MenuItem value={1}>Reparaciones del Sistema de Frenos</MenuItem>
+            <MenuItem value={2}>Servicio del Sistema de Refrigeración</MenuItem>
+            <MenuItem value={3}>Reparaciones del Motor</MenuItem>
+            <MenuItem value={4}>Reparaciones de la Transmisión</MenuItem>
+            <MenuItem value={5}>Reparación del Sistema Eléctrico</MenuItem>
+            <MenuItem value={6}>Reparaciones del Sistema de Escape</MenuItem>
+            <MenuItem value={7}>Reparación de Neumáticos y Ruedas</MenuItem>
+            <MenuItem value={8}>Reparaciones de la Suspensión y la Dirección</MenuItem>
+            <MenuItem value={9}>Reparación del Sistema de Aire Acondicionado y Calefacción</MenuItem>
+            <MenuItem value={10}>Reparaciones del Sistema de Combustible</MenuItem>
+            <MenuItem value={11}>Reparación y Reemplazo del Parabrisas y Cristales</MenuItem>
+          </TextField>
         </FormControl>
 
         <FormControl fullWidth>
@@ -135,7 +151,7 @@ const RepairCalculate = () => {
           <Button
             variant="contained"
             color="info"
-            onClick={(r) => calculate(r)}
+            onClick={(r) => calculateRepair(r)}
             style={{ marginLeft: "0.5rem" }}
             startIcon={<CalculateIcon />}
           >
