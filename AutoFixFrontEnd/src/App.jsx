@@ -5,14 +5,15 @@ import Navbar from './components/Navbar';
 import RegisterVehicle from './components/RegisterVehicle';
 import VehicleList from './components/VehicleList';
 import RepairList from './components/RepairList';
-import AddRepair from './components/AddRepair';
+import AddRepair from './components/RepairCalculate';
 import AvailableBonus from './components/AvailableBonus';
+//import AddBonus from './components/AddBonus';
 import NotFound from './components/NotFound';
 
 function App() {
   return (
     <Router>
-      <Navbar></Navbar>
+      <Navbar />
       <div className="container">
         <Routes>
           <Route path="/home" element={<Home/>} />

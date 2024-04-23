@@ -114,8 +114,8 @@ const VehicleList = () => {
               key={vehicle.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="left">{vehicleService.plate}</TableCell>
-              <TableCell align="left">{vehicleService.brand}</TableCell>
+              <TableCell align="left">{vehicle.plate}</TableCell>
+              <TableCell align="left">{vehicle.brand}</TableCell>
               <TableCell align="right">{vehicle.mileage}</TableCell>
               <TableCell align="right">{vehicle.model}</TableCell>
               <TableCell align="right">{vehicle.type}</TableCell>
