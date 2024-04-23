@@ -98,7 +98,8 @@ public class RepairService {
         RepairEntity repair = new RepairEntity();
 
         VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
-        List<BonusEntity> bonuses = bonusService.getBonusByBrand(vehicle.getBrand(), false);
+        // TODO: Hacer que verifique si todavia quedan bonos.
+        BonusEntity bonuses = bonusService.getBonusByBrand(vehicle.getBrand());
 
         int totalPrice;
         // TODO: Hacer que funcione para más de una reparación a la vez.

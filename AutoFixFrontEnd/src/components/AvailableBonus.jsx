@@ -86,10 +86,10 @@ const AvailableBonus = () => {
                             Marca
                         </TableCell>
                         <TableCell align="left" sx={{ fontWeight: "bold" }}>
-                            Monto
+                            Cantidad
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Disponible
+                            Monto
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -100,8 +100,12 @@ const AvailableBonus = () => {
                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                         >
                             <TableCell align="left">{bonus.brand}</TableCell>
-                            <TableCell align="left">{bonus.amount}</TableCell>
-                            <TableCell align="right">{bonus.used}</TableCell>
+                            <TableCell align="center">{bonus.quantity}</TableCell>
+                            <TableCell align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    bonus.amount
+                                )}
+                            </TableCell>
                             <TableCell>
                                 <Button
                                     variant="contained"

@@ -22,5 +22,5 @@ public class BonusEntity {
     // TODO: Cambiar el formato en que entra la fecha.
     private String brand;
     private int amount;
-    private boolean used;
+    private int quantity;
 }

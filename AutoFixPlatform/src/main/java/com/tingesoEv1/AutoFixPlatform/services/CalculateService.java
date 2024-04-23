@@ -49,15 +49,14 @@ public class CalculateService {
         return price;
     }
 
-    // TODO: Organizar ideas para los bonus.
-    // TODO: Optimizar como se buscan los bonos.
-    // TODO: Podría ser con las querys.
-    public double getBonusDiscount(List<BonusEntity> bonuses) {
+    public double getBonusDiscount(BonusEntity bonuses) {
         double bonusDiscount = 0.0;
-        if (!bonuses.isEmpty()) {
-            // TODO: Verificar si en realidad se puede cambiar el bono desde aquí.
-            bonusDiscount = bonuses.get(0).getAmount();
-            bonuses.get(0).setUsed(true);
+        // TODO: Verificar si cuando no se encuentra nada retorna null.
+        if (bonuses != null) {
+            if (bonuses.getQuantity() > 0) {
+                bonusDiscount = bonuses.getAmount();
+                bonuses.setQuantity(bonuses.getQuantity() - 1);
+            }
         }
 
         return bonusDiscount;

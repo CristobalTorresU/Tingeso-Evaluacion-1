@@ -8,7 +8,6 @@ const get = id => {
     return httpClient.get(`/repairs/${id}`);
 }
 
-// TODO: Arreglar "calculate".
 const calculate = (plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour) => {
     return httpClient.get("/repairs/calculate",{params:{plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
 }

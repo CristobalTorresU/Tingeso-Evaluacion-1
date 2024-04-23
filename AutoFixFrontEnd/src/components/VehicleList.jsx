@@ -46,7 +46,7 @@ const VehicleList = () => {
       vehicleService
         .remove(id)
         .then((response) => {
-          console.log("vehículo ha sido eliminado.", response.data);
+          console.log("Vehículo ha sido eliminado.", response.data);
           init();
         })
         .catch((error) => {
@@ -66,6 +66,8 @@ const VehicleList = () => {
   return (
     <TableContainer component={Paper}>
       <br />
+      <br />
+      <h3>Registro de Vehículos</h3>
       <Link
         to="/vehicle/register"
         style={{ textDecoration: "none", marginBottom: "1rem" }}
@@ -116,7 +118,11 @@ const VehicleList = () => {
             >
               <TableCell align="left">{vehicle.plate}</TableCell>
               <TableCell align="left">{vehicle.brand}</TableCell>
-              <TableCell align="right">{vehicle.mileage}</TableCell>
+              <TableCell align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    vehicle.mileage
+                                )}
+                            </TableCell>
               <TableCell align="right">{vehicle.model}</TableCell>
               <TableCell align="right">{vehicle.type}</TableCell>
               <TableCell align="left">{vehicle.year}</TableCell>

@@ -82,7 +82,7 @@ const RegisterVehicle = () => {
             <h3> {titleVehicleForm} </h3>
             <hr />
             <form>
-                <FormControl fullWidth>
+                <FormControl width="25%">
                     <TextField
                         id="plate"
                         label="Patente"
@@ -92,7 +92,7 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl width="25%">
                     <TextField
                         id="brand"
                         label="Marca"
@@ -102,7 +102,7 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl width="25%">
                     <TextField
                         id="mileage"
                         label="Kilometraje"
@@ -113,7 +113,7 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl width="25%">
                     <TextField
                         id="model"
                         label="Modelo"
@@ -142,7 +142,7 @@ const RegisterVehicle = () => {
                     </TextField>
                 </FormControl>
                 
-                <FormControl fullWidth>
+                <FormControl width="25%">
                     <TextField
                         id="year"
                         label="Año"
@@ -171,7 +171,7 @@ const RegisterVehicle = () => {
                     </TextField>
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl width="25%">
                     <TextField
                         id="seats"
                         label="Asientos"

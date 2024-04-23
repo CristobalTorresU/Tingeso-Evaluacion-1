@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -10,16 +10,13 @@ import Paper from "@mui/material/Paper";
 import repairService from "../services/repair.service";
 import Button from "@mui/material/Button";
 import CarRepair from "@mui/icons-material/CarRepair";
-import InfoIcon from "@mui/icons-material/Info";
 
-const RepairList = () => {
+const RepairDetails = () => {
     const [repairs, setRepair] = useState([]);
-
-    const navigate = useNavigate();
 
     const init = () => {
         repairService
-            .getAll()
+            .get()
             .then((response) => {
                 console.log(
                     "Mostrando planilla de reparaciones.",
@@ -39,16 +36,11 @@ const RepairList = () => {
         init();
     }, []);
 
-    const handleDetails = (id) => {
-        console.log("Printing id", id);
-        navigate(`/repair/details/${id}`);
-    };
-
     return (
         <TableContainer component={Paper}>
             <br />
             <br />
-            <h3>Registro de Reparaciones</h3>
+            <h3>Detalle Reparacion</h3>
             <br />
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
@@ -85,7 +77,7 @@ const RepairList = () => {
                 <TableBody>
                     {repairs.map((repair) => (
                         <TableRow
-                            key={repair.id}
+                            key={repairs.id}
                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                         >
                             <TableCell align="right">{repair.plate}</TableCell>
@@ -102,25 +94,13 @@ const RepairList = () => {
                                     repair.totalAmount
                                 )}
                             </TableCell>
-                            <TableCell>
-                                <Button
-                                    variant="contained"
-                                    color="info"
-                                    size="small"
-                                    onClick={() => handleDetails(repair.id)}
-                                    style={{ marginLeft: "0.5rem" }}
-                                    startIcon={<InfoIcon />}
-                                >
-                                    Detalles
-                                </Button>
-                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
             <br />
             <Link
-                to="/repair/add"
+                to="/repair/list"
                 style={{ textDecoration: "none", marginBottom: "1rem"}}
             >
                 <Button
@@ -128,7 +108,7 @@ const RepairList = () => {
                     color="primary"
                     startIcon={<CarRepair />}
                 >
-                    Añadir Reparación
+                    Volver a Registro de Reparaciones
                 </Button>
             </Link>
             <br /> <br />
@@ -136,4 +116,4 @@ const RepairList = () => {
     );
 };
 
-export default RepairList;
+export default RepairDetails;

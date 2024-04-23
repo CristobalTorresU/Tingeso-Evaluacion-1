@@ -25,21 +25,8 @@ public class BonusService {
         return bonusRepository.findById(id).get();
     }
 
-    public List<BonusEntity> getBonusByBrand(String brand, boolean used) {
-        return bonusRepository.findByBrandAndUsed(brand, used);
-    }
-
-    /*
-    public List<BonusEntity> getBonusByYear(int year) {
-        return bonusRepository.findByYear(year);
-    }
-
-    public List<BonusEntity> getBonusByYearAndMonth(Integer year, Integer month) {
-        return bonusRepository.findByYearAndMonth(year, month);
-    }
-     */
-    public List<BonusEntity> getBonusByAmount(int amount) {
-        return bonusRepository.findByAmountLessThan(amount);
+    public BonusEntity getBonusByBrand(String brand) {
+        return bonusRepository.findByBrand(brand);
     }
 
     public BonusEntity updateBonus(BonusEntity bonus) {

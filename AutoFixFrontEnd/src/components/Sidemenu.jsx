@@ -56,40 +56,25 @@ export default function Sidemenu({ open, toggleDrawer }) {
           <ListItemText primary="Bonus" />
         </ListItemButton>
 
-        <ListItemButton onClick={() => navigate("/repair/calculate")}>
+      <Divider />
+
+        <ListItemButton onClick={() => navigate("/repair/typereport")}>
           <ListItemIcon>
             <CalculateIcon />
           </ListItemIcon>
-          <ListItemText primary="Calcular Reparación" />
+          <ListItemText primary="Reporte Por Tipo" />
         </ListItemButton>
-        <ListItemButton onClick={() => navigate("/reports/typereport")}>
+        <ListItemButton onClick={() => navigate("/repair/timereport")}>
+          <ListItemIcon>
+            <CalculateIcon />
+          </ListItemIcon>
+          <ListItemText primary="Reporte Por Tiempo" />
+        </ListItemButton>
+        <ListItemButton onClick={() => navigate("/reports/motorreport")}>
           <ListItemIcon>
             <AnalyticsIcon />
           </ListItemIcon>
-          <ListItemText primary="Gráficos Planillas" />
-        </ListItemButton>
-      </List>
-
-      <Divider />
-
-      <List>
-        <ListItemButton onClick={() => navigate("/employee/discounts")}>
-          <ListItemIcon>
-            <DiscountIcon />
-          </ListItemIcon>
-          <ListItemText primary="Descuentos" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate("/paycheck/vacations")}>
-          <ListItemIcon>
-            <HailIcon />
-          </ListItemIcon>
-          <ListItemText primary="Vacaciones" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate("/paycheck/medicalleave")}>
-          <ListItemIcon>
-            <MedicationLiquidIcon />
-          </ListItemIcon>
-          <ListItemText primary="Licencias Medicas" />
+          <ListItemText primary="Reporte Por Motor" />
         </ListItemButton>
       </List>
     </Box>
