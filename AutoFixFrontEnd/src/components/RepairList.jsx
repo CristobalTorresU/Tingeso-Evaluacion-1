@@ -40,7 +40,7 @@ const RepairList = () => {
     return (
         <TableContainer component={Paper}>
             <hr />
-            <h3>Planilla de Reparaciones</h3>
+            <h3>Lista de Reparaciones</h3>
             <hr />
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>

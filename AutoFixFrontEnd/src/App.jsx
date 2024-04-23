@@ -6,6 +6,7 @@ import RegisterVehicle from './components/RegisterVehicle';
 import VehicleList from './components/VehicleList';
 import RepairList from './components/RepairList';
 import AddRepair from './components/RepairCalculate';
+import DateTimeTest from './components/DateTimeTest';
 import AvailableBonus from './components/AvailableBonus';
 //import AddBonus from './components/AddBonus';
 import NotFound from './components/NotFound';
@@ -20,8 +21,8 @@ function App() {
           <Route path="/vehicle/list" element={<VehicleList/>} />
           <Route path="/vehicle/register" element={<RegisterVehicle/>} />
           <Route path="/repair/list" element={<RepairList/>} />
-          <Route path="/bonus/list" element={<AvailableBonus/>} />
           <Route path="/repair/add" element={<AddRepair/>} />
+          <Route path="/bonus/list" element={<AvailableBonus/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>

@@ -7,25 +7,37 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
-import DatePicker from "react-datepicker";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import moment from "moment";
 
 const RepairCalculate = () => {
   const [plate, setPlate] = useState("");
-  const [checkinDate, setCheckinDate] = useState("");
-  const [checkinHour, setCheckinHour] = useState("");
+  const [checkinDate, setCheckinDate] = useState(new Date());
+  const [checkinHour, setCheckinHour] = useState(null);
   const [reparationType, setReparationType] = useState("");
-  const [exitDate, setExitDate] = useState("");
-  const [exitHour, setExitHour] = useState("");
-  const [collectDate, setCollectDate] = useState("");
-  const [collectHour, setCollectHour] = useState("");
+  const [exitDate, setExitDate] = useState(new Date());
+  const [exitHour, setExitHour] = useState(null);
+  const [collectDate, setCollectDate] = useState(new Date());
+  const [collectHour, setCollectHour] = useState(null);
 
   const navigate = useNavigate();
+
+  const formatTime = (time) => {
+    return moment(time).format('HH:mm:ss');
+  };
+
+  const formatDate = (date) => {
+    return moment(date).format('YYYY-MM-DD');
+  };
 
   const calculateRepair = (r) => {
     r.preventDefault();
     console.log("Solicitar calcular reparacion.");
     repairService
-      .calculate(plate, checkinDate, checkinHour, reparationType, exitDate, exitHour, collectDate, collectHour)
+      .calculate(plate, formatDate(checkinDate), formatTime(checkinHour), reparationType, formatDate(exitDate), formatTime(exitHour), formatDate(collectDate), formatTime(collectHour))
       .then((response) => {
         console.log("Reparacion ha sido actualizada.", response.data);
         navigate("/repair/list");
@@ -51,7 +63,7 @@ const RepairCalculate = () => {
       <h3> Calcular Reparación </h3>
       <hr />
       <form>
-        <FormControl fullWidth>
+        <FormControl width=" 25% ">
           <TextField
             id="plate"
             label="Patente"
@@ -61,25 +73,13 @@ const RepairCalculate = () => {
           />
         </FormControl>
 
-        <FormControl fullWidth>
-          <TextField
-            id="checkinDate"
-            label="Fecha Entrada"
-            value={checkinDate}
-            variant="standard"
-            onChange={(r) => setCheckinDate(r.target.value)}
-          />
-        </FormControl>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DatePicker label="Fecha Entrada" selected={checkinDate} onChange={(checkinDate) => setCheckinDate(checkinDate)} />
+        </LocalizationProvider>
 
-        <FormControl fullWidth>
-          <TextField
-            id="checkinHour"
-            label="Hora Entrada"
-            value={checkinHour}
-            variant="standard"
-            onChange={(r) => setCheckinHour(r.target.value)}
-          />
-        </FormControl>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <TimePicker label="Hora Entrada" ampm={false} value={checkinHour} onChange={setCheckinHour}/>
+        </LocalizationProvider>
 
         <FormControl fullWidth>
           <TextField
@@ -106,45 +106,21 @@ const RepairCalculate = () => {
           </TextField>
         </FormControl>
 
-        <FormControl fullWidth>
-          <TextField
-            id="exitDate"
-            label="Fecha de Salida"
-            value={exitDate}
-            variant="standard"
-            onChange={(r) => setExitDate(r.target.value)}
-          />
-        </FormControl>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DatePicker label="Fecha Salida" selected={exitDate} onChange={(exitDate) => setExitDate(exitDate)} />
+        </LocalizationProvider>
 
-        <FormControl fullWidth>
-          <TextField
-            id="exitHour"
-            label="Hora de Salida"
-            value={exitHour}
-            variant="standard"
-            onChange={(r) => setExitHour(r.target.value)}
-          />
-        </FormControl>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <TimePicker label="Hora Salida" ampm={false} value={exitHour} onChange={setExitHour}/>
+        </LocalizationProvider>
 
-        <FormControl fullWidth>
-          <TextField
-            id="collectDate"
-            label="Fecha de Recolección"
-            value={collectDate}
-            variant="standard"
-            onChange={(r) => setCollectDate(r.target.value)}
-          />
-        </FormControl>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DatePicker label="Fecha Recoleccion" selected={collectDate} onChange={(collectDate) => setCollectDate(collectDate)} />
+        </LocalizationProvider>
 
-        <FormControl fullWidth>
-          <TextField
-            id="collectHour"
-            label="Hora de Recolección"
-            value={collectHour}
-            variant="standard"
-            onChange={(r) => setCollectHour(r.target.value)}
-          />
-        </FormControl>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <TimePicker label="Hora Recoleccion" ampm={false} value={collectHour} onChange={setCollectHour}/>
+        </LocalizationProvider>
 
         <FormControl>
           <br />

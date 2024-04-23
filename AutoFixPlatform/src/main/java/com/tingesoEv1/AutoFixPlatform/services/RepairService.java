@@ -75,19 +75,30 @@ public class RepairService {
 
     // TODO: Por ahora sólo funciona cuando van de salida,
     //  hacer que funcione antes de sacar el vehículo.
+    // TODO: Hacer que funcione solo si el vehiculo esta registrado.
     public Boolean calculatePrice(String plate,
-                                  LocalDate checkinDate,
-                                  LocalTime checkinHour,
+                                  String checkinDateString,
+                                  String checkinHourString,
                                   int reparationType,
-                                  LocalDate exitDate,
-                                  LocalTime exitHour,
-                                  LocalDate collectDate,
-                                  LocalTime collectHour)
+                                  String exitDateString,
+                                  String exitHourString,
+                                  String collectDateString,
+                                  String collectHourString)
     {
+        // Formatear Fechas
+        LocalDate checkinDate = LocalDate.parse(checkinDateString);
+        LocalDate exitDate = LocalDate.parse(exitDateString);
+        LocalDate collectDate = LocalDate.parse(collectDateString);
+
+        // Formatear Horas
+        LocalTime checkinHour = LocalTime.parse(checkinHourString);
+        LocalTime exitHour = LocalTime.parse(exitHourString);
+        LocalTime collectHour = LocalTime.parse(collectHourString);
+
         RepairEntity repair = new RepairEntity();
 
-       VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
-       List<BonusEntity> bonuses = bonusService.getBonusByBrand(vehicle.getBrand(), false);
+        VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
+        List<BonusEntity> bonuses = bonusService.getBonusByBrand(vehicle.getBrand(), false);
 
         int totalPrice;
         // TODO: Hacer que funcione para más de una reparación a la vez.
@@ -121,7 +132,7 @@ public class RepairService {
         System.out.print(lateRecharge);
         System.out.print("\nIVA: ");
         System.out.print(iva);
-         */
+        */
 
         totalPrice = ((int)reparations + recharges - discounts) + iva;
 

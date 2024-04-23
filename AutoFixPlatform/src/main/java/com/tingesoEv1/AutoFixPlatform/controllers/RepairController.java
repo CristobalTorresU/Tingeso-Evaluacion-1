@@ -35,11 +35,27 @@ public class RepairController {
         return ResponseEntity.noContent().build();
     }
 
+    /*
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePrice(@RequestBody RepairEntity repair) {
         repairService.calculatePrice(repair.getPlate(), repair.getCheckinDate(), repair.getCheckinHour(),
                 repair.getReparationType(), repair.getExitDate(),
                 repair.getExitHour(), repair.getCollectDate(), repair.getCollectHour());
+        return ResponseEntity.noContent().build();
+    }
+    */
+
+    @GetMapping("/calculate")
+    public ResponseEntity<Void> calculatePrice(@RequestParam("plate") String plate,
+                                               @RequestParam("checkinDate") String checkinDate,
+                                               @RequestParam("checkinHour") String checkinHour,
+                                               @RequestParam("reparationType") int reparationType,
+                                               @RequestParam("exitDate") String exitDate,
+                                               @RequestParam("exitHour") String exitHour,
+                                               @RequestParam("collectDate") String collectDate,
+                                               @RequestParam("collectHour") String collectHour) {
+        repairService.calculatePrice(plate, checkinDate, checkinHour, reparationType,
+                exitDate, exitHour, collectDate, collectHour);
         return ResponseEntity.noContent().build();
     }
 
