@@ -40,7 +40,7 @@ const AvailableBonus = () => {
     const handleDelete = (id) => {
         console.log("Printing id", id);
         const confirmDelete = window.confirm(
-            "¿Esta seguro que desea borrar esta Hora Extra?"
+            "¿Esta seguro que desea borrar este bonus?"
         );
         if (confirmDelete) {
             bonusService
@@ -51,7 +51,7 @@ const AvailableBonus = () => {
                 })
                 .catch((error) => {
                     console.log(
-                        "Se ha producido un error al intentar eliminar la Hora Extra",
+                        "Se ha producido un error al intentar eliminar el Bonus.",
                         error
                     );
                 });
@@ -97,7 +97,6 @@ const AvailableBonus = () => {
                     {bonuses.map((bonus) => (
                         <TableRow
                             key={bonus.id}
-                            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                         >
                             <TableCell align="left">{bonus.brand}</TableCell>
                             <TableCell align="center">{bonus.quantity}</TableCell>

@@ -114,7 +114,6 @@ const VehicleList = () => {
           {vehicles.map((vehicle) => (
             <TableRow
               key={vehicle.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left">{vehicle.plate}</TableCell>
               <TableCell align="left">{vehicle.brand}</TableCell>

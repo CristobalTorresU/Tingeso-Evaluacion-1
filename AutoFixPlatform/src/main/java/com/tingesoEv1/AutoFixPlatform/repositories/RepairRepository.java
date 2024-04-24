@@ -20,11 +20,11 @@ public interface RepairRepository extends JpaRepository<RepairEntity, Long> {
 
     // TODO: Verificar que funcionen con "rep.vehicle veh"
     @Query(value = "SELECT rep.reparationType, SUM(rep.totalAmount) AS sumita, COUNT(rep.reparationType), veh.type " +
-            "FROM repair rep " +
-            "LEFT JOIN rep.vehicle veh " +
+            "FROM repair AS rep " +
+            "LEFT JOIN vehicle AS veh ON veh.vehicle_id = rep.vehicle_id" +
             "GROUP BY rep.reparationType, veh.type " +
             "ORDER BY sumita DESC", nativeQuery = true)
-    List<Map<String, Object>> getTypeReport();
+    List<Object[]> getTypeReport();
 
     // TODO: Intentar generar el reporte R3 sin usar AGE().
 

@@ -8,10 +8,10 @@ import FormControl from "@mui/material/FormControl";
 import SaveIcon from "@mui/icons-material/Save";
 import { MenuItem } from "@mui/material";
 
-const AddRepair = () => {
+const AddBonus = () => {
     const [brand, setBrand] = useState("");
     const [amount, setAmount] = useState("");
-    const [used, setUsed] = useState("");
+    const [quantity, setQuantity] = useState("");
     const { id } = useParams();
     const [titleBonusForm, setTitleBonusForm] = useState("");
     const navigate = useNavigate();
@@ -19,45 +19,45 @@ const AddRepair = () => {
     const saveBonus = (b) => {
         b.preventDefault();
 
-        const bonus = { brand, amount, used, id };
+        const bonus = { brand, amount, quantity, id };
         if (id) {
             bonusService
                 .update(bonus)
                 .then((response) => {
-                    console.log("Vehículo ha sido actualizado.", response.data);
+                    console.log("Bonus ha sido actualizado.", response.data);
                     navigate("/bonus/list");
                 })
                 .catch((error) => {
-                    console.log("Ocurrió un error al actualizar el vehículo.", error);
+                    console.log("Ocurrió un error al actualizar el bonus.", error);
                 });
         } else {
             bonusService
                 .create(bonus)
                 .then((response) => {
-                    console.log("Vehículo ha sido registrado.", response.data);
+                    console.log("Bonus ha sido ingresado.", response.data);
                     navigate("/bonus/list");
                 })
                 .catch((error) => {
-                    console.log("Ocurrió un error al crear el vehículo.", error);
+                    console.log("Ocurrió un error al ingresar el bonus.", error);
                 });
         }
     };
 
     useEffect(() => {
         if (id) {
-            setTitleBonusForm("Editar Vehículo");
+            setTitleBonusForm("Editar Bonus");
             bonusService
                 .get(id)
                 .then((bonus) => {
                     setBrand(bonus.data.brand);
                     setAmount(bonus.data.amount);
-                    setUsed(bonus.data.used);
+                    setQuantity(bonus.data.quantity);
                 })
                 .catch((error) => {
                     console.log("Se produjo un error.", error);
                 });
         } else {
-            setTitleBonusForm("Registrar Nuevo Vehículo");
+            setTitleBonusForm("Ingresar Bonus");
         }
     }, []);
     return (
@@ -103,12 +103,12 @@ const AddRepair = () => {
 
                 <FormControl fullWidth>
                     <TextField
-                        id="Cantidad"
-                        label="Monto"
+                        id="quantity"
+                        label="Cantidad"
                         type="number"
-                        value={amount}
+                        value={quantity}
                         variant="standard"
-                        onChange={(b) => setAmount(b.target.value)}
+                        onChange={(b) => setQuantity(b.target.value)}
                     />
                 </FormControl>
 
@@ -121,7 +121,7 @@ const AddRepair = () => {
                         style={{ marginLeft: "0.5rem" }}
                         startIcon={<SaveIcon />}
                     >
-                        Guardar Vehículo
+                        Guardar Bonus
                     </Button>
                 </FormControl>
             </form>

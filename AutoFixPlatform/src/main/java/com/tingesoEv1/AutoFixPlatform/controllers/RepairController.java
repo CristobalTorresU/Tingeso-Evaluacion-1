@@ -30,7 +30,7 @@ public class RepairController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteRepairById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<RepairEntity> deleteRepair(@PathVariable Long id) throws Exception {
         var isDeleted = repairService.deleteRepair(id);
         return ResponseEntity.noContent().build();
     }

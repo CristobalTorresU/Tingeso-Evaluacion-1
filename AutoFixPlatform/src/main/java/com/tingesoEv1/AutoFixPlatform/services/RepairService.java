@@ -73,8 +73,6 @@ public class RepairService {
         }
     }
 
-    // TODO: Por ahora sólo funciona cuando van de salida,
-    //  hacer que funcione antes de sacar el vehículo.
     // TODO: Hacer que funcione solo si el vehiculo esta registrado.
     public Boolean calculatePrice(String plate,
                                   String checkinDateString,
@@ -143,6 +141,7 @@ public class RepairService {
         repair.setExitHour(exitHour);
         repair.setCollectDate(collectDate);
         repair.setCollectHour(collectHour);
+        repair.setVehicle(vehicle);
         repair.setTotalAmount(totalPrice);
         repair.setRepairAmount((int)reparations);
         repair.setRepairsDiscount((int)reparationDiscounts);
@@ -165,7 +164,7 @@ public class RepairService {
 
     // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
     public boolean generateTypeReport() {
-        List<Map<String, Object>> report = repairRepository.getTypeReport();
+        List<Object[]> report = repairRepository.getTypeReport();
         return true;
     }
 

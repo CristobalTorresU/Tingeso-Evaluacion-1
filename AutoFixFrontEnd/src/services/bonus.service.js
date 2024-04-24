@@ -9,6 +9,14 @@ const get = id => {
 }
 
 const create = data => {
-    return httpClient.create("/bonuses/", data);
+    return httpClient.post("/bonuses/", data);
 }
-export default { getAll, get, create };
+
+const update = data => {
+    return httpClient.put('/bonuses/', data);
+}
+
+const remove = id => {
+    return httpClient.delete(`/bonuses/${id}`);
+}
+export default { getAll, get, create, update, remove };

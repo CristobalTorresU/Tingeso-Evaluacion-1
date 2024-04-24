@@ -24,7 +24,7 @@ const RegisterVehicle = () => {
     const saveVehicle = (v) => {
         v.preventDefault();
 
-        const vehicle = {plate, brand, mileage, model, type, year, motor, seats, id};
+        const vehicle = { plate, brand, mileage, model, type, year, motor, seats, id };
         if (id) {
             vehicleService
                 .update(vehicle)

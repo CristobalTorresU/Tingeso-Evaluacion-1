@@ -8,7 +8,7 @@ import RepairList from './components/RepairList';
 import RepairDetails from './components/RepairDetails';
 import AddRepair from './components/RepairCalculate';
 import AvailableBonus from './components/AvailableBonus';
-//import AddBonus from './components/AddBonus';
+import AddBonus from './components/AddBonus';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -20,10 +20,13 @@ function App() {
           <Route path="/home" element={<Home/>} />
           <Route path="/vehicle/list" element={<VehicleList/>} />
           <Route path="/vehicle/register" element={<RegisterVehicle/>} />
+          <Route path="/vehicle/edit/:id" element={<RegisterVehicle/>} />
           <Route path="/repair/list" element={<RepairList/>} />
-          <Route path="/repair/details:id" element={<RepairDetails/>} />
+          <Route path="/repair/details/:id" element={<RepairDetails/>} />
           <Route path="/repair/add" element={<AddRepair/>} />
           <Route path="/bonus/list" element={<AvailableBonus/>} />
+          <Route path="/bonus/add" element={<AddBonus/>} />
+          <Route path="/bonus/edit/:id" element={<AddBonus/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>
