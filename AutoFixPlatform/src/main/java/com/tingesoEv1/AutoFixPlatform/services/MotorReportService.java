@@ -2,7 +2,6 @@ package com.tingesoEv1.AutoFixPlatform.services;
 
 import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
-import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.MotorReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
