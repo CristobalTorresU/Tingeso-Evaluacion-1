@@ -58,7 +58,7 @@ export default function Sidemenu({ open, toggleDrawer }) {
 
       <Divider />
 
-        <ListItemButton onClick={() => navigate("/repair/typereport")}>
+        <ListItemButton onClick={() => navigate("/typereport/list")}>
           <ListItemIcon>
             <CalculateIcon />
           </ListItemIcon>

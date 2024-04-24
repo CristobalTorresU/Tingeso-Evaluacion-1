@@ -11,7 +11,6 @@ import { MenuItem } from "@mui/material";
 const RegisterVehicle = () => {
     const [plate, setPlate] = useState("");
     const [brand, setBrand] = useState("");
-    const [mileage, setMileage] = useState("");
     const [model, setModel] = useState("");
     const [type, setType] = useState("");
     const [year, setYear] = useState("");
@@ -24,7 +23,7 @@ const RegisterVehicle = () => {
     const saveVehicle = (v) => {
         v.preventDefault();
 
-        const vehicle = { plate, brand, mileage, model, type, year, motor, seats, id };
+        const vehicle = { plate, brand, model, type, year, motor, seats, id };
         if (id) {
             vehicleService
                 .update(vehicle)
@@ -56,7 +55,6 @@ const RegisterVehicle = () => {
                 .then((vehicle) => {
                     setPlate(vehicle.data.plate);
                     setBrand(vehicle.data.brand);
-                    setMileage(vehicle.data.mileage);
                     setModel(vehicle.data.model);
                     setType(vehicle.data.type);
                     setYear(vehicle.data.year);
@@ -99,17 +97,6 @@ const RegisterVehicle = () => {
                         value={brand}
                         variant="standard"
                         onChange={(v) => setBrand(v.target.value)}
-                    />
-                </FormControl>
-
-                <FormControl width="25%">
-                    <TextField
-                        id="mileage"
-                        label="Kilometraje"
-                        type="number"
-                        value={mileage}
-                        variant="standard"
-                        onChange={(v) => setMileage(v.target.value)}
                     />
                 </FormControl>
 

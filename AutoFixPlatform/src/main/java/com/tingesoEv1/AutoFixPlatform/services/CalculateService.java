@@ -129,21 +129,20 @@ public class CalculateService {
         return reparationsDiscount;
     }
 
-    public double getMileageRecharge(VehicleEntity vehicle) {
+    public double getMileageRecharge(VehicleEntity vehicle, int mileage) {
         double mileageRecharge = 0.0;
-        int vehicleMileage = vehicle.getMileage();
         String vehicleType = vehicle.getType();
 
         switch (vehicleType) {
             case "Sedán":
             case "Hatchback":
-                if (vehicleMileage <= 5000) {
+                if (mileage <= 5000) {
                     return mileageRecharge;
-                } else if (vehicleMileage <= 12000) {
+                } else if (mileage <= 12000) {
                     mileageRecharge = 0.03;
-                } else if (vehicleMileage <= 25000) {
+                } else if (mileage <= 25000) {
                     mileageRecharge = 0.07;
-                } else if (vehicleMileage <= 40000) {
+                } else if (mileage <= 40000) {
                     mileageRecharge = 0.12;
                 } else {
                     mileageRecharge = 0.20;
@@ -152,13 +151,13 @@ public class CalculateService {
             case "SUV":
             case "Pickup":
             case "Furgoneta":
-                if (vehicleMileage <= 5000) {
+                if (mileage <= 5000) {
                     return mileageRecharge;
-                } else if (vehicleMileage <= 12000) {
+                } else if (mileage <= 12000) {
                     mileageRecharge = 0.05;
-                } else if (vehicleMileage <= 25000) {
+                } else if (mileage <= 25000) {
                     mileageRecharge = 0.09;
-                } else if (vehicleMileage <= 40000) {
+                } else if (mileage <= 40000) {
                     mileageRecharge = 0.12;
                 } else {
                     mileageRecharge = 0.20;

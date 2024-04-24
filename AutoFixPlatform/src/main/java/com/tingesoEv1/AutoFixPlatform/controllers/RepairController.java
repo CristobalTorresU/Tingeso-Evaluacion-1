@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -35,18 +33,9 @@ public class RepairController {
         return ResponseEntity.noContent().build();
     }
 
-    /*
-    @GetMapping("/calculate")
-    public ResponseEntity<Void> calculatePrice(@RequestBody RepairEntity repair) {
-        repairService.calculatePrice(repair.getPlate(), repair.getCheckinDate(), repair.getCheckinHour(),
-                repair.getReparationType(), repair.getExitDate(),
-                repair.getExitHour(), repair.getCollectDate(), repair.getCollectHour());
-        return ResponseEntity.noContent().build();
-    }
-    */
-
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePrice(@RequestParam("plate") String plate,
+                                               @RequestParam("mileage") int mileage,
                                                @RequestParam("checkinDate") String checkinDate,
                                                @RequestParam("checkinHour") String checkinHour,
                                                @RequestParam("reparationType") int reparationType,
@@ -54,28 +43,8 @@ public class RepairController {
                                                @RequestParam("exitHour") String exitHour,
                                                @RequestParam("collectDate") String collectDate,
                                                @RequestParam("collectHour") String collectHour) {
-        repairService.calculatePrice(plate, checkinDate, checkinHour, reparationType,
+        repairService.calculatePrice(plate, mileage, checkinDate, checkinHour, reparationType,
                 exitDate, exitHour, collectDate, collectHour);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/{id}/report")
-    public ResponseEntity<Void> generateRepairReport(@PathVariable Long id) {
-        repairService.generateRepairReport(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/typereport")
-    public ResponseEntity<Void> generateTypeReport() {
-        repairService.generateTypeReport();
-        return ResponseEntity.noContent().build();
-    }
-
-    // TODO: Realizar reporte R3.
-
-    @GetMapping("/motorreport")
-    public ResponseEntity<Void> generateMotorReport() {
-        repairService.generateMotorReport();
         return ResponseEntity.noContent().build();
     }
 }

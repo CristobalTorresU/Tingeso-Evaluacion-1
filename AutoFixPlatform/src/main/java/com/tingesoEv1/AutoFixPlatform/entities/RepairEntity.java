@@ -29,13 +29,4 @@ public class RepairEntity {
     private LocalTime exitHour;
     private LocalDate collectDate;
     private LocalTime collectHour;
-    // TODO: ¿Qué hacer cuando es más de una sola reparación a la vez?
-    private int repairAmount;
-    private int repairsDiscount;
-    private int dayDiscount;
-    private int bonusDiscount;
-    private int mileageRecharge;
-    private int yearRecharge;
-    private int lateRecharge;
-    private int IVA;
 }

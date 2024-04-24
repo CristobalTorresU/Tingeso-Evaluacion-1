@@ -15,6 +15,7 @@ import moment from "moment";
 
 const RepairCalculate = () => {
   const [plate, setPlate] = useState("");
+  const [mileage, setMileage] = useState("");
   const [checkinDate, setCheckinDate] = useState(new Date());
   const [checkinHour, setCheckinHour] = useState(null);
   const [reparationType, setReparationType] = useState("");
@@ -37,7 +38,7 @@ const RepairCalculate = () => {
     r.preventDefault();
     console.log("Solicitar calcular reparacion.");
     repairService
-      .calculate(plate, formatDate(checkinDate), formatTime(checkinHour), reparationType, formatDate(exitDate), formatTime(exitHour), formatDate(collectDate), formatTime(collectHour))
+      .calculate(plate, mileage, formatDate(checkinDate), formatTime(checkinHour), reparationType, formatDate(exitDate), formatTime(exitHour), formatDate(collectDate), formatTime(collectHour))
       .then((response) => {
         console.log("Reparacion ha sido actualizada.", response.data);
         navigate("/repair/list");
@@ -70,6 +71,17 @@ const RepairCalculate = () => {
             value={plate}
             variant="standard"
             onChange={(r) => setPlate(r.target.value)}
+          />
+        </FormControl>
+
+        <FormControl width=" 25% ">
+          <TextField
+            id="mileage"
+            label="Kilometraje"
+            type="number"
+            value={mileage}
+            variant="standard"
+            onChange={(r) => setMileage(r.target.value)}
           />
         </FormControl>
 

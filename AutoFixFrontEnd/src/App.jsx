@@ -9,6 +9,7 @@ import RepairDetails from './components/RepairDetails';
 import AddRepair from './components/RepairCalculate';
 import AvailableBonus from './components/AvailableBonus';
 import AddBonus from './components/AddBonus';
+import TypeReportList from './components/TypeReportList';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/bonus/list" element={<AvailableBonus/>} />
           <Route path="/bonus/add" element={<AddBonus/>} />
           <Route path="/bonus/edit/:id" element={<AddBonus/>} />
+          <Route path="/typereport/list" element={<TypeReportList/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>

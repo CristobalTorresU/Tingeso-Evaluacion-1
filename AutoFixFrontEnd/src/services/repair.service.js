@@ -8,8 +8,8 @@ const get = id => {
     return httpClient.get(`/repairs/${id}`);
 }
 
-const calculate = (plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour) => {
-    return httpClient.get("/repairs/calculate",{params:{plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
+const calculate = (plate,mileage,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour) => {
+    return httpClient.get("/repairs/calculate",{params:{plate,mileage,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
 }
 
 export default { getAll, get, calculate };

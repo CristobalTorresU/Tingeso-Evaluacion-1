@@ -91,9 +91,6 @@ const VehicleList = () => {
               Marca
             </TableCell>
             <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Kilometraje
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
               Modelo
             </TableCell>
             <TableCell align="right" sx={{ fontWeight: "bold" }}>
@@ -117,11 +114,6 @@ const VehicleList = () => {
             >
               <TableCell align="left">{vehicle.plate}</TableCell>
               <TableCell align="left">{vehicle.brand}</TableCell>
-              <TableCell align="right">
-                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
-                                    vehicle.mileage
-                                )}
-                            </TableCell>
               <TableCell align="right">{vehicle.model}</TableCell>
               <TableCell align="right">{vehicle.type}</TableCell>
               <TableCell align="left">{vehicle.year}</TableCell>
@@ -132,7 +124,7 @@ const VehicleList = () => {
                   variant="contained"
                   color="info"
                   size="small"
-                  onClick={() => handleEdit(vehicle.id)}
+                  onClick={() => handleEdit(vehicle.vehicle_id)}
                   style={{ marginLeft: "0.5rem" }}
                   startIcon={<EditIcon />}
                 >
@@ -143,7 +135,7 @@ const VehicleList = () => {
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleDelete(vehicle.id)}
+                  onClick={() => handleDelete(vehicle.vehicle_id)}
                   style={{ marginLeft: "0.5rem" }}
                   startIcon={<DeleteIcon />}
                 >

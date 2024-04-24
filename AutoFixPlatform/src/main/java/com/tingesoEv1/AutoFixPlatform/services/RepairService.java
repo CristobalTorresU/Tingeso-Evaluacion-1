@@ -1,6 +1,7 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
 import com.tingesoEv1.AutoFixPlatform.entities.BonusEntity;
+import com.tingesoEv1.AutoFixPlatform.entities.DetailEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.RepairRepository;
@@ -21,6 +22,8 @@ public class RepairService {
     VehicleService vehicleService;
     @Autowired
     BonusService bonusService;
+    @Autowired
+    DetailService detailService;
     @Autowired
     CalculateService calculateService;
 
@@ -75,6 +78,7 @@ public class RepairService {
 
     // TODO: Hacer que funcione solo si el vehiculo esta registrado.
     public Boolean calculatePrice(String plate,
+                                  int mileage,
                                   String checkinDateString,
                                   String checkinHourString,
                                   int reparationType,
@@ -94,14 +98,14 @@ public class RepairService {
         LocalTime collectHour = LocalTime.parse(collectHourString);
 
         RepairEntity repair = new RepairEntity();
+        DetailEntity detail = new DetailEntity();
 
         VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
         BonusEntity bonuses = bonusService.getBonusByBrand(vehicle.getBrand());
 
         int totalPrice;
-        // TODO: Hacer que funcione para más de una reparación a la vez.
         double reparations = calculateService.getReparationTypePrice(vehicle, reparationType);
-        double mileageRecharges = reparations * calculateService.getMileageRecharge(vehicle);
+        double mileageRecharges = reparations * calculateService.getMileageRecharge(vehicle, mileage);
         double yearRecharge = reparations * calculateService.getYearRecharge(vehicle, checkinDate);
         double lateRecharge = reparations * calculateService.getLateRecharge(exitDate, collectDate);
         double reparationDiscounts = reparations * calculateService.getReparationsDiscount(vehicle,
@@ -133,6 +137,7 @@ public class RepairService {
 
         totalPrice = ((int)reparations + recharges - discounts) + iva;
 
+        // Atributos para la reparacion
         repair.setCheckinDate(checkinDate);
         repair.setCheckinHour(checkinHour);
         repair.setPlate(vehicle.getPlate());
@@ -142,34 +147,22 @@ public class RepairService {
         repair.setCollectDate(collectDate);
         repair.setCollectHour(collectHour);
         repair.setTotalAmount(totalPrice);
-        repair.setRepairAmount((int)reparations);
-        repair.setRepairsDiscount((int)reparationDiscounts);
-        repair.setDayDiscount((int)dayDiscount);
-        repair.setBonusDiscount((int)bonusDiscount);
-        repair.setMileageRecharge((int)mileageRecharges);
-        repair.setYearRecharge((int)yearRecharge);
-        repair.setLateRecharge((int)lateRecharge);
-        repair.setIVA(iva);
+
+        // Atributos para el detalle
+        detail.setRepairAmount((int)reparations);
+        detail.setRepairsDiscount((int)reparationDiscounts);
+        detail.setDayDiscount((int)dayDiscount);
+        detail.setBonusDiscount((int)bonusDiscount);
+        detail.setMileageRecharge((int)mileageRecharges);
+        detail.setYearRecharge((int)yearRecharge);
+        detail.setLateRecharge((int)lateRecharge);
+        detail.setIVA(iva);
 
         repairRepository.save(repair);
 
-        return true;
-    }
+        detail.setRepair(repair);
+        detailService.saveDetail(detail);
 
-    // TODO: ¿Genera el reporte con los datos que ya tiene la entidad?
-    public boolean generateRepairReport(Long id) {
-        return true;
-    }
-
-    // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
-    public boolean generateTypeReport() {
-        List<Object[]> report = repairRepository.getTypeReport();
-        return true;
-    }
-
-    // TODO: Una vez se tiene el reporte, hacer que se muestre por pantalla.
-    public boolean generateMotorReport() {
-        List<Map<String, Object>> report = repairRepository.getMotorReport();
         return true;
     }
 }

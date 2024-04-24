@@ -1,0 +1,84 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import type_reportService from "../services/typeReport.service";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import MoreTimeIcon from '@mui/icons-material/MoreTime';
+
+const TypeReportList = () => {
+    const [typeReports, setTypeReport] = useState([]);
+
+    const init = () => {
+        type_reportService
+            .getAll()
+            .then((response) => {
+                console.log("Mostrando reporte por tipos.", response.data);
+                setTypeReport(response.data);
+            })
+            .catch((error) => {
+                console.log(
+                    "Se ha producido un error al intentar mostrar el reporte por tipo",
+                    error
+                );
+            });
+    };
+
+    useEffect(() => {
+        init();
+    }, []);
+
+    return (
+        <TableContainer component={Paper}>
+            <br />
+            <br /> <br />
+            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="left" sx={{ fontWeight: "bold" }}>
+                            Tipo de Reparacion
+                        </TableCell>
+                        <TableCell align="left" sx={{ fontWeight: "bold" }}>
+                            Tipo de Vehiculo
+                        </TableCell>
+                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
+                            Numero de Vehiculos
+                        </TableCell>
+                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
+                            Monto Total
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {typeReports.map((typeReport) => (
+                        <TableRow
+                            key={typeReport.id}
+                        >
+                            <TableCell align="left">{typeReport.reparationType}</TableCell>
+                            <TableCell align="center">{typeReport.type}</TableCell>
+                            <TableCell align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    typeReport.quantity
+                                )}
+                            </TableCell>
+                            <TableCell align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    typeReport.totalAmount
+                                )}
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+};
+
+export default TypeReportList;

@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "bonus")
 @Data
@@ -19,7 +17,6 @@ public class BonusEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    // TODO: Cambiar el formato en que entra la fecha.
     private String brand;
     private int amount;
     private int quantity;

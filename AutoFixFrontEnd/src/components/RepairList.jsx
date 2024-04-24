@@ -107,7 +107,7 @@ const RepairList = () => {
                                     variant="contained"
                                     color="info"
                                     size="small"
-                                    onClick={() => handleDetails(repair.id)}
+                                    onClick={() => handleDetails(repair.repair_id)}
                                     style={{ marginLeft: "0.5rem" }}
                                     startIcon={<InfoIcon />}
                                 >
