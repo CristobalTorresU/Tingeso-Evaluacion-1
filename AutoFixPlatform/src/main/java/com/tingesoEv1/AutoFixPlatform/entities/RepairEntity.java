@@ -20,10 +20,6 @@ public class RepairEntity {
     @Column(unique = true, nullable = false)
     private Long repair_id;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
-    private VehicleEntity vehicle;
-
     private String plate;
     private LocalDate checkinDate;
     private LocalTime checkinHour;

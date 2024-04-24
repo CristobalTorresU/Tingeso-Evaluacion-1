@@ -141,7 +141,6 @@ public class RepairService {
         repair.setExitHour(exitHour);
         repair.setCollectDate(collectDate);
         repair.setCollectHour(collectHour);
-        repair.setVehicle(vehicle);
         repair.setTotalAmount(totalPrice);
         repair.setRepairAmount((int)reparations);
         repair.setRepairsDiscount((int)reparationDiscounts);
