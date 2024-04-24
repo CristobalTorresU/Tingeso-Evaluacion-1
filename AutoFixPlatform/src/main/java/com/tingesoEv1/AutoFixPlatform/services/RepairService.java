@@ -98,7 +98,6 @@ public class RepairService {
         RepairEntity repair = new RepairEntity();
 
         VehicleEntity vehicle = vehicleService.getVehicleByPlate(plate);
-        // TODO: Hacer que verifique si todavia quedan bonos.
         BonusEntity bonuses = bonusService.getBonusByBrand(vehicle.getBrand());
 
         int totalPrice;
@@ -106,7 +105,6 @@ public class RepairService {
         double reparations = calculateService.getReparationTypePrice(vehicle, reparationType);
         double mileageRecharges = reparations * calculateService.getMileageRecharge(vehicle);
         double yearRecharge = reparations * calculateService.getYearRecharge(vehicle, checkinDate);
-        // TODO: Preguntar si se multiplica o se suman los porcentajes.
         double lateRecharge = reparations * calculateService.getLateRecharge(exitDate, collectDate);
         double reparationDiscounts = reparations * calculateService.getReparationsDiscount(vehicle,
                 getRepairsByPlate(vehicle.getPlate()));
