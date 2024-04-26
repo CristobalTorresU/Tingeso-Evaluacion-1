@@ -49,11 +49,11 @@ const RepairDetails = () => {
                 <TableBody>
                     <TableCell>
                         <TableRow align="left" sx={{ fontWeight: "bold" }}>
-                            Reparacion
+                            Reparación
                         </TableRow>
                         <Divider />
                         <TableRow align="left" sx={{ fontWeight: "bold" }}>
-                            Reparaciones en los ultimos 12 meses
+                            Reparaciones en los últimos 12 meses
                         </TableRow>
                         <TableRow align="left" sx={{ fontWeight: "bold" }}>
                             Descuento por horario
@@ -69,10 +69,10 @@ const RepairDetails = () => {
                             Kilometraje
                         </TableRow>
                         <TableRow align="left" sx={{ fontWeight: "bold" }}>
-                            Ano
+                            Año
                         </TableRow>
                         <TableRow align="left" sx={{ fontWeight: "bold" }}>
-                            Atraso
+                            Días de Atraso
                         </TableRow>
                         <TableRow align="left" sx={{ fontWeight: "bold" }}>
                             Total Recargos
@@ -141,7 +141,7 @@ const RepairDetails = () => {
                                 )}
                             </TableRow>
                             <TableRow align="right">
-                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                $ {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     detail.repairAmount - detail.repairsDiscount - detail.dayDiscount -
                                     detail.bonusDiscount + detail.mileageRecharge + detail.yearRecharge +
                                     detail.lateRecharge + detail.iva

@@ -20,14 +20,14 @@ const RepairDetails = () => {
             .get(id)
             .then((response) => {
                 console.log(
-                    "Mostrando planilla de reparaciones.",
+                    "Mostrando detalle de reparación.",
                     response.data
                 );
                 setDetail(response.data);
             })
             .catch((error) => {
                 console.log(
-                    "Se ha producido un error al intentar mostrar planilla de reparaciones.",
+                    "Se ha producido un error al intentar mostrar el detalle de reparación.",
                     error
                 );
             });
@@ -47,10 +47,10 @@ const RepairDetails = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Reparacion
+                            Reparación
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Reparaciones en los ultimos 12 meses
+                            Reparaciones en los últimos 12 meses
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
                             Descuento por horario
@@ -62,10 +62,10 @@ const RepairDetails = () => {
                             Kilometraje
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Ano
+                            Año
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Atraso
+                            Días de atraso
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
                             IVA

@@ -34,17 +34,19 @@ const TypeReportList = () => {
         <TableContainer component={Paper}>
             <br />
             <br /> <br />
+            <h3>Reporte por Tipo de Vehículo</h3>
+            <br />
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell align="left" sx={{ fontWeight: "bold" }}>
-                            Tipo de Reparacion
+                            Tipo de Reparación
                         </TableCell>
                         <TableCell align="left" sx={{ fontWeight: "bold" }}>
-                            Tipo de Vehiculo
+                            Tipo de Vehículo
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Numero de Vehiculos
+                            Número de Vehículos
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
                             Monto Total
@@ -56,7 +58,7 @@ const TypeReportList = () => {
                         <TableRow
                             key={typeReport.id}
                         >
-                            <TableCell align="left">{typeReport.reparationType}</TableCell>
+                            <TableCell align="left">{typeReport.repairName}</TableCell>
                             <TableCell align="center">{typeReport.type}</TableCell>
                             <TableCell align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
@@ -64,7 +66,7 @@ const TypeReportList = () => {
                                 )}
                             </TableCell>
                             <TableCell align="right">
-                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                $ {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     typeReport.totalAmount
                                 )}
                             </TableCell>

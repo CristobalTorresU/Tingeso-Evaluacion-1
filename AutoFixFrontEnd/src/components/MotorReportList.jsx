@@ -34,17 +34,19 @@ const MotorReportList = () => {
         <TableContainer component={Paper}>
             <br />
             <br /> <br />
+            <h3>Reporte por Tipo de Motor</h3>
+            <br />
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell align="left" sx={{ fontWeight: "bold" }}>
-                            Tipo de Reparacion
+                            Tipo de Reparación
                         </TableCell>
                         <TableCell align="left" sx={{ fontWeight: "bold" }}>
                             Tipo de Motor
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Numero de Vehiculos
+                            Numero de Vehículos
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
                             Monto Total
@@ -56,7 +58,7 @@ const MotorReportList = () => {
                         <TableRow
                             key={motorReport.id}
                         >
-                            <TableCell align="left">{motorReport.reparationType}</TableCell>
+                            <TableCell align="left">{motorReport.repairName}</TableCell>
                             <TableCell align="center">{motorReport.motor}</TableCell>
                             <TableCell align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
@@ -64,7 +66,7 @@ const MotorReportList = () => {
                                 )}
                             </TableCell>
                             <TableCell align="right">
-                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                $ {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     motorReport.totalAmount
                                 )}
                             </TableCell>

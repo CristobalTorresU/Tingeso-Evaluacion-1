@@ -129,9 +129,10 @@ public class CalculateService {
         return reparationsDiscount;
     }
 
-    public double getMileageRecharge(VehicleEntity vehicle, int mileage) {
+    public double getMileageRecharge(VehicleEntity vehicle) {
         double mileageRecharge = 0.0;
         String vehicleType = vehicle.getType();
+        int mileage = vehicle.getMileage();
 
         switch (vehicleType) {
             case "Sedán":

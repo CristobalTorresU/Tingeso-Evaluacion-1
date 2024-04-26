@@ -78,7 +78,6 @@ public class RepairService {
 
     // TODO: Hacer que funcione solo si el vehiculo esta registrado.
     public Boolean calculatePrice(String plate,
-                                  int mileage,
                                   String checkinDateString,
                                   String checkinHourString,
                                   int reparationType,
@@ -105,7 +104,7 @@ public class RepairService {
 
         int totalPrice;
         double reparations = calculateService.getReparationTypePrice(vehicle, reparationType);
-        double mileageRecharges = reparations * calculateService.getMileageRecharge(vehicle, mileage);
+        double mileageRecharges = reparations * calculateService.getMileageRecharge(vehicle);
         double yearRecharge = reparations * calculateService.getYearRecharge(vehicle, checkinDate);
         double lateRecharge = reparations * calculateService.getLateRecharge(exitDate, collectDate);
         double reparationDiscounts = reparations * calculateService.getReparationsDiscount(vehicle,

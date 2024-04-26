@@ -98,13 +98,13 @@ export default function Sidemenu({ open, toggleDrawer }) {
 
         <ListItemButton onClick={() => navigate("/report/typeReport")}>
           <ListItemIcon>
-            <CalculateIcon />
+            <AnalyticsIcon />
           </ListItemIcon>
           <ListItemText primary="Reporte Por Tipo" />
         </ListItemButton>
         <ListItemButton onClick={() => navigate("/report/timeReport")}>
           <ListItemIcon>
-            <CalculateIcon />
+            <AnalyticsIcon />
           </ListItemIcon>
           <ListItemText primary="Reporte Por Tiempo" />
         </ListItemButton>

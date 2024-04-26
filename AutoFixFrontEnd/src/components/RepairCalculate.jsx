@@ -127,11 +127,11 @@ const RepairCalculate = () => {
         </LocalizationProvider>
 
         <LocalizationProvider dateAdapter={AdapterMoment}>
-          <DatePicker label="Fecha Recoleccion" selected={collectDate} onChange={(collectDate) => setCollectDate(collectDate)} />
+          <DatePicker label="Fecha Recolección" selected={collectDate} onChange={(collectDate) => setCollectDate(collectDate)} />
         </LocalizationProvider>
 
         <LocalizationProvider dateAdapter={AdapterMoment}>
-          <TimePicker label="Hora Recoleccion" ampm={false} value={collectHour} onChange={setCollectHour}/>
+          <TimePicker label="Hora Recolección" ampm={false} value={collectHour} onChange={setCollectHour}/>
         </LocalizationProvider>
 
         <FormControl>

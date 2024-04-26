@@ -18,6 +18,7 @@ public class TypeReportEntity {
     private Long id;
 
     private int reparationType;
+    private String repairName;
     private int quantity;
     private String type;
     private int totalAmount;

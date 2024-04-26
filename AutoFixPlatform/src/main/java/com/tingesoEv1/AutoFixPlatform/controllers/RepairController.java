@@ -35,7 +35,6 @@ public class RepairController {
 
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePrice(@RequestParam("plate") String plate,
-                                               @RequestParam("mileage") int mileage,
                                                @RequestParam("checkinDate") String checkinDate,
                                                @RequestParam("checkinHour") String checkinHour,
                                                @RequestParam("reparationType") int reparationType,
@@ -43,7 +42,7 @@ public class RepairController {
                                                @RequestParam("exitHour") String exitHour,
                                                @RequestParam("collectDate") String collectDate,
                                                @RequestParam("collectHour") String collectHour) {
-        repairService.calculatePrice(plate, mileage, checkinDate, checkinHour, reparationType,
+        repairService.calculatePrice(plate, checkinDate, checkinHour, reparationType,
                 exitDate, exitHour, collectDate, collectHour);
         return ResponseEntity.noContent().build();
     }

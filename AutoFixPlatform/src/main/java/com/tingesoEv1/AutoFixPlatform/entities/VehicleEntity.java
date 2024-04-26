@@ -19,7 +19,7 @@ public class VehicleEntity {
 
     private String plate;
     private String brand;
-    //private int mileage;
+    private int mileage;
     private String model;
     private String type;
     private int year;

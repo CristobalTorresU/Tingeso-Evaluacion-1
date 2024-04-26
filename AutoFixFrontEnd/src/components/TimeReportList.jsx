@@ -34,6 +34,8 @@ const TimeReportList = () => {
         <TableContainer component={Paper}>
             <br />
             <br /> <br />
+            <h3>Reporte por Tiempo</h3>
+            <br />
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
@@ -41,7 +43,7 @@ const TimeReportList = () => {
                             Marca
                         </TableCell>
                         <TableCell align="center" sx={{ fontWeight: "bold" }}>
-                            Tiempo Reparacion
+                            Tiempo Reparación
                         </TableCell>
                     </TableRow>
                 </TableHead>

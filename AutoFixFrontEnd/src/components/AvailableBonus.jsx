@@ -22,12 +22,12 @@ const AvailableBonus = () => {
         bonusService
             .getAll()
             .then((response) => {
-                console.log("Mostrando listado de todos las Hrs Extra.", response.data);
+                console.log("Mostrando listado de todos los Bonus.", response.data);
                 setBonus(response.data);
             })
             .catch((error) => {
                 console.log(
-                    "Se ha producido un error al intentar mostrar listado de todas las Hrs Extra.",
+                    "Se ha producido un error al intentar mostrar listado de todos los Bonus.",
                     error
                 );
             });
@@ -46,7 +46,7 @@ const AvailableBonus = () => {
             bonusService
                 .remove(id)
                 .then((response) => {
-                    console.log("Hora Extra ha sido eliminada.", response.data);
+                    console.log("Bonus ha sido eliminado.", response.data);
                     init();
                 })
                 .catch((error) => {
@@ -103,7 +103,7 @@ const AvailableBonus = () => {
                             <TableCell align="left">{bonus.brand}</TableCell>
                             <TableCell align="center">{bonus.quantity}</TableCell>
                             <TableCell align="right">
-                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                $ {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     bonus.amount
                                 )}
                             </TableCell>

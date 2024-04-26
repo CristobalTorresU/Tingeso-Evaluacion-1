@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import SaveIcon from "@mui/icons-material/Save";
-import { MenuItem } from "@mui/material";
+import { Grid, MenuItem } from "@mui/material";
 
 const RegisterVehicle = () => {
     const [plate, setPlate] = useState("");
@@ -16,6 +16,7 @@ const RegisterVehicle = () => {
     const [year, setYear] = useState("");
     const [motor, setMotor] = useState("");
     const [seats, setSeats] = useState("");
+    const [mileage, setMileage] = useState("");
     const { id } = useParams();
     const [titleVehicleForm, setTitleVehicleForm] = useState("");
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const RegisterVehicle = () => {
     const saveVehicle = (v) => {
         v.preventDefault();
 
-        const vehicle = { plate, brand, model, type, year, motor, seats, id };
+        const vehicle = { plate, brand, model, type, year, motor, seats, mileage, id };
         if (id) {
             vehicleService
                 .update(vehicle)
@@ -60,6 +61,7 @@ const RegisterVehicle = () => {
                     setYear(vehicle.data.year);
                     setMotor(vehicle.data.motor);
                     setSeats(vehicle.data.seats);
+                    setMileage(vehicle.data.mileage);
                 })
                 .catch((error) => {
                     console.log("Se produjo un error.", error);
@@ -80,7 +82,7 @@ const RegisterVehicle = () => {
             <h3> {titleVehicleForm} </h3>
             <hr />
             <form>
-                <FormControl width="25%">
+                <FormControl fullWidth>
                     <TextField
                         id="plate"
                         label="Patente"
@@ -90,7 +92,10 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
-                <FormControl width="25%">
+                <br/>
+                <br/>
+
+                <FormControl fullWidth>
                     <TextField
                         id="brand"
                         label="Marca"
@@ -100,7 +105,10 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
-                <FormControl width="25%">
+                <br/>
+                <br/>
+
+                <FormControl fullWidth>
                     <TextField
                         id="model"
                         label="Modelo"
@@ -109,6 +117,9 @@ const RegisterVehicle = () => {
                         onChange={(v) => setModel(v.target.value)}
                     />
                 </FormControl>
+
+                <br/>
+                <br/>
 
                 <FormControl fullWidth>
                     <TextField
@@ -119,7 +130,7 @@ const RegisterVehicle = () => {
                         variant="standard"
                         defaultValue="Sedán"
                         onChange={(v) => setType(v.target.value)}
-                        style={{ width: "25%"}}
+                        style={{ width: "100%"}}
                     >
                         <MenuItem value={"Sedán"}>Sedán</MenuItem>
                         <MenuItem value={"Hatchback"}>Hatchback</MenuItem>
@@ -128,8 +139,11 @@ const RegisterVehicle = () => {
                         <MenuItem value={"Furgoneta"}>Furgoneta</MenuItem>
                     </TextField>
                 </FormControl>
+
+                <br/>
+                <br/>
                 
-                <FormControl width="25%">
+                <FormControl fullWidth>
                     <TextField
                         id="year"
                         label="Año"
@@ -140,6 +154,9 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
+                <br/>
+                <br/>
+
                 <FormControl fullWidth>
                     <TextField
                         id="motor"
@@ -149,7 +166,7 @@ const RegisterVehicle = () => {
                         variant="standard"
                         defaultValue="Gasolina"
                         onChange={(v) => setMotor(v.target.value)}
-                        style={{ width: "25%"}}
+                        style={{ width: "100%"}}
                     >
                         <MenuItem value={"Gasolina"}>Gasolina</MenuItem>
                         <MenuItem value={"Diésel"}>Diésel</MenuItem>
@@ -158,7 +175,10 @@ const RegisterVehicle = () => {
                     </TextField>
                 </FormControl>
 
-                <FormControl width="25%">
+                <br/>
+                <br/>
+
+                <FormControl fullWidth>
                     <TextField
                         id="seats"
                         label="Asientos"
@@ -169,8 +189,24 @@ const RegisterVehicle = () => {
                     />
                 </FormControl>
 
+                <br/>
+                <br/>
+
+                <FormControl fullWidth>
+                    <TextField
+                        id="mileage"
+                        label="Kilometraje"
+                        type="number"
+                        value={mileage}
+                        variant="standard"
+                        onChange={(v) => setMileage(v.target.value)}
+                    />
+                </FormControl>
+
+                <br/>
+                <br/>
+
                 <FormControl>
-                    <br />
                     <Button
                         variant="contained"
                         color="info"

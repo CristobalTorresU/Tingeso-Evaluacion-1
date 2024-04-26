@@ -18,6 +18,7 @@ public class MotorReportEntity {
     private Long id;
 
     private int reparationType;
+    private String repairName;
     private int quantity;
     private String motor;
     private int totalAmount;

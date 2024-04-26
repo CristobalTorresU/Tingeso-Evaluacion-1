@@ -98,7 +98,7 @@ const RepairList = () => {
                             <TableCell align="right">{repair.collectHour}</TableCell>
 
                             <TableCell align="right">
-                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                $ {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     repair.totalAmount
                                 )}
                             </TableCell>

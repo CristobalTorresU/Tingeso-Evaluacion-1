@@ -34,12 +34,24 @@ public class MotorReportService {
         // Metodo que borra el reporte anterior
         motorReportRepository.deleteAll();
 
+        String[] repairNames = {"Reparaciones del Sistema de Frenos",
+                "Servicio del Sistema de Refrigeración",
+                "Reparaciones del Motor",
+                "Reparaciones de la Transmisión",
+                "Reparación del Sistema Eléctrico",
+                "Reparaciones del Sistema de Escape",
+                "Reparación de Neumáticos y Ruedas",
+                "Reparaciones de la Suspensión y la Dirección",
+                "Reparación del Sistema de Aire Acondicionado y Calefacción",
+                "Reparaciones del Sistema de Combustible",
+                "Reparación y Reemplazo del Parabrisas y Cristales"};
         String[] types = {"Gasolina","Diésel","Híbrido","Eléctrico"};
 
         // Genera cada combinacion
         for (int i = 1 ; i <= 11 ; i++) {
             for (int j = 0 ; j < 4 ; j++) {
                 MotorReportEntity report = new MotorReportEntity();
+                report.setRepairName(repairNames[i-1]);
                 report.setReparationType(i);
                 report.setMotor(types[j]);
                 report.setQuantity(0);
