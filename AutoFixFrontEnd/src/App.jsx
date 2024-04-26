@@ -10,6 +10,8 @@ import AddRepair from './components/RepairCalculate';
 import AvailableBonus from './components/AvailableBonus';
 import AddBonus from './components/AddBonus';
 import TypeReportList from './components/TypeReportList';
+import TimeReportList from './components/TimeReportList';
+import MotorReportList from './components/MotorReportList';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -28,7 +30,9 @@ function App() {
           <Route path="/bonus/list" element={<AvailableBonus/>} />
           <Route path="/bonus/add" element={<AddBonus/>} />
           <Route path="/bonus/edit/:id" element={<AddBonus/>} />
-          <Route path="/typereport/list" element={<TypeReportList/>} />
+          <Route path="/report/typeReport" element={<TypeReportList/>} />
+          <Route path="/report/timeReport" element={<TimeReportList/>} />
+          <Route path="/report/motorReport" element={<MotorReportList/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>

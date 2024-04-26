@@ -34,7 +34,7 @@ public class MotorReportController {
         return ResponseEntity.ok(motorReportUpdated);
     }
 
-    @GetMapping("/bring")
+    @GetMapping("/generate")
     public ResponseEntity<List<MotorReportEntity>> bringMotorReports() {
         motorReportService.makeBlankReport();
         List<MotorReportEntity> reports = motorReportService.makeReport();

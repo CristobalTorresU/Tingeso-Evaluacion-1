@@ -33,7 +33,7 @@ public class TypeReportController {
         return ResponseEntity.ok(typeReportUpdated);
     }
 
-    @GetMapping("/bring")
+    @GetMapping("/generate")
     public ResponseEntity<List<TypeReportEntity>> bringTypeReports() {
         typeReportService.makeBlankReport();
         List<TypeReportEntity> reports = typeReportService.makeReport();

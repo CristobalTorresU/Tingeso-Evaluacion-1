@@ -30,8 +30,9 @@ public class MotorReportService {
         return motorReportRepository.save(motorReport);
     }
 
-    public Boolean makeBlankReport() {
+    public void makeBlankReport() {
         // Metodo que borra el reporte anterior
+        motorReportRepository.deleteAll();
 
         String[] types = {"Gasolina","Diésel","Híbrido","Eléctrico"};
 
@@ -47,8 +48,6 @@ public class MotorReportService {
                 motorReportRepository.save(report);
             }
         }
-
-        return true;
     }
 
     public List<MotorReportEntity> makeReport() {

@@ -1,6 +1,5 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
-import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TimeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.TimeReportRepository;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.Duration;
 
 @Service
 public class TimeReportService {
@@ -16,6 +16,8 @@ public class TimeReportService {
     TimeReportRepository timeReportRepository;
     @Autowired
     RepairService repairService;
+    @Autowired
+    VehicleService vehicleService;
 
     public ArrayList<TimeReportEntity> getTimeReports() {
         return (ArrayList<TimeReportEntity>) timeReportRepository.findAll();
@@ -29,20 +31,25 @@ public class TimeReportService {
         return timeReportRepository.save(timeReport);
     }
 
-    public Boolean makeBlankReport() {
+    public void makeBlankReport() {
         // Metodo que borra el reporte anterior
+        timeReportRepository.deleteAll();
+
+        // Se buscan todas las marcas en la base de datos.
+        List<String> brands = vehicleService.vehicleRepository.findBrands();
 
         // Genera cada combinacion
-        for (int i = 1 ; i <= 11 ; i++) {
+        for (int i = 0 ; i < brands.size() ; i++) {
                 TimeReportEntity report = new TimeReportEntity();
-                report.setReparationType(i);
                 report.setQuantity(0);
-                // TODO: Entender como funciona con LocalTime
+                report.setBrand(brands.get(i));
+                // TODO: Setear el tiempo promedio a 0.
+                report.setAverageTime(Duration.ofDays(0).plusHours(0).plusMinutes(0).plusSeconds(0));
+                // TODO: Setear la suma del tiempo a 0.
+                report.setSumTime(Duration.ofDays(0).plusHours(0).plusMinutes(0).plusSeconds(0));
 
                 timeReportRepository.save(report);
         }
-
-        return true;
     }
 
     public List<TimeReportEntity> makeReport() {
@@ -51,9 +58,17 @@ public class TimeReportService {
 
         // Se revisan todas y se asignan a algun motorReport
         for (RepairEntity repair : repairs) {
-            TimeReportEntity report = timeReportRepository.findByReparationType(repair.getReparationType());
+            TimeReportEntity report = timeReportRepository.findByBrand(vehicleService.getVehicleByPlate(repair.getPlate()).getBrand());
             report.setQuantity(report.getQuantity() + 1);
-            //report.setSumTime(report.getSumTime() + repair.getTotalAmount());
+
+            // Obtiene el tiempo que demoro la reparacion.
+            Duration duration = Duration.between(repair.getCheckinDate().atTime(repair.getCheckinHour()),
+                    repair.getExitDate().atTime(repair.getExitHour()));
+            report.setSumTime(report.getSumTime().plus(duration));
+
+            // TODO: Calcular el promedio.
+            report.setAverageTime(report.getSumTime().dividedBy(report.getQuantity()));
+
             timeReportRepository.save(report);
         }
 

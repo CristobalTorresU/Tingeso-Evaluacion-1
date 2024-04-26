@@ -35,8 +35,9 @@ public class TypeReportService {
         return typeReportRepository.save(typeReport);
     }
 
-    public Boolean makeBlankReport() {
+    public void makeBlankReport() {
         // Metodo que borra el reporte anterior
+        typeReportRepository.deleteAll();
 
         String[] types = {"Sedán","Hatchback","SUV","Pickup","Furgoneta"};
 
@@ -52,8 +53,6 @@ public class TypeReportService {
                 typeReportRepository.save(report);
             }
         }
-
-        return true;
     }
 
     public List<TypeReportEntity> makeReport() {

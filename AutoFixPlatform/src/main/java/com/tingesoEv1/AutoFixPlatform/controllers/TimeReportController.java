@@ -33,7 +33,7 @@ public class TimeReportController {
         return ResponseEntity.ok(timeReportUpdated);
     }
 
-    @GetMapping("/bring")
+    @GetMapping("/generate")
     public ResponseEntity<List<TimeReportEntity>> bringTimeReports() {
         timeReportService.makeBlankReport();
         List<TimeReportEntity> reports = timeReportService.makeReport();

@@ -58,19 +58,19 @@ export default function Sidemenu({ open, toggleDrawer }) {
 
       <Divider />
 
-        <ListItemButton onClick={() => navigate("/typereport/list")}>
+        <ListItemButton onClick={() => navigate("/report/typeReport")}>
           <ListItemIcon>
             <CalculateIcon />
           </ListItemIcon>
           <ListItemText primary="Reporte Por Tipo" />
         </ListItemButton>
-        <ListItemButton onClick={() => navigate("/repair/timereport")}>
+        <ListItemButton onClick={() => navigate("/report/timeReport")}>
           <ListItemIcon>
             <CalculateIcon />
           </ListItemIcon>
           <ListItemText primary="Reporte Por Tiempo" />
         </ListItemButton>
-        <ListItemButton onClick={() => navigate("/reports/motorreport")}>
+        <ListItemButton onClick={() => navigate("/report/motorReport")}>
           <ListItemIcon>
             <AnalyticsIcon />
           </ListItemIcon>

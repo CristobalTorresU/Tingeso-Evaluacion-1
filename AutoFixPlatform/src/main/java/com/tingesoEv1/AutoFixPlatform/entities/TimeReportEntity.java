@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
+import java.time.Duration;
 
 @Entity
 @Table(name = "time_report")
@@ -19,8 +19,8 @@ public class TimeReportEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private int reparationType;
+    private String brand;
     private int quantity;
-    private LocalTime sumTime;
-    private LocalTime averageTime;
+    private Duration sumTime;
+    private Duration averageTime;
 }
