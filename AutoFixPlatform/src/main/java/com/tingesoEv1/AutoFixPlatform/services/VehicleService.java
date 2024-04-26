@@ -18,6 +18,9 @@ public class VehicleService {
     }
 
     public VehicleEntity saveVehicle(VehicleEntity vehicle) {
+        if (vehicleRepository.findByPlate(vehicle.getPlate()) != null) {
+            return null;
+        }
         return vehicleRepository.save(vehicle);
     }
 

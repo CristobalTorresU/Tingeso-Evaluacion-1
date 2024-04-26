@@ -105,6 +105,9 @@ const VehicleList = () => {
             <TableCell align="left" sx={{ fontWeight: "bold" }}>
               Asientos
             </TableCell>
+            <TableCell align="left" sx={{ fontWeight: "bold" }}>
+              Kilometraje
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -119,6 +122,11 @@ const VehicleList = () => {
               <TableCell align="left">{vehicle.year}</TableCell>
               <TableCell align="left">{vehicle.motor}</TableCell>
               <TableCell align="left">{vehicle.seats}</TableCell>
+              <TableCell align="right">
+                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                  vehicle.mileage
+                )}
+              </TableCell>
               <TableCell>
                 <Button
                   variant="contained"

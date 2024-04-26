@@ -18,6 +18,9 @@ public class BonusService {
     }
 
     public BonusEntity saveBonus(BonusEntity bonus) {
+        if (bonusRepository.findByBrand(bonus.getBrand()) != null) {
+            return null;
+        }
         return bonusRepository.save(bonus);
     }
 

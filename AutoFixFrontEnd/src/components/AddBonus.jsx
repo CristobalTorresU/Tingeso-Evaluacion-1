@@ -77,17 +77,9 @@ const AddBonus = () => {
                         id="brand"
                         label="Marca"
                         value={brand}
-                        select
                         variant="standard"
-                        defaultValue="Toyota"
                         onChange={(b) => setBrand(b.target.value)}
-                        style={{ width: "25%" }}
-                    >
-                        <MenuItem value={"Toyota"}>Toyota</MenuItem>
-                        <MenuItem value={"Ford"}>Ford</MenuItem>
-                        <MenuItem value={"Hyundai"}>Hyundai</MenuItem>
-                        <MenuItem value={"Honda"}>Honda</MenuItem>
-                    </TextField>
+                    />
                 </FormControl>
 
                 <FormControl fullWidth>

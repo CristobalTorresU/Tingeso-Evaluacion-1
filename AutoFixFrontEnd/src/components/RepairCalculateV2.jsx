@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import repairService from "../services/repair.service";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import Box from "@mui/material/Box";
@@ -15,25 +15,20 @@ import moment from "moment";
 
 const RepairCalculate = () => {
   const [plate, setPlate] = useState("");
-  const [mileage, setMileage] = useState("");
-  const [checkinDate, setCheckinDate] = useState(new Date());
-  const [checkinHour, setCheckinHour] = useState(null);
+  const [checkinDate, setCheckinDate] = useState("");
+  const [checkinHour, setCheckinHour] = useState("");
   const [reparationType, setReparationType] = useState("");
-  const [exitDate, setExitDate] = useState(new Date());
-  const [exitHour, setExitHour] = useState(null);
-  const [collectDate, setCollectDate] = useState(new Date());
-  const [collectHour, setCollectHour] = useState(null);
+  const [totalAmount, setTotalAmount] = useState("");
+  const [exitDate, setExitDate] = useState("");
+  const [exitHour, setExitHour] = useState("");
+  const [collectDate, setCollectDate] = useState("");
+  const [collectHour, setCollectHour] = useState("");
+  const { id } = useParams();
+  const [titleRepairForm, setTitleRepairForm] = useState("");
 
   const navigate = useNavigate();
 
-  const formatTime = (time) => {
-    return moment(time).format('HH:mm:ss');
-  };
-
-  const formatDate = (date) => {
-    return moment(date).format('YYYY-MM-DD');
-  };
-
+  /*
   const calculateRepair = (r) => {
     r.preventDefault();
     console.log("Solicitar calcular reparacion.");
@@ -51,6 +46,85 @@ const RepairCalculate = () => {
       });
     console.log("Fin calculo reparacion.");
   };
+  */
+
+  const saveRepair = (v) => {
+    v.preventDefault();
+
+    //const repair = { plate, checkinDate, checkinHour, reparationType, totalAmount, exitDate, exitHour,collectDate, collectHour, id };
+    const repair = { plate, reparationType, id };
+    if (id) {
+        repairService
+            .update(repair)
+            .then((response) => {
+                console.log("Reparacion ha sido actualizado.", response.data);
+                navigate("/repair/list");
+            })
+            .catch((error) => {
+                console.log("Ocurrió un error al actualizar el vehículo.", error);
+            });
+    } else {
+        repairService
+            .create(repair)
+            .then((response) => {
+                console.log("Vehículo ha sido registrado.", response.data);
+                navigate("/repair/list");
+            })
+            .catch((error) => {
+                console.log("Ocurrió un error al crear el vehículo.", error);
+            });
+    }
+};
+
+  const calculateRepair = (r) => {
+    r.preventDefault();
+    console.log("Solicitar calcular reparacion.");
+    repairService
+      .calculateIn()
+      .then((response) => {
+        console.log("Reparacion ha sido actualizada.", response.data);
+        navigate("/repair/list");
+      })
+      .catch((error) => {
+        console.log(
+          "Ha ocurrido un error al intentar calcular la reparacion.",
+          error
+        );
+      });
+    console.log("Fin calculo reparacion.");
+  };
+
+  const exitDateHour = (r) => {
+
+  };
+
+  const collectDateHour = (r) => {
+
+  };
+
+  useEffect(() => {
+    if (id) {
+        setTitleRepairForm("Editar Reparacion");
+        repairService
+            .get(id)
+            .then((repair) => {
+                setPlate(repair.data.plate);
+                //setCheckinDate(repair.data.brand);
+                //setCheckinHour(repair.data.model);
+                setReparationType(repair.data.type);
+                //setTotalAmount(repair.data.year);
+                //setExitDate(repair.data.motor);
+                //setExitHour(repair.data.seats);
+                //setCollectDate(repair.data.mileage);
+                //setCollectHour(repair.data.mileage);
+            })
+            .catch((error) => {
+                console.log("Se produjo un error.", error);
+            });
+    } else {
+        setTitleVehicleForm("Registrar Nueva Reparacion");
+    }
+}, []);
 
   return (
     <Box
@@ -61,10 +135,10 @@ const RepairCalculate = () => {
       component="form"
     >
       <hr />
-      <h3> Calcular Reparación </h3>
+      <h3> {titleRepairForm} </h3>
       <hr />
       <form>
-        <FormControl fullWidth>
+        <FormControl width=" 25% ">
           <TextField
             id="plate"
             label="Patente"
@@ -73,14 +147,6 @@ const RepairCalculate = () => {
             onChange={(r) => setPlate(r.target.value)}
           />
         </FormControl>
-
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <DatePicker label="Fecha Entrada" selected={checkinDate} onChange={(checkinDate) => setCheckinDate(checkinDate)} />
-        </LocalizationProvider>
-
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <TimePicker label="Hora Entrada" ampm={false} value={checkinHour} onChange={setCheckinHour}/>
-        </LocalizationProvider>
 
         <FormControl fullWidth>
           <TextField
@@ -91,7 +157,7 @@ const RepairCalculate = () => {
             variant="standard"
             defaultValue="1"
             onChange={(r) => setReparationType(r.target.value)}
-            style={{ width: "100%" }}
+            style={{ width: "25%" }}
           >
             <MenuItem value={1}>Reparaciones del Sistema de Frenos</MenuItem>
             <MenuItem value={2}>Servicio del Sistema de Refrigeración</MenuItem>
@@ -107,33 +173,16 @@ const RepairCalculate = () => {
           </TextField>
         </FormControl>
 
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <DatePicker label="Fecha Salida" selected={exitDate} onChange={(exitDate) => setExitDate(exitDate)} />
-        </LocalizationProvider>
-
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <TimePicker label="Hora Salida" ampm={false} value={exitHour} onChange={setExitHour}/>
-        </LocalizationProvider>
-
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <DatePicker label="Fecha Recolección" selected={collectDate} onChange={(collectDate) => setCollectDate(collectDate)} />
-        </LocalizationProvider>
-
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <TimePicker label="Hora Recolección" ampm={false} value={collectHour} onChange={setCollectHour}/>
-        </LocalizationProvider>
-
-          <br />
-          <br />
         <FormControl>
+          <br />
           <Button
             variant="contained"
             color="info"
-            onClick={(r) => calculateRepair(r)}
+            onClick={(r) => saveRepair(r)}
             style={{ marginLeft: "0.5rem" }}
             startIcon={<CalculateIcon />}
           >
-            Calcular Reparación
+            Ingresar Reparación
           </Button>
         </FormControl>
       </form>

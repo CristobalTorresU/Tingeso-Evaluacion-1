@@ -33,6 +33,26 @@ public class RepairController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/exit")
+    public ResponseEntity<RepairEntity> updateExitRepair(@RequestBody RepairEntity repair) {
+        RepairEntity repairUpdatedExit = repairService.updateExit(repair);
+        return ResponseEntity.ok(repairUpdatedExit);
+    }
+
+    @PutMapping("/collect")
+    public ResponseEntity<RepairEntity> updateCollectRepair(@RequestBody RepairEntity repair) {
+        RepairEntity repairUpdatedCollect = repairService.updateCollect(repair);
+        return ResponseEntity.ok(repairUpdatedCollect);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<RepairEntity> saveRepair(@RequestParam("plate") String plate,
+                                                   @RequestParam("reparationType") int reparationType) {
+        RepairEntity repair = new RepairEntity();
+        RepairEntity repairNew = repairService.saveInitialRepair(repair, plate, reparationType);
+        return ResponseEntity.ok(repairNew);
+    }
+
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePrice(@RequestParam("plate") String plate,
                                                @RequestParam("checkinDate") String checkinDate,
@@ -44,6 +64,12 @@ public class RepairController {
                                                @RequestParam("collectHour") String collectHour) {
         repairService.calculatePrice(plate, checkinDate, checkinHour, reparationType,
                 exitDate, exitHour, collectDate, collectHour);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/calculateIn/{id}")
+    public ResponseEntity<Void> calculateInPrice(@PathVariable Long id) {
+        repairService.calculateInPrice(id);
         return ResponseEntity.noContent().build();
     }
 }
