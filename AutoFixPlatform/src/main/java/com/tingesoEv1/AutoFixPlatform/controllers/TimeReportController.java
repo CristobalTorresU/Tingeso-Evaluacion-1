@@ -39,4 +39,10 @@ public class TimeReportController {
         List<TimeReportEntity> reports = timeReportService.makeReport();
         return ResponseEntity.ok(reports);
     }
+
+    @GetMapping("/ordered")
+    public ResponseEntity<List<TimeReportEntity>> orderedTimeReports() {
+        List<TimeReportEntity> reports = timeReportService.getTimeOrdered();
+        return ResponseEntity.ok(reports);
+    }
 }

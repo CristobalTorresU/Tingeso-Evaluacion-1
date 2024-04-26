@@ -124,7 +124,7 @@ const VehicleList = () => {
                   variant="contained"
                   color="info"
                   size="small"
-                  onClick={() => handleEdit(vehicle.vehicle_id)}
+                  onClick={() => handleEdit(vehicle.id)}
                   style={{ marginLeft: "0.5rem" }}
                   startIcon={<EditIcon />}
                 >
@@ -135,7 +135,7 @@ const VehicleList = () => {
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleDelete(vehicle.vehicle_id)}
+                  onClick={() => handleDelete(vehicle.id)}
                   style={{ marginLeft: "0.5rem" }}
                   startIcon={<DeleteIcon />}
                 >

@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import detailService from "../services/detail.service";
 import Button from "@mui/material/Button";
 import CarRepair from "@mui/icons-material/CarRepair";
+import { Divider } from "@mui/material";
 
 const RepairDetails = () => {
     const [detail, setDetail] = useState([]);
@@ -41,83 +42,112 @@ const RepairDetails = () => {
         <TableContainer component={Paper}>
             <br />
             <br />
+            <br />
             <h3>Detalle Reparacion</h3>
             <br />
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Reparacion
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Reparaciones en los ultimos 12 meses
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Descuento por horario
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Bonus
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Kilometraje
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Ano
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            Atraso
-                        </TableCell>
-                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
-                            IVA
-                        </TableCell>
-                    </TableRow>
-                </TableHead>
                 <TableBody>
+                    <TableCell>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Reparacion
+                        </TableRow>
+                        <Divider />
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Reparaciones en los ultimos 12 meses
+                        </TableRow>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Descuento por horario
+                        </TableRow>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Bonus
+                        </TableRow>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Total Descuentos
+                        </TableRow>
+                        <Divider />
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Kilometraje
+                        </TableRow>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Ano
+                        </TableRow>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Atraso
+                        </TableRow>
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Total Recargos
+                        </TableRow>
+                        <Divider />
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            IVA
+                        </TableRow>
+                        <Divider />
+                        <TableRow align="left" sx={{ fontWeight: "bold" }}>
+                            Monto Total
+                        </TableRow>
+                    </TableCell>
                     {detail.map((detail) => (
-                        <TableRow
+                        <TableCell
                             key={detail.id}
                         >
-                            <TableCell align="right">
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     detail.repairAmount
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
-                                    detail.repairsDiscount
+                                    - detail.repairsDiscount
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
-                                    detail.dayDiscount
+                                    - detail.dayDiscount
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
-                                    detail.bonusDiscount
+                                    - detail.bonusDiscount
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    - detail.bonusDiscount - detail.dayDiscount - detail.repairsDiscount
+                                )}
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     detail.mileageRecharge
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     detail.yearRecharge
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     detail.lateRecharge
                                 )}
-                            </TableCell>
-                            <TableCell align="right">
+                            </TableRow>
+                            <TableRow align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    detail.lateRecharge + detail.yearRecharge + detail.mileageRecharge
+                                )}
+                            </TableRow>
+                            <TableRow align="right">
                                 {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
                                     detail.iva
                                 )}
-                            </TableCell>
-                        </TableRow>
+                            </TableRow>
+                            <TableRow align="right">
+                                {new Intl.NumberFormat("es-CL", { style: "decimal" }).format(
+                                    detail.repairAmount - detail.repairsDiscount - detail.dayDiscount -
+                                    detail.bonusDiscount + detail.mileageRecharge + detail.yearRecharge +
+                                    detail.lateRecharge + detail.iva
+                                )}
+                            </TableRow>
+                        </TableCell>
                     ))}
                 </TableBody>
             </Table>

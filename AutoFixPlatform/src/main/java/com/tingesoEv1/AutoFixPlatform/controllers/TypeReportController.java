@@ -1,5 +1,6 @@
 package com.tingesoEv1.AutoFixPlatform.controllers;
 
+import com.tingesoEv1.AutoFixPlatform.entities.TimeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.services.TypeReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class TypeReportController {
     public ResponseEntity<List<TypeReportEntity>> bringTypeReports() {
         typeReportService.makeBlankReport();
         List<TypeReportEntity> reports = typeReportService.makeReport();
+        return ResponseEntity.ok(reports);
+    }
+
+    @GetMapping("/ordered")
+    public ResponseEntity<List<TypeReportEntity>> orderedTypeReports() {
+        List<TypeReportEntity> reports = typeReportService.getTypeOrdered();
         return ResponseEntity.ok(reports);
     }
 }

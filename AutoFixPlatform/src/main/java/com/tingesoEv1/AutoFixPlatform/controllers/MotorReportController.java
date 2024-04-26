@@ -1,6 +1,7 @@
 package com.tingesoEv1.AutoFixPlatform.controllers;
 
 import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
+import com.tingesoEv1.AutoFixPlatform.entities.TimeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.services.MotorReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class MotorReportController {
     public ResponseEntity<List<MotorReportEntity>> bringMotorReports() {
         motorReportService.makeBlankReport();
         List<MotorReportEntity> reports = motorReportService.makeReport();
+        return ResponseEntity.ok(reports);
+    }
+
+    @GetMapping("/ordered")
+    public ResponseEntity<List<MotorReportEntity>> orderedMotorReports() {
+        List<MotorReportEntity> reports = motorReportService.getMotorOrdered();
         return ResponseEntity.ok(reports);
     }
 }

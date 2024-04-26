@@ -11,14 +11,43 @@ import CarRepair from "@mui/icons-material/CarRepair";
 import PaidIcon from "@mui/icons-material/Paid";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
-import DiscountIcon from "@mui/icons-material/Discount";
-import HailIcon from "@mui/icons-material/Hail";
-import MedicationLiquidIcon from "@mui/icons-material/MedicationLiquid";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
+import type_reportService from "../services/type_report.service";
+import time_reportService from "../services/time_report.service";
+import motor_reportService from "../services/motor_report.service";
 
 export default function Sidemenu({ open, toggleDrawer }) {
   const navigate = useNavigate();
+
+  const generateReports = (r) => {
+    r.preventDefault();
+    time_reportService
+      .generate()
+      .then((response) => {
+        console.log("Reporte de tiempo ha sido generado.", response.data);
+      })
+      .catch((error) => {
+        console.log("Ocurrio un error al generar el reporte de tiempos.", error);
+      });
+    type_reportService
+      .generate()
+      .then((response) => {
+        console.log("Reporte de tipo ha sido generado.", response.data);
+      })
+      .catch((error) => {
+        console.log("Ocurrio un error al generar el reporte de tiempos.", error);
+      });
+    motor_reportService
+      .generate()
+      .then((response) => {
+        console.log("Reporte de motor ha sido generado.", response.data);
+      })
+      .catch((error) => {
+        console.log("Ocurrio un error al generar el reporte de tiempos.", error);
+      });
+    console.log("Fin generacion reporte.");
+  };
 
   const listOptions = () => (
     <Box
@@ -54,6 +83,15 @@ export default function Sidemenu({ open, toggleDrawer }) {
             <PaidIcon />
           </ListItemIcon>
           <ListItemText primary="Bonus" />
+        </ListItemButton>
+
+      <Divider />
+
+        <ListItemButton onClick={(r) => generateReports(r)}>
+          <ListItemIcon>
+            <CalculateIcon />
+          </ListItemIcon>
+          <ListItemText primary="Generar Reportes" />
         </ListItemButton>
 
       <Divider />

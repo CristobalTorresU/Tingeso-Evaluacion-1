@@ -17,10 +17,6 @@ public class DetailEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "repair_id")
-    private RepairEntity repair;
-
     private int repairAmount;
     private int repairsDiscount;
     private int dayDiscount;
@@ -28,5 +24,6 @@ public class DetailEntity {
     private int mileageRecharge;
     private int yearRecharge;
     private int lateRecharge;
-    private int IVA;
+    private int iva;
+    private Long repair_id;
 }

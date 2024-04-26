@@ -17,7 +17,4 @@ public interface TypeReportRepository extends JpaRepository<TypeReportEntity, Lo
 
     @Query(value = "SELECT * FROM type_report ORDER BY type_report.total_amount DESC", nativeQuery = true)
     List<TypeReportEntity> orderByTotalAmount();
-
-    @Query(value = "ALTER SEQUENCE type_report_id_seq RESTART WITH 1", nativeQuery = true)
-    void restartSequence();
 }

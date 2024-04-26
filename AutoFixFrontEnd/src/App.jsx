@@ -5,13 +5,14 @@ import Navbar from './components/Navbar';
 import RegisterVehicle from './components/RegisterVehicle';
 import VehicleList from './components/VehicleList';
 import RepairList from './components/RepairList';
-import RepairDetails from './components/RepairDetails';
+import RepairDetails from './components/RepairDetailsV3';
 import AddRepair from './components/RepairCalculate';
 import AvailableBonus from './components/AvailableBonus';
 import AddBonus from './components/AddBonus';
 import TypeReportList from './components/TypeReportList';
 import TimeReportList from './components/TimeReportList';
 import MotorReportList from './components/MotorReportList';
+import Testing from './components/Testing';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/report/typeReport" element={<TypeReportList/>} />
           <Route path="/report/timeReport" element={<TimeReportList/>} />
           <Route path="/report/motorReport" element={<MotorReportList/>} />
+          <Route path="/testing" element={<Testing/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </div>

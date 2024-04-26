@@ -13,7 +13,7 @@ const MotorReportList = () => {
 
     const init = () => {
         motor_reportService
-            .getAll()
+            .getOrder()
             .then((response) => {
                 console.log("Mostrando reporte por motor.", response.data);
                 setMotorReport(response.data);

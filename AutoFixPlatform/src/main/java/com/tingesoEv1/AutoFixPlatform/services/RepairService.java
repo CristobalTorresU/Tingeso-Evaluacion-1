@@ -156,11 +156,11 @@ public class RepairService {
         detail.setMileageRecharge((int)mileageRecharges);
         detail.setYearRecharge((int)yearRecharge);
         detail.setLateRecharge((int)lateRecharge);
-        detail.setIVA(iva);
+        detail.setIva(iva);
 
         repairRepository.save(repair);
 
-        detail.setRepair(repair);
+        detail.setRepair_id(repair.getRepair_id());
         detailService.saveDetail(detail);
 
         return true;

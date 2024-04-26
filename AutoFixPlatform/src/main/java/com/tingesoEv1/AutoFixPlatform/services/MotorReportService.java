@@ -66,4 +66,8 @@ public class MotorReportService {
 
         return motorReports;
     }
+
+    public List<MotorReportEntity> getMotorOrdered() {
+        return motorReportRepository.orderByTotalAmount();
+    }
 }

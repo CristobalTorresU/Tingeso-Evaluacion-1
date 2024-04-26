@@ -1,6 +1,7 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
+import com.tingesoEv1.AutoFixPlatform.entities.TimeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.TypeReportRepository;
@@ -67,8 +68,12 @@ public class TypeReportService {
             typeReportRepository.save(report);
         }
 
-        List<TypeReportEntity> typeReports = typeReportRepository.orderByTotalAmount();
+        List<TypeReportEntity> typeReports = typeReportRepository.findAll();
 
         return typeReports;
+    }
+
+    public List<TypeReportEntity> getTypeOrdered() {
+        return typeReportRepository.orderByTotalAmount();
     }
 }

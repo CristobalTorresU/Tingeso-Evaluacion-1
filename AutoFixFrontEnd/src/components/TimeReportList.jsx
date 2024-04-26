@@ -13,7 +13,7 @@ const TimeReportList = () => {
 
     const init = () => {
         time_reportService
-            .getAll()
+            .getOrder()
             .then((response) => {
                 console.log("Mostrando reporte por tiempo.", response.data);
                 setTimeReport(response.data);
@@ -40,8 +40,8 @@ const TimeReportList = () => {
                         <TableCell align="left" sx={{ fontWeight: "bold" }}>
                             Marca
                         </TableCell>
-                        <TableCell align="left" sx={{ fontWeight: "bold" }}>
-                            Tipo de Vehiculo
+                        <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                            Tiempo Reparacion
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -51,7 +51,7 @@ const TimeReportList = () => {
                             key={timeReport.id}
                         >
                             <TableCell align="left">{timeReport.brand}</TableCell>
-                            <TableCell align="center">{timeReport.averageTime}</TableCell>
+                            <TableCell align="center">{timeReport.hours}:{timeReport.minutes}:{timeReport.seconds}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

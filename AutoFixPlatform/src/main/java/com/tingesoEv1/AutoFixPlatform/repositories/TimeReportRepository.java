@@ -10,10 +10,6 @@ import java.util.List;
 @Repository
 public interface TimeReportRepository extends JpaRepository<TimeReportEntity, Long> {
     public TimeReportEntity findByBrand(String brand);
-    // TODO: ASUMIR QUE SE PUEDE ORDENAR POR TIEMPO.
-    @Query(value = "SELECT * FROM time_report ORDER BY time_report.average_time DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM time_report ORDER BY time_report.total_seconds ASC", nativeQuery = true)
     List<TimeReportEntity> orderByTime();
-
-    @Query(value = "ALTER SEQUENCE time_report_id_seq RESTART WITH 1", nativeQuery = true)
-    void restartSequence();
 }

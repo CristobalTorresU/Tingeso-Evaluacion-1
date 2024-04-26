@@ -16,7 +16,4 @@ public interface MotorReportRepository extends JpaRepository<MotorReportEntity, 
 
     @Query(value = "SELECT * FROM motor_report ORDER BY motor_report.total_amount DESC", nativeQuery = true)
     List<MotorReportEntity> orderByTotalAmount();
-
-    @Query(value = "ALTER SEQUENCE motor_report_id_seq RESTART WITH 1", nativeQuery = true)
-    void restartSequence();
 }

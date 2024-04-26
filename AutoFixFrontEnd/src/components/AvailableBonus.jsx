@@ -66,6 +66,8 @@ const AvailableBonus = () => {
     return (
         <TableContainer component={Paper}>
             <br />
+            <br />
+            <h3>Bonus Disponibles</h3>
             <Link
                 to="/bonus/add"
                 style={{ textDecoration: "none", marginBottom: "1rem" }}

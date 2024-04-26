@@ -22,5 +22,8 @@ public class TimeReportEntity {
     private String brand;
     private int quantity;
     private Duration sumTime;
-    private Duration averageTime;
+    private Long hours;
+    private int minutes;
+    private int seconds;
+    private Long totalSeconds;
 }
