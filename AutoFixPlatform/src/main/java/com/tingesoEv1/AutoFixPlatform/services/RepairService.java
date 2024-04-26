@@ -50,26 +50,6 @@ public class RepairService {
         return repairRepository.save(repair);
     }
 
-    public List<RepairEntity> getRepairByType(int reparationType) {
-        return repairRepository.findByReparationType(reparationType);
-    }
-
-    public List<RepairEntity> getRepairByCheckinDate(LocalDate checkinDate) {
-        return repairRepository.findByCheckinDateBefore(checkinDate);
-    }
-
-    public List<RepairEntity> getRepairByExitDate(LocalDate exitDate) {
-        return repairRepository.findByExitDateBefore(exitDate);
-    }
-
-    public List<RepairEntity> getRepairByTotalAmount(Integer startTotalAmount, Integer endTotalAmount) {
-        return repairRepository.findByTotalAmountBetween(startTotalAmount, endTotalAmount);
-    }
-
-    public List<RepairEntity> getRepairByCollectDate(LocalDate collectDate) {
-        return repairRepository.findByCollectDateBefore(collectDate);
-    }
-
     public RepairEntity updateRepair(RepairEntity repair) {
         return repairRepository.save(repair);
     }
