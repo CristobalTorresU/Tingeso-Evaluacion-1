@@ -24,9 +24,7 @@ public class DetailController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<DetailEntity>> getDetailById(@PathVariable Long id) {
-        List<DetailEntity> detailAsList = new ArrayList<>();
-        DetailEntity detail = detailService.getRepairById(id);
-        detailAsList.add(detail);
-        return ResponseEntity.ok(detailAsList);
+        List<DetailEntity> detail = detailService.getRepairById(id);
+        return ResponseEntity.ok(detail);
     }
 }

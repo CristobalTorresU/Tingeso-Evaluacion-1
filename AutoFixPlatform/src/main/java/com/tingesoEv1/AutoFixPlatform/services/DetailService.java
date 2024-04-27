@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class DetailService {
@@ -16,8 +17,11 @@ public class DetailService {
         return (ArrayList<DetailEntity>) detailRepository.findAll();
     }
 
-    public DetailEntity getRepairById(Long id) {
-        return detailRepository.findById(id).get();
+    public List<DetailEntity> getRepairById(Long id) {
+        List<DetailEntity> detailAsList = new ArrayList<>();
+        DetailEntity detail = detailRepository.findById(id).get();
+        detailAsList.add(detail);
+        return detailAsList;
     }
 
     public DetailEntity saveDetail(DetailEntity detail) {

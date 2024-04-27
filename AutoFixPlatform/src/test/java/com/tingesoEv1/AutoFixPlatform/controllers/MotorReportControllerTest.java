@@ -1,11 +1,12 @@
 package com.tingesoEv1.AutoFixPlatform.controllers;
 
-import com.tingesoEv1.AutoFixPlatform.entities.BonusEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
 import com.tingesoEv1.AutoFixPlatform.services.MotorReportService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,7 +26,7 @@ public class MotorReportControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @MockBean
     private MotorReportService motorReportService;
 
     @Test
@@ -71,5 +72,19 @@ public class MotorReportControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.motor", is("Diésel")));
+    }
+
+    @Test
+    public void bringMotorReports_ShouldReturnGeneratedMotorReports() throws Exception {
+
+        /*
+        List
+
+        given(motorReportService.makeBlankReport()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
+         */
+    }
+
+    @Test
+    public void orderedMotorReports_ShouldReturnOrderedMotorReports() throws Exception {
     }
 }

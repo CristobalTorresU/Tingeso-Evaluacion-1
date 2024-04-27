@@ -29,12 +29,6 @@ public class MotorReportController {
         return ResponseEntity.ok(motorReport);
     }
 
-    @PutMapping("/")
-    public ResponseEntity<MotorReportEntity> updateMotorReport(@RequestBody MotorReportEntity motorReport) {
-        MotorReportEntity motorReportUpdated = motorReportService.updateMotorReport(motorReport);
-        return ResponseEntity.ok(motorReportUpdated);
-    }
-
     @GetMapping("/generate")
     public ResponseEntity<List<MotorReportEntity>> bringMotorReports() {
         motorReportService.makeBlankReport();
