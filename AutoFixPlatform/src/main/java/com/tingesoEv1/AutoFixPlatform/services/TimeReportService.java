@@ -85,7 +85,6 @@ public class TimeReportService {
             timeReportRepository.save(report);
         }
 
-        //List<TimeReportEntity> timeReports = timeReportRepository.orderByTime();
         List<TimeReportEntity> timeReports = timeReportRepository.findAll();
 
         return timeReports;

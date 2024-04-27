@@ -36,21 +36,20 @@ public class TypeReportService {
         return typeReportRepository.save(typeReport);
     }
 
-    public void makeBlankReport() {
-        // Metodo que borra el reporte anterior
+    public List<TypeReportEntity> makeReport() {
         typeReportRepository.deleteAll();
 
         String[] repairNames = {"Reparaciones del Sistema de Frenos",
-                                "Servicio del Sistema de Refrigeración",
-                                "Reparaciones del Motor",
-                                "Reparaciones de la Transmisión",
-                                "Reparación del Sistema Eléctrico",
-                                "Reparaciones del Sistema de Escape",
-                                "Reparación de Neumáticos y Ruedas",
-                                "Reparaciones de la Suspensión y la Dirección",
-                                "Reparación del Sistema de Aire Acondicionado y Calefacción",
-                                "Reparaciones del Sistema de Combustible",
-                                "Reparación y Reemplazo del Parabrisas y Cristales"};
+                "Servicio del Sistema de Refrigeración",
+                "Reparaciones del Motor",
+                "Reparaciones de la Transmisión",
+                "Reparación del Sistema Eléctrico",
+                "Reparaciones del Sistema de Escape",
+                "Reparación de Neumáticos y Ruedas",
+                "Reparaciones de la Suspensión y la Dirección",
+                "Reparación del Sistema de Aire Acondicionado y Calefacción",
+                "Reparaciones del Sistema de Combustible",
+                "Reparación y Reemplazo del Parabrisas y Cristales"};
         String[] types = {"Sedán","Hatchback","SUV","Pickup","Furgoneta"};
 
         // Genera cada combinacion
@@ -66,9 +65,7 @@ public class TypeReportService {
                 typeReportRepository.save(report);
             }
         }
-    }
 
-    public List<TypeReportEntity> makeReport() {
         // Se traen todas las reparaciones
         List<RepairEntity> repairs = repairService.getRepairs();
 

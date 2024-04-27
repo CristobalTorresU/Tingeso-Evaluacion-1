@@ -21,18 +21,6 @@ public class TimeReportController {
         return ResponseEntity.ok(timeReports);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TimeReportEntity> getTimeReportById(@PathVariable Long id) {
-        TimeReportEntity timeReport = timeReportService.getTimeReportById(id);
-        return ResponseEntity.ok(timeReport);
-    }
-
-    @PutMapping("/")
-    public ResponseEntity<TimeReportEntity> updateTimeReport(@RequestBody TimeReportEntity timeReport) {
-        TimeReportEntity timeReportUpdated = timeReportService.updateTimeReport(timeReport);
-        return ResponseEntity.ok(timeReportUpdated);
-    }
-
     @GetMapping("/generate")
     public ResponseEntity<List<TimeReportEntity>> bringTimeReports() {
         timeReportService.makeBlankReport();

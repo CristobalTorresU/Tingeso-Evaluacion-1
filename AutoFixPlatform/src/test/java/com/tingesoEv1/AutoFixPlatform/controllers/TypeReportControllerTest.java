@@ -1,5 +1,7 @@
 package com.tingesoEv1.AutoFixPlatform.controllers;
 
+import com.tingesoEv1.AutoFixPlatform.entities.DetailEntity;
+import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.services.TypeReportService;
@@ -29,8 +31,34 @@ public class TypeReportControllerTest {
     @MockBean
     private TypeReportService typeReportService;
 
-    // TODO: Verificar si en realidad esta ocupando todas las lineas.
-    // TODO: Verificar si esta funcionando correctamente.
+    @Test
+    public void listTypeReports_ShouldReturnTypeReports() throws Exception {
+        TypeReportEntity typeReport1 = new TypeReportEntity(1L,
+                1,
+                "Reparaciones del Sistema de Frenos",
+                3,
+                "SUV",
+                485000);
+
+        TypeReportEntity typeReport2 = new TypeReportEntity(2L,
+                4,
+                "Reparaciones de la Transmisión",
+                2,
+                "Pickup",
+                334000);
+
+        List<TypeReportEntity> typeReportList = new ArrayList<>(Arrays.asList(typeReport1, typeReport2));
+
+        given(typeReportService.getTypeReports()).willReturn((ArrayList<TypeReportEntity>) typeReportList);
+
+        mockMvc.perform(get("/typereports/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].type", is("SUV")))
+                .andExpect(jsonPath("$[1].type", is("Pickup")));
+    }
+
     @Test
     public void orderedTypeReports_ShouldReturnOrderedTypeReports() throws Exception {
         TypeReportEntity typeReport1 = new TypeReportEntity(1L,
@@ -56,7 +84,7 @@ public class TypeReportControllerTest {
 
         List<TypeReportEntity> typeReportList = new ArrayList<>(Arrays.asList(typeReport3, typeReport1, typeReport2));
 
-        given(typeReportService.getTypeOrdered()).willReturn((ArrayList<TypeReportEntity>) typeReportList);
+        given(typeReportService.getTypeOrdered()).willReturn(typeReportList);
 
         mockMvc.perform(get("/typereports/ordered"))
                 .andExpect(status().isOk())
@@ -67,17 +95,19 @@ public class TypeReportControllerTest {
                 .andExpect(jsonPath("$[2].repairName", is("Reparaciones del Motor")));
     }
 
+    /*
     @Test
     public void bringTypeReports_ShouldReturnReport() throws Exception {
-        /*
-        RepairEntity repair1 = new RepairEntity();
+        List<RepairEntity> repairList = new ArrayList<>();
+        List<TypeReportEntity> detailList = new ArrayList<>();
 
-        RepairEntity repair2 = new RepairEntity();
+        given(typeReportService.makeReport()).willReturn((ArrayList<TypeReportEntity>) detailList);
 
-        List<RepairEntity> repairList = new ArrayList<>(Arrays.asList(repair1, repair2));
+        mockMvc.perform(get("/typereports/generate"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)));
 
-        mockMvc.perform()
-
-         */
     }
+    */
 }

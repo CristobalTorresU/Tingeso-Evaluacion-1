@@ -58,23 +58,6 @@ public class MotorReportControllerTest {
     }
 
     @Test
-    public void getMotorReportById_ShouldReturnMotorReport() throws Exception {
-        MotorReportEntity motorReport = new MotorReportEntity(1L,
-                2,
-                "Servicio del Sistema de Refrigeración",
-                5,
-                "Diésel",
-                120000);
-
-        given(motorReportService.getMotorReportById(1L)).willReturn(motorReport);
-
-        mockMvc.perform(get("/motorreports/{id}", 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.motor", is("Diésel")));
-    }
-
-    @Test
     public void bringMotorReports_ShouldReturnGeneratedMotorReports() throws Exception {
 
         /*

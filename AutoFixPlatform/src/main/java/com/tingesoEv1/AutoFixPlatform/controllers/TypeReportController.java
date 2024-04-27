@@ -22,21 +22,8 @@ public class TypeReportController {
         return ResponseEntity.ok(typeReports);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TypeReportEntity> getTypeReportById(@PathVariable Long id) {
-        TypeReportEntity typeReport = typeReportService.getTypeReportById(id);
-        return ResponseEntity.ok(typeReport);
-    }
-
-    @PutMapping("/")
-    public ResponseEntity<TypeReportEntity> updateTypeReport(@RequestBody TypeReportEntity typeReport) {
-        TypeReportEntity typeReportUpdated = typeReportService.updateTypeReport(typeReport);
-        return ResponseEntity.ok(typeReportUpdated);
-    }
-
     @GetMapping("/generate")
     public ResponseEntity<List<TypeReportEntity>> bringTypeReports() {
-        typeReportService.makeBlankReport();
         List<TypeReportEntity> reports = typeReportService.makeReport();
         return ResponseEntity.ok(reports);
     }

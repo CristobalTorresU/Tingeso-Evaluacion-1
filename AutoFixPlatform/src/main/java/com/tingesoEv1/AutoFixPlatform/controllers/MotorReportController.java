@@ -23,12 +23,6 @@ public class MotorReportController {
         return ResponseEntity.ok(motorReports);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<MotorReportEntity> getMotorReportById(@PathVariable Long id) {
-        MotorReportEntity motorReport = motorReportService.getMotorReportById(id);
-        return ResponseEntity.ok(motorReport);
-    }
-
     @GetMapping("/generate")
     public ResponseEntity<List<MotorReportEntity>> bringMotorReports() {
         motorReportService.makeBlankReport();
