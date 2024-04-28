@@ -50,10 +50,6 @@ public class RepairService {
         return repairRepository.save(repair);
     }
 
-    public RepairEntity updateRepair(RepairEntity repair) {
-        return repairRepository.save(repair);
-    }
-
     public boolean deleteRepair(Long id) throws Exception {
         try{
             repairRepository.deleteById(id);
@@ -134,6 +130,7 @@ public class RepairService {
         return true;
     }
 
+    /*
     public Boolean calculateInPrice(Long id) {
         RepairEntity repair = repairRepository.findById(id).get();
 
@@ -159,7 +156,6 @@ public class RepairService {
         totalPrice = ((int)reparations + recharges - discounts) + iva;
 
         // Atributos para la reparacion
-        /*
         repair.setCheckinDate(checkinDate);
         repair.setCheckinHour(checkinHour);
         repair.setPlate(vehicle.getPlate());
@@ -169,7 +165,6 @@ public class RepairService {
         repair.setCollectDate(collectDate);
         repair.setCollectHour(collectHour);
         repair.setTotalAmount(totalPrice);
-        */
 
         repair.setTotalAmount(totalPrice);
 
@@ -190,7 +185,9 @@ public class RepairService {
 
         return true;
     }
+    */
 
+    /*
     public RepairEntity updateExit(RepairEntity repair) {
         repair.setExitDate(LocalDate.now());
         repair.setExitHour(LocalTime.now());
@@ -202,4 +199,5 @@ public class RepairService {
         repair.setCollectHour(LocalTime.now());
         return repair;
     }
+    */
 }

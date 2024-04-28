@@ -23,14 +23,6 @@ public class TimeReportService {
         return (ArrayList<TimeReportEntity>) timeReportRepository.findAll();
     }
 
-    public TimeReportEntity getTimeReportById(Long id) {
-        return timeReportRepository.findById(id).get();
-    }
-
-    public TimeReportEntity updateTimeReport(TimeReportEntity timeReport) {
-        return timeReportRepository.save(timeReport);
-    }
-
     public void makeBlankReport() {
         // Metodo que borra el reporte anterior
         timeReportRepository.deleteAll();

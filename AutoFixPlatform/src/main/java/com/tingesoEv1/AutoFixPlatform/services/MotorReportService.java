@@ -22,14 +22,6 @@ public class MotorReportService {
         return (ArrayList<MotorReportEntity>) motorReportRepository.findAll();
     }
 
-    public MotorReportEntity getMotorReportById(Long id) {
-        return motorReportRepository.findById(id).get();
-    }
-
-    public MotorReportEntity updateMotorReport(MotorReportEntity motorReport) {
-        return motorReportRepository.save(motorReport);
-    }
-
     public void makeBlankReport() {
         // Metodo que borra el reporte anterior
         motorReportRepository.deleteAll();

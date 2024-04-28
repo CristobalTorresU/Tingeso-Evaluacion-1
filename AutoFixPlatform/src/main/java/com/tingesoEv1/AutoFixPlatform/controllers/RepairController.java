@@ -33,6 +33,7 @@ public class RepairController {
         return ResponseEntity.noContent().build();
     }
 
+    /*
     @PutMapping("/exit")
     public ResponseEntity<RepairEntity> updateExitRepair(@RequestBody RepairEntity repair) {
         RepairEntity repairUpdatedExit = repairService.updateExit(repair);
@@ -52,6 +53,7 @@ public class RepairController {
         RepairEntity repairNew = repairService.saveInitialRepair(repair, plate, reparationType);
         return ResponseEntity.ok(repairNew);
     }
+     */
 
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePrice(@RequestParam("plate") String plate,
@@ -67,9 +69,11 @@ public class RepairController {
         return ResponseEntity.noContent().build();
     }
 
+    /*
     @GetMapping("/calculateIn/{id}")
     public ResponseEntity<Void> calculateInPrice(@PathVariable Long id) {
         repairService.calculateInPrice(id);
         return ResponseEntity.noContent().build();
     }
+     */
 }

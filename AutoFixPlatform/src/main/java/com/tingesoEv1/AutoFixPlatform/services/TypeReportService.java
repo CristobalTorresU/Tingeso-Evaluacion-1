@@ -24,18 +24,6 @@ public class TypeReportService {
         return (ArrayList<TypeReportEntity>) typeReportRepository.findAll();
     }
 
-    public TypeReportEntity getTypeReportById(Long id) {
-        return typeReportRepository.findById(id).get();
-    }
-
-    public TypeReportEntity saveTypeReport(TypeReportEntity typeReport) {
-        return typeReportRepository.save(typeReport);
-    }
-
-    public TypeReportEntity updateTypeReport(TypeReportEntity typeReport) {
-        return typeReportRepository.save(typeReport);
-    }
-
     public List<TypeReportEntity> makeReport() {
         typeReportRepository.deleteAll();
 
