@@ -95,19 +95,31 @@ public class TypeReportControllerTest {
                 .andExpect(jsonPath("$[2].repairName", is("Reparaciones del Motor")));
     }
 
-    /*
     @Test
-    public void bringTypeReports_ShouldReturnReport() throws Exception {
-        List<RepairEntity> repairList = new ArrayList<>();
-        List<TypeReportEntity> detailList = new ArrayList<>();
+    public void bringTypeReports_ShouldReturnTypeReports() throws Exception {
+        TypeReportEntity typeReport1 = new TypeReportEntity(1L,
+                1,
+                "Reparaciones del Sistema de Frenos",
+                3,
+                "SUV",
+                485000);
 
-        given(typeReportService.makeReport()).willReturn((ArrayList<TypeReportEntity>) detailList);
+        TypeReportEntity typeReport2 = new TypeReportEntity(2L,
+                4,
+                "Reparaciones de la Transmisión",
+                2,
+                "Pickup",
+                334000);
+
+        List<TypeReportEntity> typeReportList = new ArrayList<>(Arrays.asList(typeReport1, typeReport2));
+
+        given(typeReportService.makeReport()).willReturn(typeReportList);
 
         mockMvc.perform(get("/typereports/generate"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(2)));
-
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].type", is("SUV")))
+                .andExpect(jsonPath("$[1].type", is("Pickup")));
     }
-    */
 }

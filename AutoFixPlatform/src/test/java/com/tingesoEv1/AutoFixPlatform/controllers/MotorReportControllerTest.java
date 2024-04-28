@@ -58,16 +58,58 @@ public class MotorReportControllerTest {
     }
 
     @Test
-    public void bringMotorReports_ShouldReturnGeneratedMotorReports() throws Exception {
+    public void orderedMotorReports_ShouldReturnOrderedMotorReports() throws Exception {
+        MotorReportEntity motorReport1 = new MotorReportEntity(1L,
+                1,
+                "Reparaciones del Sistema de Frenos",
+                3,
+                "Híbrido",
+                485000);
 
-        /*
-        List
+        MotorReportEntity motorReport2 = new MotorReportEntity(2L,
+                4,
+                "Reparaciones de la Transmisión",
+                2,
+                "Gasolina",
+                334000);
 
-        given(motorReportService.makeBlankReport()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
-         */
+        List<MotorReportEntity> motorReportList = new ArrayList<>(Arrays.asList(motorReport1, motorReport2));
+
+        given(motorReportService.getMotorOrdered()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
+
+        mockMvc.perform(get("/motorreports/ordered"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].motor", is("Híbrido")))
+                .andExpect(jsonPath("$[1].motor", is("Gasolina")));
     }
 
     @Test
-    public void orderedMotorReports_ShouldReturnOrderedMotorReports() throws Exception {
+    public void bringMotorReports_ShouldReturnMotorReports() throws Exception {
+        MotorReportEntity motorReport1 = new MotorReportEntity(1L,
+                1,
+                "Reparaciones del Sistema de Frenos",
+                3,
+                "Híbrido",
+                485000);
+
+        MotorReportEntity motorReport2 = new MotorReportEntity(2L,
+                4,
+                "Reparaciones de la Transmisión",
+                2,
+                "Gasolina",
+                334000);
+
+        List<MotorReportEntity> motorReportList = new ArrayList<>(Arrays.asList(motorReport1, motorReport2));
+
+        given(motorReportService.makeReport()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
+
+        mockMvc.perform(get("/motorreports/generate"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].motor", is("Híbrido")))
+                .andExpect(jsonPath("$[1].motor", is("Gasolina")));
     }
 }

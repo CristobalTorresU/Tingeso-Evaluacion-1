@@ -18,6 +18,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -65,5 +66,49 @@ public class RepairControllerTest {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].plate", is("AAAA11")))
                 .andExpect(jsonPath("$[1].plate", is("BBBB11")));
+    }
+
+    @Test
+    public void getRepairById_ShouldReturnRepair() throws Exception {
+        RepairEntity repair = new RepairEntity(1L,
+                "AAAA11",
+                LocalDate.parse("2024-04-12"),
+                LocalTime.parse("11:00:00"),
+                4,
+                400000,
+                LocalDate.parse("2024-04-13"),
+                LocalTime.parse("11:00:00"),
+                LocalDate.parse("2024-04-13"),
+                LocalTime.parse("13:00:00"));
+
+        given(repairService.getRepairById(1L)).willReturn(repair);
+
+        mockMvc.perform(get("/repairs/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.plate", is("AAAA11")));
+    }
+
+    @Test
+    public void deleteRepair_ShouldReturnNoContent() throws Exception {
+        given(repairService.deleteRepair(1L)).willReturn(true);
+
+        mockMvc.perform(delete("/repairs/{id}", 1L))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void calculatePrice_ShouldReturnNoContent() throws Exception {
+        given(repairService.calculatePrice("AAAA11",
+                "2024-04-12",
+                "11:00:00",
+                4,
+                "2024-04-13",
+                "11:00:00",
+                "2024-04-13",
+                "13:00:00")).willReturn(true);
+
+        mockMvc.perform(get("/repairs/calculate?plate=AAAA11&checkinDate=2024-04-12&checkinHour=11:00:00&reparationType=4&exitDate=2024-04-13&exitHour=11:00:00&collectDate=2024-04-13&collectHour=13:00:00"))
+                .andExpect(status().isNoContent());
     }
 }
