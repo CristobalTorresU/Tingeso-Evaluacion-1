@@ -2,8 +2,6 @@ package com.tingesoEv1.AutoFixPlatform.services;
 
 import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
-import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
-import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.MotorReportRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +21,6 @@ public class MotorReportTest {
 
     @Autowired
     private MotorReportService motorReportService;
-
-    @Autowired
-    private RepairService repairService;
-
-    @Autowired
-    private VehicleService vehicleService;
 
     @MockBean
     private MotorReportRepository motorReportRepository;

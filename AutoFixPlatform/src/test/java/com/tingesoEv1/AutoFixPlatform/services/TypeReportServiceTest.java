@@ -1,6 +1,5 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
-import com.tingesoEv1.AutoFixPlatform.entities.MotorReportEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.TypeReportRepository;

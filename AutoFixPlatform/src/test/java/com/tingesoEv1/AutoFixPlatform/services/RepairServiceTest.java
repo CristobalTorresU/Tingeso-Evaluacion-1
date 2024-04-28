@@ -24,9 +24,6 @@ public class RepairServiceTest {
     @Autowired
     private RepairService repairService;
 
-    @Autowired
-    private VehicleService vehicleService;
-
     @MockBean
     private RepairRepository repairRepository;
 

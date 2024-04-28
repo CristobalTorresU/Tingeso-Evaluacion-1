@@ -4,10 +4,8 @@ import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,9 +19,6 @@ public class CalculateServiceTest {
 
     @Autowired
     private CalculateService calculateService;
-
-    @MockBean
-    private VehicleEntity vehicleEntity;
 
     @Test
     void whenGetReparationTypePriceDiesel_thenCorrect() {

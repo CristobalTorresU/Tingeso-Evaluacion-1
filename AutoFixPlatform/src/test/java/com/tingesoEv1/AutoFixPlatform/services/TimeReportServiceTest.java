@@ -1,9 +1,7 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
 import com.tingesoEv1.AutoFixPlatform.entities.TimeReportEntity;
-import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.TimeReportRepository;
-import jakarta.persistence.Table;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
