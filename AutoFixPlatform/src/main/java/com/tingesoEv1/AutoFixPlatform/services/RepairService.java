@@ -42,6 +42,7 @@ public class RepairService {
         return repairRepository.save(repair);
     }
 
+    /*
     public RepairEntity saveInitialRepair(RepairEntity repair, String plate, int reparationType) {
         repair.setCheckinDate(LocalDate.now());
         repair.setCheckinHour(LocalTime.now());
@@ -49,6 +50,7 @@ public class RepairService {
         repair.setReparationType(reparationType);
         return repairRepository.save(repair);
     }
+    */
 
     public boolean deleteRepair(Long id) throws Exception {
         try{

@@ -1,5 +1,6 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
+import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.VehicleRepository;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -171,4 +174,23 @@ public class VehicleServiceTest {
         assertThat(vehicleExample).isTrue();
     }
      */
+
+    @Test
+    void whenDeleteVehicle_thenCorrect() {
+        //Given
+        VehicleEntity vehicle = new VehicleEntity();
+        vehicle.setId(1L);
+
+        //When
+        when(vehicleRepository.save(vehicle)).thenReturn(vehicle);
+        boolean result = false;
+        try {
+            result = vehicleService.deleteVehicle(1L);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Then
+        assertThat(result).isTrue();
+    }
 }

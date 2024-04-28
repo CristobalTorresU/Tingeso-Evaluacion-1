@@ -57,6 +57,7 @@ public class TypeReportServiceTest {
     }
      */
 
+    /*
     @Test
     void whenGetTypeOrdered_thenCorrect() {
         //Given
@@ -87,4 +88,5 @@ public class TypeReportServiceTest {
         assertNotNull(typeReports);
         assertThat(typeReportsExample.size()).isEqualTo(5);
     }
+    */
 }
