@@ -13,7 +13,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -112,6 +114,15 @@ public class RepairServiceTest {
 
         //Then
         assertThat(result).isTrue();
+    }
+
+    @Test
+    void whenDeleteRepair_thenIncorrect() {
+        doThrow(new RuntimeException("Error")).when(repairRepository).deleteById(anyLong());
+
+        Exception exception = assertThrows(Exception.class, () -> repairService.deleteRepair(1L));
+
+        assertEquals("Error", exception.getMessage());
     }
 
     @Test

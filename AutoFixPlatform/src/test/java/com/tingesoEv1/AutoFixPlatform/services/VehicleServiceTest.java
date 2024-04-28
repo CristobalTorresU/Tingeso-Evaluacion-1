@@ -13,7 +13,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(VehicleService.class)
@@ -192,5 +194,18 @@ public class VehicleServiceTest {
 
         //Then
         assertThat(result).isTrue();
+    }
+
+    @Test
+    void whenGetVehiclesByBrand_thenCorrect() {
+        //Given
+
+        //When
+        doThrow(new RuntimeException("java.lang.RuntimeException")).when(vehicleRepository).deleteById(anyLong());
+
+        Exception exception = assertThrows(Exception.class, () -> vehicleService.deleteVehicle(1L));
+
+        //Then
+        assertEquals("java.lang.RuntimeException", exception.getMessage());
     }
 }

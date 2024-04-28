@@ -24,6 +24,7 @@ public class TypeReportController {
 
     @GetMapping("/generate")
     public ResponseEntity<List<TypeReportEntity>> bringTypeReports() {
+        typeReportService.makeBlankReport();
         List<TypeReportEntity> reports = typeReportService.makeReport();
         return ResponseEntity.ok(reports);
     }

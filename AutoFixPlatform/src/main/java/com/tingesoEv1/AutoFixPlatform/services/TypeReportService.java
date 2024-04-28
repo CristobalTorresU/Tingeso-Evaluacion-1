@@ -24,7 +24,7 @@ public class TypeReportService {
         return (ArrayList<TypeReportEntity>) typeReportRepository.findAll();
     }
 
-    public List<TypeReportEntity> makeReport() {
+    public void makeBlankReport() {
         typeReportRepository.deleteAll();
 
         String[] repairNames = {"Reparaciones del Sistema de Frenos",
@@ -53,7 +53,9 @@ public class TypeReportService {
                 typeReportRepository.save(report);
             }
         }
+    }
 
+    public List<TypeReportEntity> makeReport() {
         // Se traen todas las reparaciones
         List<RepairEntity> repairs = repairService.getRepairs();
 

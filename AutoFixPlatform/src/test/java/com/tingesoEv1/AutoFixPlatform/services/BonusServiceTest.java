@@ -10,7 +10,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(BonusService.class)
@@ -154,29 +156,16 @@ public class BonusServiceTest {
         assertThat(result).isTrue();
     }
 
-    /*
-    // TODO: Fix this test
     @Test
-    void whenDeleteBonus_thenException() {
+    void whenDeleteBonus_thenIncorrect() {
         //Given
-        BonusEntity bonus = new BonusEntity();
-        bonus.setId(1L);
-        bonus.setBrand("Toyota");
-        bonus.setAmount(10000);
-        bonus.setQuantity(2);
 
         //When
-        when(bonusRepository.save(bonus)).thenReturn(bonus);
-        boolean result = false;
-        try {
-            result = bonusService.deleteBonus(2L);
-        } catch (Exception e) {
-            assertThat(e.getMessage()).isEqualTo("No value present");
-        }
+        doThrow(new RuntimeException("java.lang.RuntimeException")).when(bonusRepository).deleteById(anyLong());
+
+        Exception exception = assertThrows(Exception.class, () -> bonusService.deleteBonus(1L));
 
         //Then
-        assertThat(result).isFalse();
+        assertEquals("java.lang.RuntimeException", exception.getMessage());
     }
-     */
-
 }
