@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/details")
+@RequestMapping("/api/details")
 @CrossOrigin("*")
 public class DetailController {
     @Autowired

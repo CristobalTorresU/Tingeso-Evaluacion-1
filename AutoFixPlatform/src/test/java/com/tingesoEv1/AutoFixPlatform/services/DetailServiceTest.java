@@ -4,6 +4,7 @@ import com.tingesoEv1.AutoFixPlatform.entities.DetailEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.DetailRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -13,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@WebMvcTest(DetailService.class)
 public class DetailServiceTest {
 
     @Autowired

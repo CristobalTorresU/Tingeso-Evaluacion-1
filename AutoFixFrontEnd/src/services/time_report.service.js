@@ -1,19 +1,19 @@
 import httpClient from "../http-common";
 
 const getAll = () => {
-    return httpClient.get('/timereports/');
+    return httpClient.get('/api/timereports/');
 }
 
 const generate = () => {
-    return httpClient.get('/timereports/generate');
+    return httpClient.get('/api/timereports/generate');
 }
 
 const getOrder = () => {
-    return httpClient.get('/timereports/ordered');
+    return httpClient.get('/api/timereports/ordered');
 }
 
 const create = data => {
-    return httpClient.post("/timereports/", data);
+    return httpClient.post("/api/timereports/", data);
 }
 
 export default { getAll, generate, getOrder, create };

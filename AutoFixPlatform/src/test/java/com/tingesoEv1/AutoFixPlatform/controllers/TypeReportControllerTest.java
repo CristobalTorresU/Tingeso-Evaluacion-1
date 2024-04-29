@@ -51,7 +51,7 @@ public class TypeReportControllerTest {
 
         given(typeReportService.getTypeReports()).willReturn((ArrayList<TypeReportEntity>) typeReportList);
 
-        mockMvc.perform(get("/typereports/"))
+        mockMvc.perform(get("/api/typereports/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -86,7 +86,7 @@ public class TypeReportControllerTest {
 
         given(typeReportService.getTypeOrdered()).willReturn(typeReportList);
 
-        mockMvc.perform(get("/typereports/ordered"))
+        mockMvc.perform(get("/api/typereports/ordered"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(3)))
@@ -115,7 +115,7 @@ public class TypeReportControllerTest {
 
         given(typeReportService.makeReport()).willReturn(typeReportList);
 
-        mockMvc.perform(get("/typereports/generate"))
+        mockMvc.perform(get("/api/typereports/generate"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))

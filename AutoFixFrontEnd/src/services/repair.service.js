@@ -1,11 +1,11 @@
 import httpClient from "../http-common";
 
 const getAll = () => {
-    return httpClient.get('/repairs/');
+    return httpClient.get('/api/repairs/');
 }
 
 const get = id => {
-    return httpClient.get(`/repairs/${id}`);
+    return httpClient.get(`/api/repairs/${id}`);
 }
 
 /*
@@ -22,8 +22,8 @@ const updateCollect = data => {
 }
 */
 
-const calculate = (plate,mileage,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour) => {
-    return httpClient.get("/repairs/calculate",{params:{plate,mileage,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
+const calculate = (plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour) => {
+    return httpClient.get("/api/repairs/calculate",{params:{plate,checkinDate,checkinHour,reparationType,exitDate,exitHour,collectDate,collectHour}});
 }
 
 /*

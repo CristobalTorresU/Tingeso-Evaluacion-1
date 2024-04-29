@@ -15,7 +15,6 @@ import moment from "moment";
 
 const RepairCalculate = () => {
   const [plate, setPlate] = useState("");
-  const [mileage, setMileage] = useState("");
   const [checkinDate, setCheckinDate] = useState(new Date());
   const [checkinHour, setCheckinHour] = useState(null);
   const [reparationType, setReparationType] = useState("");

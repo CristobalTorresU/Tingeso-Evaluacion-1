@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/motorreports")
+@RequestMapping("/api/motorreports")
 @CrossOrigin("*")
 public class MotorReportController {
     @Autowired

@@ -55,7 +55,7 @@ public class VehicleControllerTest {
 
         given(vehicleService.getVehicles()).willReturn((ArrayList<VehicleEntity>) vehicleList);
 
-        mockMvc.perform(get("/vehicles/"))
+        mockMvc.perform(get("/api/vehicles/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -77,7 +77,7 @@ public class VehicleControllerTest {
 
         given(vehicleService.getVehicleById(1L)).willReturn(vehicle);
 
-        mockMvc.perform(get("/vehicles/{id}", 1L))
+        mockMvc.perform(get("/api/vehicles/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.plate", is("CCCC24")));
@@ -111,7 +111,7 @@ public class VehicleControllerTest {
             }
             """;
 
-        mockMvc.perform(post("/vehicles/")
+        mockMvc.perform(post("/api/vehicles/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(vehicleJson))
                 .andExpect(status().isOk())
@@ -147,7 +147,7 @@ public class VehicleControllerTest {
             """;
 
 
-        mockMvc.perform(put("/vehicles/")
+        mockMvc.perform(put("/api/vehicles/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(vehicleJson))
                 .andExpect(status().isOk())
@@ -158,7 +158,7 @@ public class VehicleControllerTest {
     public void deleteVehicleById_ShouldReturn204() throws Exception {
         when(vehicleService.deleteVehicle(1L)).thenReturn(true); // Assuming the method returns a boolean
 
-        mockMvc.perform(delete("/vehicles/{id}", 1L))
+        mockMvc.perform(delete("/api/vehicles/{id}", 1L))
                 .andExpect(status().isNoContent());
     }
 }

@@ -1,15 +1,15 @@
 import httpClient from "../http-common";
 
 const getAll = () => {
-    return httpClient.get('/typereports/');
+    return httpClient.get('/api/typereports/');
 }
 
 const generate = () => {
-    return httpClient.get('/typereports/generate');
+    return httpClient.get('/api/typereports/generate');
 }
 
 const getOrder = () => {
-    return httpClient.get('/typereports/ordered');
+    return httpClient.get('/api/typereports/ordered');
 }
 
 export default { getAll, generate, getOrder };

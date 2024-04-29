@@ -49,7 +49,7 @@ public class MotorReportControllerTest {
 
         given(motorReportService.getMotorReports()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
 
-        mockMvc.perform(get("/motorreports/"))
+        mockMvc.perform(get("/api/motorreports/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -77,7 +77,7 @@ public class MotorReportControllerTest {
 
         given(motorReportService.getMotorOrdered()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
 
-        mockMvc.perform(get("/motorreports/ordered"))
+        mockMvc.perform(get("/api/motorreports/ordered"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -105,7 +105,7 @@ public class MotorReportControllerTest {
 
         given(motorReportService.makeReport()).willReturn((ArrayList<MotorReportEntity>) motorReportList);
 
-        mockMvc.perform(get("/motorreports/generate"))
+        mockMvc.perform(get("/api/motorreports/generate"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))

@@ -54,7 +54,7 @@ public class TimeReportControllerTest {
 
         given(timeReportService.getTimeReports()).willReturn((ArrayList<TimeReportEntity>) timeReportList);
 
-        mockMvc.perform(get("/timereports/"))
+        mockMvc.perform(get("/api/timereports/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -86,7 +86,7 @@ public class TimeReportControllerTest {
 
         given(timeReportService.getTimeOrdered()).willReturn(timeReportList);
 
-        mockMvc.perform(get("/timereports/ordered"))
+        mockMvc.perform(get("/api/timereports/ordered"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -118,7 +118,7 @@ public class TimeReportControllerTest {
 
         given(timeReportService.makeReport()).willReturn((ArrayList<TimeReportEntity>) timeReportList);
 
-        mockMvc.perform(get("/timereports/generate"))
+        mockMvc.perform(get("/api/timereports/generate"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))

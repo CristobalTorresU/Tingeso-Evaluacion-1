@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/repairs")
+@RequestMapping("/api/repairs")
 @CrossOrigin("*")
 public class RepairController {
     @Autowired

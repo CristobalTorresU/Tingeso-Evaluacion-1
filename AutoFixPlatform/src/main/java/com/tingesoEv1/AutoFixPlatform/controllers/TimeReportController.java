@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/timereports")
+@RequestMapping("/api/timereports")
 @CrossOrigin("*")
 public class TimeReportController {
     @Autowired

@@ -45,7 +45,7 @@ public class BonusControllerTest {
 
         given(bonusService.getBonuses()).willReturn((ArrayList<BonusEntity>) vehicleList);
 
-        mockMvc.perform(get("/bonuses/"))
+        mockMvc.perform(get("/api/bonuses/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -62,7 +62,7 @@ public class BonusControllerTest {
 
         given(bonusService.getBonusById(1L)).willReturn(bonus);
 
-        mockMvc.perform(get("/bonuses/{id}", 1L))
+        mockMvc.perform(get("/api/bonuses/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.brand", is("Kia")));
@@ -85,7 +85,7 @@ public class BonusControllerTest {
             }
             """;
 
-        mockMvc.perform(post("/bonuses/")
+        mockMvc.perform(post("/api/bonuses/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bonusJson))
                 .andExpect(status().isOk())
@@ -111,7 +111,7 @@ public class BonusControllerTest {
             """;
 
 
-        mockMvc.perform(put("/bonuses/")
+        mockMvc.perform(put("/api/bonuses/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bonusJson))
                 .andExpect(status().isOk())
@@ -122,7 +122,7 @@ public class BonusControllerTest {
     public void deleteBonusById_ShouldReturn204() throws Exception {
         when(bonusService.deleteBonus(1L)).thenReturn(true); // Assuming the method returns a boolean
 
-        mockMvc.perform(delete("/bonuses/{id}", 1L))
+        mockMvc.perform(delete("/api/bonuses/{id}", 1L))
                 .andExpect(status().isNoContent());
     }
 }

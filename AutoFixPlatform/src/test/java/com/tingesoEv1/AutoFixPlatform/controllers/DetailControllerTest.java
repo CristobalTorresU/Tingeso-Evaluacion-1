@@ -58,7 +58,7 @@ public class DetailControllerTest {
 
         given(detailService.getDetails()).willReturn((ArrayList<DetailEntity>) detailList);
 
-        mockMvc.perform(get("/details/"))
+        mockMvc.perform(get("/api/details/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -84,7 +84,7 @@ public class DetailControllerTest {
 
         given(detailService.getRepairById(1L)).willReturn((ArrayList<DetailEntity>) detailList);
 
-        mockMvc.perform(get("/details/{id}", 1L))
+        mockMvc.perform(get("/api/details/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].lateRecharge", is(13009)));

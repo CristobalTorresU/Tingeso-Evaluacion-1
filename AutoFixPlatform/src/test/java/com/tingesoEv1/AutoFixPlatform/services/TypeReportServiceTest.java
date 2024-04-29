@@ -5,6 +5,7 @@ import com.tingesoEv1.AutoFixPlatform.entities.TypeReportEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.TypeReportRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -17,11 +18,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
-@SpringBootTest
+@WebMvcTest(TypeReportService.class)
 public class TypeReportServiceTest {
 
     @Autowired
     private TypeReportService typeReportService;
+
+    @MockBean
+    private RepairService repairService;
+
+    @MockBean
+    private VehicleService vehicleService;
 
     @MockBean
     private TypeReportRepository typeReportRepository;
@@ -64,16 +71,25 @@ public class TypeReportServiceTest {
         RepairService repairService = mock(RepairService.class);
 
         RepairEntity repair1 = new RepairEntity();
+        RepairEntity repair2 = new RepairEntity();
         repair1.setPlate("AAAA11");
         repair1.setReparationType(1);
         repair1.setTotalAmount(1000);
-        ArrayList<RepairEntity> repairs = new ArrayList<>(Arrays.asList(repair1));
+        repair2.setPlate("BBBB22");
+        repair2.setReparationType(2);
+        repair2.setTotalAmount(2000);
+        ArrayList<RepairEntity> repairs = new ArrayList<>(Arrays.asList(repair1, repair2));
 
         TypeReportEntity typeReport1 = new TypeReportEntity();
+        TypeReportEntity typeReport2 = new TypeReportEntity();
         typeReport1.setReparationType(1);
         typeReport1.setType("SUV");
         typeReport1.setTotalAmount(1000);
         typeReport1.setQuantity(1);
+        typeReport2.setReparationType(2);
+        typeReport2.setType("Sedán");
+        typeReport2.setTotalAmount(2000);
+        typeReport2.setQuantity(1);
 
         //When
         // Simular el método getRepairs() del servicio

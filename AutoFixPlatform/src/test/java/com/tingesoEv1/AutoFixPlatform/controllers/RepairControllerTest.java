@@ -60,7 +60,7 @@ public class RepairControllerTest {
 
         given(repairService.getRepairs()).willReturn((ArrayList<RepairEntity>) repairList);
 
-        mockMvc.perform(get("/repairs/"))
+        mockMvc.perform(get("/api/repairs/"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -83,7 +83,7 @@ public class RepairControllerTest {
 
         given(repairService.getRepairById(1L)).willReturn(repair);
 
-        mockMvc.perform(get("/repairs/1"))
+        mockMvc.perform(get("/api/repairs/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.plate", is("AAAA11")));
@@ -93,7 +93,7 @@ public class RepairControllerTest {
     public void deleteRepair_ShouldReturnNoContent() throws Exception {
         given(repairService.deleteRepair(1L)).willReturn(true);
 
-        mockMvc.perform(delete("/repairs/{id}", 1L))
+        mockMvc.perform(delete("/api/repairs/{id}", 1L))
                 .andExpect(status().isNoContent());
     }
 
@@ -108,7 +108,7 @@ public class RepairControllerTest {
                 "2024-04-13",
                 "13:00:00")).willReturn(true);
 
-        mockMvc.perform(get("/repairs/calculate?plate=AAAA11&checkinDate=2024-04-12&checkinHour=11:00:00&reparationType=4&exitDate=2024-04-13&exitHour=11:00:00&collectDate=2024-04-13&collectHour=13:00:00"))
+        mockMvc.perform(get("/api/repairs/calculate?plate=AAAA11&checkinDate=2024-04-12&checkinHour=11:00:00&reparationType=4&exitDate=2024-04-13&exitHour=11:00:00&collectDate=2024-04-13&collectHour=13:00:00"))
                 .andExpect(status().isNoContent());
     }
 }
