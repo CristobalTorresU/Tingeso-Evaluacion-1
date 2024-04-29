@@ -1,24 +1,36 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
+import com.tingesoEv1.AutoFixPlatform.entities.BonusEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+//@SpringBootTest
+@WebMvcTest(CalculateService.class)
 public class CalculateServiceTest {
 
     @Autowired
     private CalculateService calculateService;
+
+    @Test
+    void whenGetReparationTypePriceGasolina_thenCorrect() {
+        VehicleEntity vehicle = new VehicleEntity();
+        vehicle.setMotor("Gasolina");
+        double price = calculateService.getReparationTypePrice(vehicle, 1);
+        assertEquals(120000.0, price);
+    }
 
     @Test
     void whenGetReparationTypePriceDiesel_thenCorrect() {
@@ -42,6 +54,21 @@ public class CalculateServiceTest {
         vehicle.setMotor("Eléctrico");
         double price = calculateService.getReparationTypePrice(vehicle, 1);
         assertEquals(220000.0, price);
+    }
+
+    @Test
+    void whenGetBonusDiscountNull_thenCorrect() {
+        double price = calculateService.getBonusDiscount(null);
+        assertEquals(0.0, price);
+    }
+
+    @Test
+    void whenGetBonusDiscount_thenCorrect() {
+        BonusEntity bonus = new BonusEntity();
+        bonus.setAmount(1000);
+        bonus.setQuantity(1);
+        double price = calculateService.getBonusDiscount(bonus);
+        assertEquals(1000.0, price);
     }
 
     @Test
@@ -676,5 +703,29 @@ public class CalculateServiceTest {
         LocalDate checkinDate = LocalDate.parse("2024-02-03");
         double price = calculateService.getYearRecharge(vehicle, checkinDate);
         assertEquals(0.20, price);
+    }
+
+    @Test
+    void whenGetDayDiscount_thenCorrect() {
+        LocalDate checkinDate = LocalDate.parse("2024-02-06");
+        LocalTime checkinHour = LocalTime.parse("10:00");
+        double price = calculateService.getDayDiscount(checkinDate,checkinHour);
+        assertEquals(0.10, price);
+    }
+
+    @Test
+    void whenGetLateRecharge_thenCorrect() {
+        LocalDate exitDate = LocalDate.parse("2024-02-06");
+        LocalDate collectDate = LocalDate.parse("2024-02-06");
+        double price = calculateService.getLateRecharge(exitDate, collectDate);
+        assertEquals(0.0, price);
+    }
+
+    @Test
+    void whenGetLateRecharge_thenCorrect2() {
+        LocalDate exitDate = LocalDate.parse("2024-02-06");
+        LocalDate collectDate = LocalDate.parse("2024-02-07");
+        double price = calculateService.getLateRecharge(exitDate, collectDate);
+        assertEquals(0.05, price);
     }
 }

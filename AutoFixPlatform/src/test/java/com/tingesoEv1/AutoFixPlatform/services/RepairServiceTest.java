@@ -5,7 +5,7 @@ import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.RepairRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
@@ -18,11 +18,23 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@WebMvcTest(RepairService.class)
 public class RepairServiceTest {
 
     @Autowired
     private RepairService repairService;
+
+    @MockBean
+    private VehicleService vehicleService;
+
+    @MockBean
+    private BonusService bonusService;
+
+    @MockBean
+    private DetailService detailService;
+
+    @MockBean
+    private CalculateService calculateService;
 
     @MockBean
     private RepairRepository repairRepository;
@@ -195,6 +207,15 @@ public class RepairServiceTest {
 
         //When
         when(repairRepository.save(repair)).thenReturn(repair);
+        when(bonusService.getBonusByBrand("Toyota")).thenReturn(null);
+        when(vehicleService.getVehicleByPlate("AAAA21")).thenReturn(vehicle);
+        when(calculateService.getReparationTypePrice(vehicle, repair.getReparationType())).thenReturn(10000.0);
+        when(calculateService.getMileageRecharge(vehicle)).thenReturn(1000.0);
+        when(calculateService.getYearRecharge(vehicle, repair.getCheckinDate())).thenReturn(1000.0);
+        when(calculateService.getLateRecharge(repair.getExitDate(), repair.getCollectDate())).thenReturn(1000.0);
+        when(calculateService.getReparationsDiscount(vehicle, repairService.getRepairsByPlate(vehicle.getPlate()))).thenReturn(1000.0);
+        when(calculateService.getDayDiscount(repair.getCheckinDate(), repair.getCheckinHour())).thenReturn(1000.0);
+        when(calculateService.getBonusDiscount(null)).thenReturn(1000.0);
         boolean result = repairService.calculatePrice("AAAA21",
                 "2020-06-01",
                 "10:00",

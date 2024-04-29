@@ -1,41 +1,49 @@
 package com.tingesoEv1.AutoFixPlatform.services;
 
+import com.tingesoEv1.AutoFixPlatform.entities.RepairEntity;
 import com.tingesoEv1.AutoFixPlatform.entities.TimeReportEntity;
+import com.tingesoEv1.AutoFixPlatform.entities.VehicleEntity;
 import com.tingesoEv1.AutoFixPlatform.repositories.TimeReportRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@WebMvcTest(TimeReportService.class)
 public class TimeReportServiceTest {
 
     @Autowired
     private TimeReportService timeReportService;
 
     @MockBean
+    private RepairService repairService;
+
+    @MockBean
+    private VehicleService vehicleService;
+
+    @MockBean
     private TimeReportRepository timeReportRepository;
 
     @Test
     void whenGetTimeReports_thenCorrect() {
+        System.out.println("owo");
         //Given
         TimeReportEntity timeReport1 = new TimeReportEntity();
         TimeReportEntity timeReport2 = new TimeReportEntity();
 
-        ArrayList<TimeReportEntity> timeReports = new ArrayList<>();
-        timeReports.add(timeReport1);
-        timeReports.add(timeReport2);
+        ArrayList<TimeReportEntity> timeReports = new ArrayList<>(Arrays.asList(timeReport1, timeReport2));
 
         //When
         when(timeReportRepository.findAll()).thenReturn(timeReports);
-        ArrayList<TimeReportEntity> timeReportsExample = timeReportService.getTimeReports();
+        List<TimeReportEntity> timeReportsExample = timeReportService.getTimeReports();
 
         //Then
         assertNotNull(timeReports);
@@ -47,8 +55,16 @@ public class TimeReportServiceTest {
         //Given
         // Simular el método deleteAll() del repositorio
         doNothing().when(timeReportRepository).deleteAll();
+        VehicleEntity vehicle = new VehicleEntity();
+        vehicle.setBrand("Toyota");
+        vehicle.setPlate("AAA111");
+
+        RepairEntity repair = new RepairEntity();
+        repair.setPlate("AAA111");
 
         // Llamar al método makeBlankReport()
+        //when(vehicleService.vehicleRepository.findByPlate(anyString())).thenReturn(vehicle);
+        //when(repairService.getRepairs()).thenReturn(new ArrayList<>(Arrays.asList(repair)));
         timeReportService.makeBlankReport();
 
         // Verificar que el método deleteAll() fue llamado una vez
