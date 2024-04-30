@@ -38,13 +38,14 @@ services:
     image: postgres
     deploy:
       restart_policy:
-        condition: on-failure
+        condition: on-failure 
     volumes:
       - autofix-postgres-volume:/var/lib/postgresql/data
     networks:
       - autofix-backend-network
     environment:      
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dbautofix
     ports:
       - 5432:5432
 
