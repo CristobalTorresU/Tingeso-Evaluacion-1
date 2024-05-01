@@ -3,7 +3,7 @@ version: "3.8"
 services:
   # Nginx for frontend load balancing
   nginx-frontend:
-    image: nginx:latest
+    image: nginx
     container_name: autofix-nginx-frontend-container
     restart: always
     ports:
@@ -19,7 +19,7 @@ services:
 
   # Nginx for backend load balancing
   nginx-backend:
-    image: nginx:latest
+    image: nginx
     container_name: autofix-nginx-backend-container
     restart: always
     ports:
