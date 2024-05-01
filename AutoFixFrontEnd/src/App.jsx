@@ -21,7 +21,7 @@ function App() {
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/home" element={<Home/>} />
+          <Route path="home" element={<Home/>} />
           <Route path="/vehicle/list" element={<VehicleList/>} />
           <Route path="/vehicle/register" element={<RegisterVehicle/>} />
           <Route path="/vehicle/edit/:id" element={<RegisterVehicle/>} />
