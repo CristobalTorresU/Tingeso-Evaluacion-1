@@ -7,26 +7,26 @@ pipeline{
     stages{
         stage("Build JAR File"){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hector-gallardo-araya/ayudantia-mingeso']])
-                dir("gestion-estudiantes-backend"){
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/CristobalTorresU/Tingeso-Evaluacion-1']])
+                dir("AutoFixPlatform"){
                     sh "mvn clean install"
                 }
             }
         }
         stage("Test"){
             steps{
-                dir("gestion-estudiantes-backend"){
+                dir("AutoFixPlatform"){
                     sh "mvn test"
                 }
             }
         }        
         stage("Build and Push Docker Image"){
             steps{
-                dir("gestion-estudiantes-backend"){
+                dir("AutoFixPlatform"){
                     script{
                          withDockerRegistry(credentialsId: 'docker-credentials'){
-                            sh "docker build -t polloh/gestion-estudiantes-backend ."
-                            sh "docker push polloh/gestion-estudiantes-backend"
+                            sh "docker build -t dilget/autofix-backend ."
+                            sh "docker push dilget/autofix-backend"
                         }
                     }                    
                 }
