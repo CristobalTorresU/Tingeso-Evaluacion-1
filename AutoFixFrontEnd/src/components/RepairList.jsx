@@ -16,7 +16,6 @@ const RepairList = () => {
     const [repairs, setRepair] = useState([]);
 
     const NameToRepair =  (number) => {
-        console.log(number);
         switch (number) {
             case 1:
                 return 'Reparaciones del Sistema de Frenos';
