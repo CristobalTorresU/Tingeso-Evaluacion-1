@@ -77,7 +77,7 @@ const VehicleList = () => {
           color="primary"
           startIcon={<PersonAddIcon />}
         >
-          Añadir Vehículo
+          Añadir Automóvil
         </Button>
       </Link>
       <br /> <br />
