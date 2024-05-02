@@ -15,6 +15,33 @@ import InfoIcon from "@mui/icons-material/Info";
 const RepairList = () => {
     const [repairs, setRepair] = useState([]);
 
+    const namesRepairs =  (number) => {
+        switch (number) {
+            case 1:
+                return 'Reparaciones del Sistema de Frenos';
+            case 2:
+                return 'Servicio del Sistema de Refrigeración';
+            case 3:
+                return 'Reparaciones del Motor';
+            case 4:
+                return 'Reparaciones de la Transmisión';
+            case 5:
+                return 'Reparación del Sistema Eléctrico';
+            case 6:
+                return 'Reparaciones del Sistema de Escape';
+            case 7:
+                return 'Reparación de Neumáticos y Ruedas';
+            case 8:
+                return 'Reparaciones de la Suspensión y la Dirección';
+            case 9:
+                return 'Reparación del Sistema de Aire Acondicionado y Calefacción';
+            case 10:
+                return 'Reparaciones del Sistema de Combustible';
+            case 11:
+                return 'Reparación y Reemplazo del Parabrisas y Cristales';
+        }
+    };
+
     const navigate = useNavigate();
 
     const init = () => {
@@ -91,7 +118,7 @@ const RepairList = () => {
                             <TableCell align="right">{repair.plate}</TableCell>
                             <TableCell align="right">{repair.checkinDate}</TableCell>
                             <TableCell align="right">{repair.checkinHour}</TableCell>
-                            <TableCell align="right">{repair.reparationType}</TableCell>
+                            <TableCell align="right">{namesRepairs(repair.reparationType)}</TableCell>
                             <TableCell align="right">{repair.exitDate}</TableCell>
                             <TableCell align="right">{repair.exitHour}</TableCell>
                             <TableCell align="right">{repair.collectDate}</TableCell>
