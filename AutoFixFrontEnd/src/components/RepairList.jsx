@@ -15,7 +15,8 @@ import InfoIcon from "@mui/icons-material/Info";
 const RepairList = () => {
     const [repairs, setRepair] = useState([]);
 
-    const namesRepairs =  (number) => {
+    const NameToRepair =  (number) => {
+        console.log(number);
         switch (number) {
             case 1:
                 return 'Reparaciones del Sistema de Frenos';
@@ -118,7 +119,7 @@ const RepairList = () => {
                             <TableCell align="right">{repair.plate}</TableCell>
                             <TableCell align="right">{repair.checkinDate}</TableCell>
                             <TableCell align="right">{repair.checkinHour}</TableCell>
-                            <TableCell align="right">{namesRepairs(repair.reparationType)}</TableCell>
+                            <TableCell align="right">{NameToRepair(repair.reparationType)}</TableCell>
                             <TableCell align="right">{repair.exitDate}</TableCell>
                             <TableCell align="right">{repair.exitHour}</TableCell>
                             <TableCell align="right">{repair.collectDate}</TableCell>
