@@ -67,7 +67,7 @@ const VehicleList = () => {
     <TableContainer component={Paper}>
       <br />
       <br />
-      <h3>Registro de Vehículos</h3>
+      <h3>Lista de Vehículos</h3>
       <Link
         to="/vehicle/register"
         style={{ textDecoration: "none", marginBottom: "1rem" }}
